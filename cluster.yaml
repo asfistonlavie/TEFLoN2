@@ -1,0 +1,39 @@
+__default__:
+    #jobname: "{rule}"
+    partition: fast
+    cpus: 1  
+    output: "logs_slurm/{rule}.{wildcards}.out"  ## redirect slurm-JOBID.txt to your directory
+    error: "logs_slurm/{rule}.{wildcards}.err"  ## redirect slurm-JOBID.txt to your directory
+    mem: 2000
+
+teflon_prep_custom:
+    cpus: "{threads}" ## => use `threads` define in rule
+    mem: 200000
+
+bwa_mem:
+    #jobname: "{rule}_{params.sample}"
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+samtools_view:
+    #jobname: "{rule}_{params.sample}"
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+teflon_discover:
+    #jobname: "{rule}_{params.sample}"
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+teflon_collapse:
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+teflon_count:
+    #jobname: "{rule}_{params.sample}"
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+teflon_genotype:
+    #jobname: "{rule}_{params.sample}"
+    mem: "{resources.mem_mb}"

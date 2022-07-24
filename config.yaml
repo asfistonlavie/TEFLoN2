@@ -1,0 +1,73 @@
+##################################################
+########GÉRALE#####################
+##################################################
+
+
+##Instruction
+#Dans le dossier date_input/reference mettre votre reference, mettre le nom de la référence que vous voulez traiter sur la varible génome
+#
+#(1) params obligatoryinstruction
+#(2) optinal
+
+PYTHON3: "/usr/bin/python3"
+GENOME : "sample_reference_genome.fasta"
+PREFIX : "TEST"
+BWA : "/usr/bin/bwa"
+SAMTOOLS : "/usr/local/bin/samtools"
+
+################################################
+##############teflon_prep_annotation############
+################################################
+
+
+HIERARCHY : "sample_reference_hierarchy.txt"
+ANNOTATION : "sample_reference_te_annotation.bed"
+
+#################################################
+################teflon_prep_custom###############
+#################################################
+
+LIBRARY : "sample_te_library.fasta"
+REPEATMASKER : ""
+CUTOFF : ""
+MIN_LENGTH : ""
+SPLIT_DIST : ""
+DIVERGENCE : ""
+
+
+##################################################
+########teflon.v0.4.py############################
+##################################################
+
+LEVEL_HERARCHY1 : "family"
+LEVEL_HERARCHY2 : "order"
+QUALITY_DETECT : "20"
+EXCLUDE : ""
+STANDARD_DEVIATION : ""
+COVERAGE_OVERRIDE : ""
+
+
+##################################################
+########teflon_collapse.py#####################
+##################################################
+
+THREASHOLD_SAMPLE : "1"
+THREASHOLD_ALL : "1"
+QUALITY_COLLAPSE : "20"
+##################################################
+########teflon_count.py###########################
+##################################################
+
+
+QUALITY_COUNT : "20"
+
+
+##################################################
+########teflon_genotype.py########################
+##################################################
+
+THREASHOLD_LOWER : "1"
+THREASHOLD_HIGHER : "100"
+DATA_TYPE : "pooled"
+
+
