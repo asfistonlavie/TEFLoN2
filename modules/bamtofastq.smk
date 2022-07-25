@@ -29,3 +29,4 @@ rule samtools_fastq:
 		"-1 {output.r1} "
 		"-2 {output.r2} "
 		"-0 /dev/null -s /dev/null -n"
+		"&& rm {input}"
