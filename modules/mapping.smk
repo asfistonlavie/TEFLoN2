@@ -13,8 +13,8 @@ rule bwa_index:
 rule bwa_mem:
     input:
         "data_output/0-reference/"+config["PREFIX"]+".prep_MP/"+config["PREFIX"]+".mappingRef.fa.bwt",
-        r1 = "data_input/samples/read1/{READ}_1.fastq",
-        r2 = "data_input/samples/read2/{READ}_2.fastq"
+        r1 = "data_input/samples/read1/{READ}_r1.fastq",
+        r2 = "data_input/samples/read2/{READ}_r2.fastq"
     output:
         temp("data_output/1-mapping/"+"{READ}.sam")
 
