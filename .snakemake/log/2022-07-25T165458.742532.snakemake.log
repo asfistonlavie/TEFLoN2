@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 23 of /home/ozone/TEFLoN2/Snakefile:
-Missing input files for rule all:
-data_output/countPos/['AN0007-C'].pseudoSpace.genotypes.txt
-data_output/countPos/[].pseudoSpace.genotypes.txt
-data_output/genotypes/['AN0007-C'].genotypes.txt
-data_output/genotypes/[].genotypes.txt
