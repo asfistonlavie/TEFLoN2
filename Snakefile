@@ -9,7 +9,7 @@ import sys
 
 #function
 def get_mem_mb(wildcards, attempt):
-    return 4000 +  8000* (attempt - 1)
+    return 10000 +  8000* (attempt - 1)
 
 ##global variable
 READ = glob_wildcards("data_input/samples/read1/{sample}_r1.fastq").sample + glob_wildcards("data_input/samples/bam/{sample}.bam").sample
