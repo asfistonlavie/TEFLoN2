@@ -10,13 +10,18 @@ rule bwa_index:
 
 
 #Mapping reads on the reference
-rule bwa_mem:
+#Sort and file.sam to file.bam (binary file)
+rule mapping:
     input:
         "data_output/0-reference/"+config["PREFIX"]+".prep_MP/"+config["PREFIX"]+".mappingRef.fa.bwt",
         r1 = "data_input/samples/read1/{READ}_r1.fastq",
         r2 = "data_input/samples/read2/{READ}_r2.fastq"
+
     output:
-        temp("data_output/1-mapping/"+"{READ}.sam")
+        bam = "data_output/1-mapping/{READ}.sorted.bam"
+
+    resources:
+        mem_mb=get_mem_mb
 
     params:
         ref = "data_output/0-reference/"+config["PREFIX"]+".prep_MP/"+config["PREFIX"]+".mappingRef.fa"
@@ -33,28 +38,11 @@ rule bwa_mem:
         "-Y {params.ref} "
         "{input.r1} "
         "{input.r2} "
-        "> {output}"
-
-#Sort and file.sam to file.bam (binary file)
-rule samtools_view:
-    input: 
-        "data_output/1-mapping/{READ}.sam"
-
-    output:
-        bam = "data_output/1-mapping/{READ}.sorted.bam"
-
-    threads: 8
-    #https://link.springer.com/chapter/10.1007/978-3-319-58943-5_33
-
-    resources:
-        mem_mb=get_mem_mb
-
-    shell:
-        "samtools view "
-        "-Sb {input} "
         "| samtools sort "
-        "-@ {threads} - "
+        "-@ {threads} "
         "-o {output.bam}"
+
+
 
 #Bam files index
 rule samtools_index:
