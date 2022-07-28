@@ -40,7 +40,7 @@ DIVERGENCE : ""
 ##################################################
 
 LEVEL_HERARCHY1 : "family"
-LEVEL_HERARCHY2 : "order"
+LEVEL_HERARCHY2 : "class"
 QUALITY_DETECT : "20"
 EXCLUDE : ""
 STANDARD_DEVIATION : ""
