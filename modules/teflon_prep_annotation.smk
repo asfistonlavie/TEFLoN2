@@ -6,7 +6,6 @@ rule teflon_prep_annotation:
         genome = "data_input/reference/" + config["GENOME"]
 
     output:
-        directory("data_output/0-reference/" + config["PREFIX"] + ".prep_MP"),
         directory("data_output/0-reference/" + config["PREFIX"] + ".prep_TF"),
         "data_output/0-reference/"+config["PREFIX"]+".prep_MP/"+config["PREFIX"]+".mappingRef.fa"
 
