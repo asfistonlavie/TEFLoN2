@@ -258,8 +258,9 @@ def main():
         print("Insert size standard deviation estimated as %s. Use the override option if you suspect this is incorrect!" %(sd))
         if sd > 100:
             print("!!! Warning: insert size standard deviation reported as",sd,"!!!")
-            print("Please ensure this is correct and use the override option!")
-            sys.exit()
+            sd=args.stdev
+#             print("Please ensure this is correct and use the override option!")
+#             sys.exit()
     else:
         sd=args.stdev
 
