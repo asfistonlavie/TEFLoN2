@@ -33,7 +33,7 @@ def check_dependency(exePATH):
 def mkdir_if_not_exist(*dirs):
     for dir in dirs:
         if not os.path.exists(dir):
-            os.makedirs(dir)
+            os.makedirs(dir,exist_ok=True)
             print("creating directory: %s" %(dir))
 
 def assign_task(siteID, task_q, nProcs):
