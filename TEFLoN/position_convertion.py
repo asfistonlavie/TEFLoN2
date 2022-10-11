@@ -2,8 +2,6 @@ import argparse, sys, os, gzip
 import gc
 import json
 
-from teflon_scripts import mean_stats as ms
-from teflon_scripts import genotyper_poolType as pt
 from teflon_scripts import pseudo2refConvert as p2rC
 
 def mkdir_if_not_exist(*dirs):
@@ -45,7 +43,7 @@ def main():
 		posMap = json.load(file)
 
 	convertedOutFile = os.path.join(preliminaryResultsDir,"converted_ET_catalog.txt")
-	pseudo2refConvert_portal(catalog,posMap,convertedOutFile)
+	p2rC.pseudo2refConvert_portal(catalog,posMap,convertedOutFile)
 	
 	print("POSITION CONVERTION FINISHED!")
 	
