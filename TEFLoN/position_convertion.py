@@ -17,7 +17,6 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-wd',dest='wd',help='full path to working directory', default=-1)
 	parser.add_argument('-d',dest='DIR',help='full path to prep_TF directory')
-	parser.add_argument('-s',dest='samples',help='tab delimited text file with full paths to indexed bamFILEs and sorted te positions')
 	args = parser.parse_args()
 
 	# identify current working directory
@@ -47,3 +46,8 @@ def main():
 
 	convertedOutFile = os.path.join(preliminaryResultsDir,"converted_ET_catalog.txt")
 	pseudo2refConvert_portal(catalog,posMap,convertedOutFile)
+	
+	print("POSITION CONVERTION FINISHED!")
+	
+if __name__ == "__main__":
+	main()
