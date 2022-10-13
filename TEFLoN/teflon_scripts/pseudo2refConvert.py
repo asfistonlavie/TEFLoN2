@@ -27,7 +27,10 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,outFILE):
         line_ct=1
         for line in fIN:
             orgls=line.split()
-            ls=orgls[:-3]+orgls[-1:]
+            if len(orgls) == 9:
+                ls = orgls
+            else:
+                ls=orgls[:-3]+orgls[-1:]
             chrom=ls[0]
             for ch in pseudoMap:
                 if ch == chrom:
