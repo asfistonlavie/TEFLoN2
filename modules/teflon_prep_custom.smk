@@ -6,19 +6,19 @@ rule teflon_prep_custom:
 
 
     output:
-        directory("data_output/0-reference/" + config["PREFIX"] + ".prep_TF"),
-        directory("data_output/0-reference/" + config["PREFIX"] + ".prep_RM"),
-        "data_output/0-reference/"+config["PREFIX"]+".prep_MP/"+config["PREFIX"]+".mappingRef.fa"
+        directory("data_output/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
+        directory("data_output/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_RM"),
+        "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
 
     params:
         wd = "data_output/0-reference/",
-        repeatMasker = config["REPEATMASKER"],
-        prefix = config["PREFIX"],
-        cutoff = config["CUTOFF"],
-        minlength = config["MIN_LENGTH"],
-        splitDist = config["SPLIT_DIST"],
-        divergence = config["DIVERGENCE"],
-        python = config["PYTHON3"]
+        repeatMasker = config["DEPENDANCES"]["REPEATMASKER"],
+        prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
+        cutoff = config["PARAMS"]["PREP_CUSTOM"]["CUTOFF"],
+        minlength = config["PARAMS"]["PREP_CUSTOM"]["MIN_LENGTH"],
+        splitDist = config["PARAMS"]["PREP_CUSTOM"]["SPLIT_DIST"],
+        divergence = config["PARAMS"]["PREP_CUSTOM"]["DIVERGENCE"],
+        python = config["DEPENDANCES"]["PYTHON3"]
       
     threads: 16
 

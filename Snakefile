@@ -13,7 +13,6 @@ def get_mem_mb(wildcards, attempt):
 
 ##global variable
 READ = glob_wildcards("data_input/samples/read1/{sample}_r1.fastq").sample + glob_wildcards("data_input/samples/bam/{sample}.bam").sample
-
 localrules:
     all
 
@@ -26,10 +25,11 @@ rule all:
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
-if config["ANNOTATION"] and config["HIERARCHY"] and config["GENOME"] :)
-    include: "modules/teflon_prep_annotation.smk"
-elif config["GENOME"] and config["LIBRARY"] :
-    include: "modules/teflon_prep_custom.smk"
+if "GENOME" in config["DATA"]:
+    if "ANNOTATION" in config["DATA"]:
+        include: "modules/teflon_prep_annotation.smk"
+    elif "LIBRARY" in config["DATA"] :
+        include: "modules/teflon_prep_custom.smk"
 else : 
     sys.exit("Invalid inputs")
 

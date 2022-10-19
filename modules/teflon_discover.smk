@@ -8,20 +8,21 @@ rule teflon_discover:
         "data_output/1-mapping/{READ}.sorted.stats.txt",
         "data_output/countPos/{READ}.all_positions_sorted.txt",
         "data_output/countPos/{READ}.all_positions.txt"
+        
     params:
         wd = "data_output/",
-        prepTF = "data_output/0-reference/"+config["PREFIX"]+".prep_TF/",
+        prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
         snames = "data_output/sample_names.txt",
         sample = "{READ}",
-        bwa = config["BWA"],
-        samtools = config["SAMTOOLS"],
-        levelh1 = config["LEVEL_HERARCHY1"],
-        levelh2 = config["LEVEL_HERARCHY2"],
-        quality = config["QUALITY_DETECT"],
-        exclude = config["EXCLUDE"],
-        standardDeviation = config["STANDARD_DEVIATION"],
-        coverageOverride = config["COVERAGE_OVERRIDE"],
-        python = config["PYTHON3"]
+        bwa = config["DEPENDANCES"]["BWA"],
+        samtools = config["DEPENDANCES"]["SAMTOOLS"],
+        levelh1 = config["PARAMS"]["DISCOVER"]["LEVEL_HIERARCHY1"],
+        levelh2 = config["PARAMS"]["DISCOVER"]["LEVEL_HIERARCHY2"],
+        quality = config["PARAMS"]["DISCOVER"]["QUALITY"],
+        exclude = config["PARAMS"]["DISCOVER"]["EXCLUDE"],
+        standardDeviation = config["PARAMS"]["DISCOVER"]["STANDARD_DEVIATION"],
+        coverageOverride = config["PARAMS"]["DISCOVER"]["COVERAGE_OVERRIDE"],
+        python = config["DEPENDANCES"]["PYTHON3"]
 
     threads: 16
 
@@ -39,11 +40,11 @@ rule teflon_discover:
         "-l1 {params.levelh1} "
         "-l2 {params.levelh2} "
         "-q {params.quality} ")
-        if (len(config["EXCLUDE"]) != 0) :
+        if (not "{params.exclude}") :
             cmd = cmd + ("-exclude {params.exclude} ")
-        if (len(config["STANDARD_DEVIATION"]) != 0) :    
+        if (not "{params.standardDeviation}") :
             cmd = cmd + ("-sd {params.standardDeviation} ")
-        if (len(config["COVERAGE_OVERRIDE"]) != 0) :
+        if (not "{params.coverageOverride}") :
             cmd = cmd + ("-cov {params.coverageOverride} ")
         cmd = cmd + ("-t {threads}")
         shell(cmd)

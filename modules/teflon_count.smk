@@ -14,14 +14,14 @@ rule teflon_count :
 
     params:
         wd = "data_output/",
-        prepTF = "data_output/0-reference/"+config["PREFIX"]+".prep_TF/",
+        prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
         snames = "data_output/sample_names.txt",
         sample = "{READ}",
-        bwa = config["BWA"],
-        samtools = config["SAMTOOLS"],
-        levelh2 = config["LEVEL_HERARCHY2"],
-        quality = config["QUALITY_COUNT"],
-        python = config["PYTHON3"]
+        bwa = config["DEPENDANCES"]["BWA"],
+        samtools = config["DEPENDANCES"]["SAMTOOLS"],
+        levelh2 = config["PARAMS"]["DISCOVER"]["LEVEL_HIERARCHY2"],
+        quality = config["PARAMS"]["COUNT"]["QUALITY"],
+        python = config["DEPENDANCES"]["PYTHON3"]
 
     threads: 20
 

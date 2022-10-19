@@ -1,5 +1,4 @@
 __default__:
-    #jobname: "{rule}"
     partition: fast
     cpus: 1  
     output: "logs_slurm/{rule}.{wildcards}.out"  ## redirect slurm-JOBID.txt to your directory
@@ -11,7 +10,10 @@ teflon_prep_custom:
     mem: 200000
 
 mapping:
-    #jobname: "{rule}_{params.sample}"
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
+samtools_view:
     cpus: "{threads}"
     mem: "{resources.mem_mb}"
 

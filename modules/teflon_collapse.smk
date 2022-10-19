@@ -17,14 +17,14 @@ rule teflon_collapse :
 
     params:
         wd = "data_output/",
-        prepTF = "data_output/0-reference/"+config["PREFIX"]+".prep_TF/",
+        prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
         snames = "data_output/sample_names.txt",
-        samtools = config["SAMTOOLS"],
-        thresholdSample = config["THREASHOLD_SAMPLE"],
-        thresholdAll = config["THREASHOLD_ALL"],
-        quality = config["QUALITY_COLLAPSE"],
-        coverageOverride = config["COVERAGE_OVERRIDE"],
-        python = config["PYTHON3"]
+        samtools = config["DEPENDANCES"]["SAMTOOLS"],
+        thresholdSample = config["PARAMS"]["COLLAPSE"]["THREASHOLD_SAMPLE"],
+        thresholdAll = config["PARAMS"]["COLLAPSE"]["THREASHOLD_ALL"],
+        quality = config["PARAMS"]["COLLAPSE"]["QUALITY"],
+        coverageOverride = config["PARAMS"]["COLLAPSE"]["COVERAGE_OVERRIDE"],
+        python = config["DEPENDANCES"]["PYTHON3"]
 
     threads: 16
 
@@ -42,7 +42,7 @@ rule teflon_collapse :
         "-n1 {params.thresholdSample} "
         "-n2 {params.thresholdAll} "
         "-q {params.quality} ")
-        if (len(config["COVERAGE_OVERRIDE"]) != 0) :
+        if (not "{params.coverageOverride}") :
             cmd = cmd + ("-cov {params.coverageOverride} ")
         cmd = cmd + ("-t {threads}")
         shell(cmd)
