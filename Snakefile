@@ -26,11 +26,9 @@ rule all:
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
-if config["ANNOTATION"] and config["HIERARCHY"] and config["GENOME"] :
-    #print("teflon_prep_annotation")
+if config["ANNOTATION"] and config["HIERARCHY"] and config["GENOME"] :)
     include: "modules/teflon_prep_annotation.smk"
 elif config["GENOME"] and config["LIBRARY"] :
-    #print("teflon_prep_custom")
     include: "modules/teflon_prep_custom.smk"
 else : 
     sys.exit("Invalid inputs")

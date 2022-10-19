@@ -4,10 +4,6 @@ rule teflon_collapse :
         expand("data_output/1-mapping/{read}.sorted.stats.txt",read=READ),
         expand("data_output/countPos/{read}.all_positions_sorted.txt",read=READ),
         expand("data_output/countPos/{read}.all_positions.txt",read=READ)
-        #"data_output/1-mapping/{listRead1}.sorted.cov.txt",
-        # "data_output/1-mapping/{listRead1}.sorted.stats.txt",
-        # "data_output/countPos/{listRead1}.all_positions_sorted.txt",
-        # "data_output/countPos/{listRead1}.all_positions.txt"
 
     output:
         expand("data_output/1-mapping/{read}.sorted.subsmpl.bam",read=READ),
@@ -15,11 +11,6 @@ rule teflon_collapse :
         expand("data_output/1-mapping/{read}.sorted.subsmpl.cov.txt",read=READ),
         expand("data_output/1-mapping/{read}.sorted.subsmpl.stats.txt",read=READ),
         expand("data_output/countPos/{read}.all_positions_sorted.collapsed.txt",read=READ),
-        # "data_output/1-mapping/{listRead1}.sorted.subsmpl.bam",
-        # "data_output/1-mapping/{listRead1}.sorted.subsmpl.bam.bai",
-        # "data_output/1-mapping/{listRead1}.sorted.subsmpl.cov.txt",
-        # "data_output/1-mapping/{listRead1}.sorted.subsmpl.stats.txt",
-        # "data_output/countPos/{listRead1}.all_positions_sorted.collapsed.txt"
         "data_output/countPos/union.txt",
         "data_output/countPos/union_sorted.txt",
         "data_output/countPos/union_sorted.collapsed.txt"
