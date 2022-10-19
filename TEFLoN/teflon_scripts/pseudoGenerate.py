@@ -2,7 +2,6 @@
 also creates a file of pseudo genome sizes and maps between the pseudo and true reference'''
 
 import os, sys, gzip
-import pickle as pickle
 import json
 
 def revComp(sequence):
@@ -125,12 +124,6 @@ def removeBedPos(bedFile, fasta, prep_MP_DIR,prep_TF_DIR, pre):
     with open(os.path.join(prep_TF_DIR,pre+".ref2pseudo.txt"), "w") as rMap:
         json.dump(refMap,rMap)
     print(os.path.join(prep_TF_DIR,pre+".ref2pseudo2.txt"), "dumped!")
-
-    # print("Dumping pickles...")
-    # pickle.dump(pseudoMap, gzip.open(os.path.join(prep_TF_DIR,pre+".pseudo2ref.pickle.gz"), "wb"))
-    # print(os.path.join(prep_TF_DIR,pre+".pseudo2ref.pickle"), "dumped!")
-    # pickle.dump(refMap, gzip.open(os.path.join(prep_TF_DIR,pre+".ref2pseudo.pickle.gz"), "wb"))
-    # print(os.path.join(prep_TF_DIR,pre+".ref2pseudo2.pickle"), "dumped!")
     return refMap
 
 def pseudo_generate_portal(bed,genome,prep_MP_DIR,prep_TF_DIR,pre):

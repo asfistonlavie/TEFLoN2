@@ -25,24 +25,14 @@ def reduceSearchSpace_portal(union, samples, tmpDir, tmpUnion,exePATH, qual, nPr
         bed=[]
         tmpUnion[ID] = []
         if union[ID][7] == "+":
-            #bed.append([union[ID][0], int(union[ID][1])-1, int(union[ID][1])+1])
             tmpUnion[ID] = tmpUnion[ID] + [union[ID][0], int(union[ID][1])-1, int(union[ID][1])+1]
             beds.append([union[ID][0], int(union[ID][1])-1, int(union[ID][1])+1])
         if union[ID][8] == "+":
-            #bed.append([union[ID][0], int(union[ID][2])-1, int(union[ID][2])+1])
             tmpUnion[ID] = tmpUnion[ID] + [union[ID][0], int(union[ID][2])-1, int(union[ID][2])+1]
             beds.append([union[ID][0], int(union[ID][2])-1, int(union[ID][2])+1])
         if union[ID][7] == "-" and union[ID][8] == "-" and union[ID][1] != "-" and union[ID][2] != "-":
-            #bed.append([union[ID][0], min(int(union[ID][1]),int(union[ID][2]))-1, max(int(union[ID][1]),int(union[ID][2]))+1])
             tmpUnion[ID] = tmpUnion[ID] + [union[ID][0], min(int(union[ID][1]),int(union[ID][2]))-1, max(int(union[ID][1]),int(union[ID][2]))+1]
             beds.append([union[ID][0], min(int(union[ID][1]),int(union[ID][2]))-1, max(int(union[ID][1]),int(union[ID][2]))+1])
-        # outBED = os.path.join(tmpDir, "union_%s.bed" %(str(ID)))
-        # with open(outBED, 'w') as fOUT:
-        #     for line in bed:
-        #         try:
-        #             fOUT.write("\t".join([str(x) for x in line]) + "\n")
-        #         except IOError:
-        #             continue
         progress_bar(ct/float(len(union)))
         ct+=1
 
