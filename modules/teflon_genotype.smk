@@ -1,15 +1,15 @@
 rule teflon_genotype :
 	input:
-		expand("data_output/countPos/{read}.counts.txt",read=READ)
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{read}.counts.txt",read=READ)
 
 	output:
-		expand("data_output/countPos/{read}.pseudoSpace.genotypes.txt",read=READ),
-		expand("data_output/genotypes/{read}.genotypes.txt",read=READ)
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{read}.pseudoSpace.genotypes.txt",read=READ),
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/{read}.genotypes.txt",read=READ)
 
 	params:
-		wd = "data_output/",
-		prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
-		snames = "data_output/sample_names.txt",
+		wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
+		prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
+		snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
 		thresholdLower = config["PARAMS"]["GENOTYPE"]["THREASHOLD_LOWER"],
 		thresholdHigher = config["PARAMS"]["GENOTYPE"]["THREASHOLD_HIGHER"],
 		datatype = config["PARAMS"]["GENOTYPE"]["DATA_TYPE"],

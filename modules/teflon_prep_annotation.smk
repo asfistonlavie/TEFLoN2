@@ -6,11 +6,11 @@ rule teflon_prep_annotation:
         genome = "data_input/reference/" + config["DATA"]["GENOME"]
 
     output:
-        directory("data_output/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
-        "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
+        directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
 
     params:
-        wd = "data_output/0-reference/",
+        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
         canonicalTE = config["DATA"]["LIBRARY"],
         python = config["DEPENDANCES"]["PYTHON3"]

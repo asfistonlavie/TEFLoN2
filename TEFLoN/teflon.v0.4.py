@@ -288,7 +288,7 @@ def main():
     samDir = os.path.join(cwd,pre+".sam_files")
     posDir = os.path.join(cwd,pre+".te_positions")
     suppDir = os.path.join(cwd,pre+".supplemental_alignments")
-    outDir =  os.path.join(cwd,"countPos")
+    outDir =  os.path.join(cwd,"3-countPos")
 
     mkdir_if_not_exist(bedDir, posDir, samDir, suppDir, outDir)
     groups = [group for group in groups if group not in excludeList]

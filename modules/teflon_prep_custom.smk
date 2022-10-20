@@ -6,12 +6,12 @@ rule teflon_prep_custom:
 
 
     output:
-        directory("data_output/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
-        directory("data_output/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_RM"),
-        "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
+        directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
+        directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_RM"),
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
 
     params:
-        wd = "data_output/0-reference/",
+        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         repeatMasker = config["DEPENDANCES"]["REPEATMASKER"],
         prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
         cutoff = config["PARAMS"]["PREP_CUSTOM"]["CUTOFF"],

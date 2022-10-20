@@ -2,21 +2,21 @@
 
 
 DEPENDANCES:
-    PYTHON3:    "/path/to/python3" #[required] path to python 3 executable 
-    BWA:    "path/to/bwa" #[required] path to bwa executable 
-    SAMTOOLS:    "path/to/samtools" #[required] path to samtools executable 
-    REPEATMASKER:    "path/to/repeatmasker" #[requiered if prep_custom] path to repeatmasker executable
+    PYTHON3:    "python3" #[required] path to python 3 executable 
+    BWA:    "bwa" #[required] path to bwa executable 
+    SAMTOOLS:    "samtools" #[required] path to samtools executable 
+    REPEATMASKER:    "repeatmasker" #[requiered if prep_custom] path to repeatmasker executable
 
 DATA:
-    GENOME:    "name_reference_file.fasta" #[required] name of reference file in data_input/reference
-    ANNOTATION:    "name_annotation_file.bed" #[required if prep_annotation] name of annotation file in data_input/library
-    LIBRARY:    "name_TE_library.fasta" #[required if prep_custom][optional if prep_annotation] name of TE library file for your organism in data_input/library
-    HIERARCHY:    "name_TE_hirarchiy.txt" #[requiered if prep_annotation] name of TE hirarchy file in data_input/library
+    GENOME:    "sample_reference_genome.fasta" #[required] name of reference file in data_input/reference
+    ANNOTATION:    "sample_reference_te_annotation.bed" #[required if prep_annotation] name of annotation file in data_input/library
+    LIBRARY:    "sample_te_library.fasta" #[required if prep_custom][optional if prep_annotation] name of TE library file for your organism in data_input/library
+    HIERARCHY:    "sample_reference_hierarchy.txt" #[requiered if prep_annotation] name of TE hirarchy file in data_input/library
 
 PARAMS:
     GENERAL:
-        WORKING_DIRECTORY:    "" #[optional] path to working directory. Default: in the current directory
-        PREFIX:    "name_run" #[required] name of run
+        WORKING_DIRECTORY:    "test" #[optional] path to working directory. Default: in the current directory
+        PREFIX:    "test_prep_annotation" #[required] name of run
     PREP_CUSTOM:
         CUTOFF:    "" #[optional] SW cutoff score for RepeatMasker, default=250 
         MIN_LENGTH:    "" #[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200 

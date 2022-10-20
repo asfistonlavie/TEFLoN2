@@ -45,7 +45,7 @@ def worker1(task_q, params):
             cwd, thresh = params
             for sample in samples:
                 print("collapse:",sample[1])
-                sortedFILE=os.path.join(cwd,"countPos",sample[1]+".all_positions_sorted.txt")
+                sortedFILE=os.path.join(cwd,"3-countPos",sample[1]+".all_positions_sorted.txt")
                 cu.collapse_union_portal(sortedFILE, sample[2][0], sample[2][1], thresh)
         finally:
             task_q.task_done()
@@ -110,7 +110,7 @@ def main():
     readLen,insz=stats[0],stats[1]
 
     # create the genotype directory
-    countDir = os.path.join(cwd,"countPos")
+    countDir = os.path.join(cwd,"3-countPos")
     mkdir_if_not_exist(countDir)
 
     # run multiprocess 1

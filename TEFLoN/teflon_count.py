@@ -186,7 +186,7 @@ def main():
                 samples.append([bamFILE, pre, [readLen, insz, sd]])
 
     # create the genotype directory
-    genoDir = os.path.join(cwd,"genotypes")
+    genoDir = os.path.join(cwd,"4-genotypes")
     tmpDir = os.path.join(cwd,pre+".tmp")
     mkdir_if_not_exist(genoDir, tmpDir)
 
@@ -195,7 +195,7 @@ def main():
 
     # read positions to search
     union=[]
-    with open(os.path.join(cwd,"countPos","union_sorted.collapsed.txt"), "r") as fIN:
+    with open(os.path.join(cwd,"3-countPos","union_sorted.collapsed.txt"), "r") as fIN:
         for line in fIN:
             union.append(line.split())
 
@@ -234,7 +234,7 @@ def main():
 
     # write the results
     for i in range(len(samples)):
-        outFILE=os.path.join(cwd,"countPos",samples[i][1]+".counts.txt")
+        outFILE=os.path.join(cwd,"3-countPos",samples[i][1]+".counts.txt")
         with open(outFILE, "w") as fOUT:
             for j in range(len(cts)):
                 fOUT.write("\t".join([str(y) for y in cts[j][1]])+"\n")

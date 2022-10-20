@@ -79,8 +79,8 @@ def main():
     stats=ms.mean_stats_portal(samples)
 
     # create the genotype directory
-    countDir = os.path.join(cwd,"countPos")
-    genoDir = os.path.join(cwd,"genotypes")
+    countDir = os.path.join(cwd,"3-countPos")
+    genoDir = os.path.join(cwd,"4-genotypes")
 
     # define lower-bound coverage thresholds
     if loFilt == -1:

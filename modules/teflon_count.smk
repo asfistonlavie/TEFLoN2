@@ -1,21 +1,21 @@
 rule teflon_count : 
     input:
-        "data_output/1-mapping/{READ}.sorted.subsmpl.bam",
-        "data_output/1-mapping/{READ}.sorted.subsmpl.bam.bai",
-        "data_output/1-mapping/{READ}.sorted.subsmpl.cov.txt",
-        "data_output/1-mapping/{READ}.sorted.subsmpl.stats.txt",
-        "data_output/countPos/{READ}.all_positions_sorted.collapsed.txt",
-        "data_output/countPos/union.txt",
-        "data_output/countPos/union_sorted.txt",
-        "data_output/countPos/union_sorted.collapsed.txt"
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.subsmpl.bam",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.subsmpl.bam.bai",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.subsmpl.cov.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.subsmpl.stats.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.all_positions_sorted.collapsed.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union_sorted.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union_sorted.collapsed.txt"
 
     output:
-        "data_output/countPos/{READ}.counts.txt"
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.counts.txt"
 
     params:
-        wd = "data_output/",
-        prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
-        snames = "data_output/sample_names.txt",
+        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
+        prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
+        snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
         sample = "{READ}",
         bwa = config["DEPENDANCES"]["BWA"],
         samtools = config["DEPENDANCES"]["SAMTOOLS"],

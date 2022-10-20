@@ -1,18 +1,18 @@
 #rule that runs teflonv0.4 scritp to detect TE breakpoints
 rule teflon_discover:
     input:
-        bai = "data_output/1-mapping/{READ}.sorted.bam.bai"
+        bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam.bai"
 
     output: 
-        "data_output/1-mapping/{READ}.sorted.cov.txt",
-        "data_output/1-mapping/{READ}.sorted.stats.txt",
-        "data_output/countPos/{READ}.all_positions_sorted.txt",
-        "data_output/countPos/{READ}.all_positions.txt"
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.cov.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.stats.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.all_positions_sorted.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.all_positions.txt"
         
     params:
-        wd = "data_output/",
-        prepTF = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
-        snames = "data_output/sample_names.txt",
+        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
+        prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
+        snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
         sample = "{READ}",
         bwa = config["DEPENDANCES"]["BWA"],
         samtools = config["DEPENDANCES"]["SAMTOOLS"],

@@ -1,10 +1,10 @@
 #Custom reference index
 rule bwa_index:
 	input:
-		"data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
 
 	output:
-		"data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt"
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt"
 
 	params:
 		bwa = config["DEPENDANCES"]["BWA"]
@@ -18,18 +18,18 @@ rule bwa_index:
 #Sort and file.sam to file.bam (binary file)
 rule mapping:
 	input:
-		"data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt",
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt",
 		r1 = "data_input/samples/read1/{READ}_r1.fastq",
 		r2 = "data_input/samples/read2/{READ}_r2.fastq"
 
 	output:
-		bam = "data_output/1-mapping/{READ}.sorted.bam"
+		bam = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam"
 
 	resources:
 		mem_mb=get_mem_mb
 
 	params:
-		ref = "data_output/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa",
+		ref = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa",
 		bwa = config["DEPENDANCES"]["BWA"]
 
 	threads: 10
@@ -53,17 +53,19 @@ rule mapping:
 #Bam files index
 rule samtools_index:
 	input:
-		"data_output/1-mapping/{READ}.sorted.bam"
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam"
 
 	output:
-		bai = "data_output/1-mapping/{READ}.sorted.bam.bai"
+		bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam.bai"
 
 	params:
+		wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
 		sample = "{READ}",
 		samtools = config["DEPENDANCES"]["SAMTOOLS"]
+
 	
 	shell:
 		"{params.samtools} index "
 		"{input} "
-		"&& echo -e './{input}\t{params.sample}' "
-		">> data_output/sample_names.txt"
+		"&& echo -e '{input}\t{params.sample}' "
+		">> {params.wd}/sample_names.txt"
