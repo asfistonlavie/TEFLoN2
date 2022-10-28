@@ -31,10 +31,10 @@ rule all:
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
-if "GENOME" in config["DATA"]:
-    if "ANNOTATION" in config["DATA"]:
+if config["DATA"]["GENOME"].strip().strip() != "":
+    if config["DATA"]["ANNOTATION"].strip() != "" :
         include: "modules/teflon_prep_annotation.smk"
-    elif "LIBRARY" in config["DATA"] :
+    elif config["DATA"]["LIBRARY"].strip() != "" :
         include: "modules/teflon_prep_custom.smk"
 else : 
     sys.exit("Invalid inputs")

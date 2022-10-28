@@ -1,8 +1,8 @@
 #rule that executes teflon_prep_custom script that prepares the custom reference using RepeatMasker
 rule teflon_prep_custom:
     input:
-        genome = "data_input/reference/" + config["GENOME"],
-        library = "data_input/library/" + config["LIBRARY"]
+        genome = "data_input/reference/" + config["DATA"]["GENOME"],
+        library = "data_input/library/" + config["DATA"]["LIBRARY"]
 
 
     output:
