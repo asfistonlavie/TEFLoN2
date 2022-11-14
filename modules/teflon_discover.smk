@@ -1,19 +1,26 @@
 #rule that runs teflonv0.4 scritp to detect TE breakpoints
 rule teflon_discover:
     input:
-        bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam.bai"
+        bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.bam.bai"
 
     output: 
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.cov.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.stats.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.all_positions_sorted.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{READ}.all_positions.txt"
-        
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.cov.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.stats.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.all_positions_sorted.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.all_positions.txt"
+
+    log:
+        error = ".logs/teflon_discover/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.err",
+        output = ".logs/teflon_discover/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.out"
+    
+    benchmark:
+        ".benchmarks/teflon_discover/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.benchmark.txt"  
+
     params:
         wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
         prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
         snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
-        sample = "{READ}",
+        sample = "{samples_all}",
         bwa = config["DEPENDANCES"]["BWA"],
         samtools = config["DEPENDANCES"]["SAMTOOLS"],
         levelh1 = config["PARAMS"]["DISCOVER"]["LEVEL_HIERARCHY1"],
@@ -46,5 +53,5 @@ rule teflon_discover:
             cmd = cmd + ("-sd {params.standardDeviation} ")
         if (not "{params.coverageOverride}") :
             cmd = cmd + ("-cov {params.coverageOverride} ")
-        cmd = cmd + ("-t {threads}")
+        cmd = cmd + ("-t {threads} 1> {log.output} 2> {log.error}")
         shell(cmd)

@@ -10,6 +10,13 @@ rule teflon_prep_custom:
         directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_RM"),
         config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
 
+    log:
+        error = ".logs/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err",
+        output = ".logs/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".output"
+
+    benchmark:
+        ".benchmarks/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".benchmark.txt"
+
     params:
         wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         repeatMasker = config["DEPENDANCES"]["REPEATMASKER"],
@@ -40,5 +47,5 @@ rule teflon_prep_custom:
             cmd = cmd + ("-s {params.splitDist} ")
         if (not "{params.divergence}") :
             cmd = cmd + ("-d {params.divergence} ")
-        cmd = cmd + ("-t {threads}")
+        cmd = cmd + ("-t {threads} 1> {log.output} 2> {log.error}")
         shell(cmd)

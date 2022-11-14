@@ -8,7 +8,13 @@ rule teflon_prep_annotation:
     output:
         directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
         config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa"
-
+    
+    log:
+        error = ".logs/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err",
+        output = ".logs/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".out"
+    benchmark:
+        ".benchmarks/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".benchmark.txt"
+    
     params:
         wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
@@ -28,5 +34,5 @@ rule teflon_prep_annotation:
         if (not "{params.canonicalTE}") :
             cmd = (cmd + "-f {params.canonicalTE} ")
         cmd = (cmd + "-g {input.genome} "
-        "-p {params.prefix}")
+        "-p {params.prefix} 1> {log.output} 2> {log.error}")
         shell(cmd)

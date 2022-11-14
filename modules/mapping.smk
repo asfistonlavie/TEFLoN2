@@ -6,11 +6,18 @@ rule bwa_index:
 	output:
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt"
 
+	log:
+		error = ".logs/bwa_index/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err"
+
+	benchmark:
+		".benchmarks/bwa_index/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".benchmark.txt"
+
 	params:
 		bwa = config["DEPENDANCES"]["BWA"]
 
 	shell:
-		"{params.bwa} index {input}"
+		"{params.bwa} index {input} 2> {log.error}"
+
 
 
 
@@ -19,11 +26,17 @@ rule bwa_index:
 rule mapping:
 	input:
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt",
-		r1 = "data_input/samples/read1/{READ}_r1.fastq",
-		r2 = "data_input/samples/read2/{READ}_r2.fastq"
+		r1 = reads1,
+		r2 = reads2
 
 	output:
-		bam = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam"
+		bam = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{reads}.sorted.bam"
+
+	log:
+		error = ".logs/mapping/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.err"
+	
+	benchmark:
+		".benchmarks/mapping/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.benchmark.txt"
 
 	resources:
 		mem_mb=get_mem_mb
@@ -43,24 +56,29 @@ rule mapping:
 		"-t {threads} "
 		"-Y {params.ref} "
 		"{input.r1} "
-		"{input.r2} "
+		"{input.r2} 2> {log.error} "
 		"| samtools sort "
 		"-@ {threads} "
-		"-o {output.bam}"
+		"-o {output.bam} 2>> {log.error} && type({input.r1}) > {log.error}"
+
+
 
 
 
 #Bam files index
 rule samtools_index:
 	input:
-		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam"
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{reads}.sorted.bam"
 
 	output:
-		bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{READ}.sorted.bam.bai"
+		bai = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{reads}.sorted.bam.bai"
+
+	benchmark:
+		".benchmarks/samtools_index/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.benchmark.txt"
 
 	params:
 		wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
-		sample = "{READ}",
+		sample = "{reads}",
 		samtools = config["DEPENDANCES"]["SAMTOOLS"]
 
 	
