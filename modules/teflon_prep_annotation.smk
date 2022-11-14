@@ -12,6 +12,7 @@ rule teflon_prep_annotation:
     log:
         error = ".logs/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err",
         output = ".logs/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".out"
+        
     benchmark:
         ".benchmarks/teflon_prep_annotation/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".benchmark.txt"
     

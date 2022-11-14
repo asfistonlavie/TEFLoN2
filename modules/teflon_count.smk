@@ -29,7 +29,7 @@ rule teflon_count :
         quality = config["PARAMS"]["COUNT"]["QUALITY"],
         python = config["DEPENDANCES"]["PYTHON3"]
 
-    threads: 20
+    threads: config["PARAMS"]["COUNT"]["THREADS"]
 
     resources:
         mem_mb=get_mem_mb

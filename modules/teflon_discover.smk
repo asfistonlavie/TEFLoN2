@@ -31,7 +31,7 @@ rule teflon_discover:
         coverageOverride = config["PARAMS"]["DISCOVER"]["COVERAGE_OVERRIDE"],
         python = config["DEPENDANCES"]["PYTHON3"]
 
-    threads: 16
+    threads: config["PARAMS"]["DISCOVER"]["THREADS"]
 
     resources:
         mem_mb=get_mem_mb

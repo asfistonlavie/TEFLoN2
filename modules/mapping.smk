@@ -45,7 +45,7 @@ rule mapping:
 		ref = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa",
 		bwa = config["DEPENDANCES"]["BWA"]
 
-	threads: 10
+	threads: config["PARAMS"]["SAMTOOLS"]["THREADS"]
 	#https://dearxxj.github.io/post/2/
 	
 	resources:
@@ -81,7 +81,6 @@ rule samtools_index:
 		sample = "{reads}",
 		samtools = config["DEPENDANCES"]["SAMTOOLS"]
 
-	
 	shell:
 		"{params.samtools} index "
 		"{input} "

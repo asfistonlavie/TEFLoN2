@@ -33,7 +33,7 @@ rule teflon_collapse :
         coverageOverride = config["PARAMS"]["COLLAPSE"]["COVERAGE_OVERRIDE"],
         python = config["DEPENDANCES"]["PYTHON3"]
 
-    threads: 16
+    threads: config["PARAMS"]["COLLAPSE"]["THREADS"]
 
 
     resources:

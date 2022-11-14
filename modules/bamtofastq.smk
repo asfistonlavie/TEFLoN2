@@ -14,7 +14,7 @@ rule samtools_sort:
 	params:
 		samtools = config["DEPENDANCES"]["SAMTOOLS"]
 
-	threads: 8
+	threads: config["PARAMS"]["SAMTOOLS"]["THREADS"]
 
 	shell:
 		"{params.samtools} sort "
@@ -40,7 +40,7 @@ rule samtools_fastq:
 	params:
 		samtools = config["DEPENDANCES"]["SAMTOOLS"]
 
-	threads: 8
+	threads: config["PARAMS"]["SAMTOOLS"]["THREADS"]
 
 	shell:
 		"{params.samtools} fastq "

@@ -5,8 +5,16 @@ rule rename_reads:
 	output:
 		read_final = "data_input/samples/reads/{name}.fastq"
 
+	log:
+		error = ".logs/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+"{name}.err",
+		output = ".logs/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+"{name}.out"
+
+	benchmark:
+		".logs/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{name}.benchmark.txt"
+
 	shell:
-		"mv {input.read} {output.read_final}"
+		"mv {input.read} {output.read_final} 1> {log.output} 2> {log.error}"
+
 
 rule deinterleave_fastq:
 	input:

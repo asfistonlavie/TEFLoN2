@@ -27,7 +27,7 @@ rule teflon_prep_custom:
         divergence = config["PARAMS"]["PREP_CUSTOM"]["DIVERGENCE"],
         python = config["DEPENDANCES"]["PYTHON3"]
       
-    threads: 16
+    threads: config["PARAMS"]["PREP_CUSTOM"]["THREADS"]
 
     resources:
         mem_mb=get_mem_mb
