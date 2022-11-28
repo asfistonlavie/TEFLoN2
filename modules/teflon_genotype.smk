@@ -20,7 +20,9 @@ rule teflon_genotype :
 		thresholdLower = config["PARAMS"]["GENOTYPE"]["THREASHOLD_LOWER"],
 		thresholdHigher = config["PARAMS"]["GENOTYPE"]["THREASHOLD_HIGHER"],
 		datatype = config["PARAMS"]["GENOTYPE"]["DATA_TYPE"],
-		python = config["DEPENDANCES"]["PYTHON3"]
+		python = config["DEPENDANCES"]["PYTHON3"],
+		population = config["PARAMS"]["GENOTYPE"]["POPULATION"]
+
 
 	resources:
 		mem_mb=get_mem_mb
@@ -30,9 +32,11 @@ rule teflon_genotype :
 		"-wd {params.wd}  "
 		"-d {params.prepTF} "
 		"-s {params.snames} ")
-		if (not "{params.thresholdLower}") :
+		if (check_value(config["PARAMS"]["GENOTYPE"]["THREASHOLD_LOWER"])) :
 			cmd = cmd + ("-lt {params.thresholdLower} ")
-		if (not "{params.thresholdHigher}") :
+		if (check_value(config["PARAMS"]["GENOTYPE"]["THREASHOLD_HIGHER"])) :
 			cmd = cmd + ("-ht {params.thresholdHigher} ")
+		if (check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"])) :
+			cmd = cmd + ("-pop {params.population} ")
 		cmd = cmd + ("-dt {params.datatype} 1> {log.output} 2> {log.error}")
 		shell(cmd)

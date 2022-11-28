@@ -49,7 +49,7 @@ rule teflon_collapse :
         "-n1 {params.thresholdSample} "
         "-n2 {params.thresholdAll} "
         "-q {params.quality} ")
-        if (not "{params.coverageOverride}") :
+        if (check_value(config["PARAMS"]["COLLAPSE"]["COVERAGE_OVERRIDE"])) :
             cmd = cmd + ("-cov {params.coverageOverride} ")
         cmd = cmd + ("-t {threads} 1> {log.output} 2> {log.error}")
         shell(cmd)

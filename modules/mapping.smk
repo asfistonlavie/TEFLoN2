@@ -56,10 +56,10 @@ rule mapping:
 		"-t {threads} "
 		"-Y {params.ref} "
 		"{input.r1} "
-		"{input.r2} 2> {log.error} "
+		"{input.r2} "
 		"| samtools sort "
 		"-@ {threads} "
-		"-o {output.bam} 2>> {log.error} && type({input.r1}) > {log.error}"
+		"-o {output.bam} 2>> {log.error}"
 
 
 

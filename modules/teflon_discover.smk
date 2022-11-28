@@ -47,11 +47,11 @@ rule teflon_discover:
         "-l1 {params.levelh1} "
         "-l2 {params.levelh2} "
         "-q {params.quality} ")
-        if (not "{params.exclude}") :
+        if (check_value(config["PARAMS"]["DISCOVER"]["EXCLUDE"])) :
             cmd = cmd + ("-exclude {params.exclude} ")
-        if (not "{params.standardDeviation}") :
+        if (check_value(config["PARAMS"]["DISCOVER"]["STANDARD_DEVIATION"])):
             cmd = cmd + ("-sd {params.standardDeviation} ")
-        if (not "{params.coverageOverride}") :
+        if (check_value(config["PARAMS"]["DISCOVER"]["COVERAGE_OVERRIDE"])) :
             cmd = cmd + ("-cov {params.coverageOverride} ")
         cmd = cmd + ("-t {threads} 1> {log.output} 2> {log.error}")
         shell(cmd)

@@ -47,3 +47,5 @@ PARAMS:
 		THREASHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
 		THREASHOLD_HIGHER :    "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
 		DATA_TYPE :    "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
+		POPULATION :    "/home/ozone/Professional/TEFLoN2/data_input/population.txt" #[optional]  path to population file
+

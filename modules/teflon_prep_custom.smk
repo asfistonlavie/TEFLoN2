@@ -39,13 +39,13 @@ rule teflon_prep_custom:
         "-g {input.genome} "
         "-l {input.library} "
         "-p {params.prefix} ")
-        if (not "{params.cutoff}") :
+        if (check_value(config["PARAMS"]["PREP_CUSTOM"]["CUTOFF"])) :
             cmd = cmd + ("-c {params.cutoff} ")
-        if (not "{params.minlength}") :
+        if (check_value(config["PARAMS"]["PREP_CUSTOM"]["MIN_LENGTH"])) :
             cmd = cmd + ("-m {params.minlength} ")
-        if (not "{params.splitDist}") :
+        if (check_value(config["PARAMS"]["PREP_CUSTOM"]["SPLIT_DIST"])) :
             cmd = cmd + ("-s {params.splitDist} ")
-        if (not "{params.divergence}") :
+        if (check_value(config["PARAMS"]["PREP_CUSTOM"]["DIVERGENCE"])) :
             cmd = cmd + ("-d {params.divergence} ")
         cmd = cmd + ("-t {threads} 1> {log.output} 2> {log.error}")
         shell(cmd)

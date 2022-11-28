@@ -32,8 +32,7 @@ rule teflon_prep_annotation:
         "-t {input.hierarchy} "
         "-g {input.genome} "
         "-p {params.prefix} ")
-        if (not "{params.canonicalTE}") :
-            cmd = (cmd + "-f {params.canonicalTE} ")
-        cmd = (cmd + "-g {input.genome} "
-        "-p {params.prefix} 1> {log.output} 2> {log.error}")
+        if (check_value(config["DATA"]["LIBRARY"])) :
+            cmd = cmd + ("-f {params.canonicalTE} ")
+        cmd = cmd + ("1> {log.output} 2> {log.error}")
         shell(cmd)
