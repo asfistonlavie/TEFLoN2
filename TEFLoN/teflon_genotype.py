@@ -34,6 +34,7 @@ def main():
     parser.add_argument('-lt',dest='loThresh',help='sites genotyped as -9 if adjusted read counts less than than this threshold (default=1)', type=int, default=-1)
     parser.add_argument('-ht',dest='hiThresh',help='sites genotyped as -9 if adjusted read counts greater than this threshold (default=mean_coverage + 2*STDEV)', type=int, default=-1)
     parser.add_argument('-dt',dest='dataType',help='haploid, diploid, or pooled')
+    parser.add_argument('-pop',dest="population",help='',default=-1)
     args = parser.parse_args()
 
     # identify current working directory
@@ -51,6 +52,20 @@ def main():
     if dataType not in "haploid, diploid, or pooled":
         return "Error datatype must be either haploid, diploid, or pooled"
         sys.exit()
+
+    # identify population file
+    if args.population != -1:
+        population={}
+        with open(os.path.abspath(args.population), 'r') as fIN:
+            for line in fIN:
+                group=line.split()[1]
+                sample=line.split()[0]
+                if (group in population):
+                    population[group].append(sample)
+                else:
+                    population[group] = [sample]
+    print(population)
+
 
     # read samples and stats
     samples=[]
