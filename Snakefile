@@ -1,6 +1,3 @@
-#config file
-#configfile: "config.yaml"
-
 #import dependences python
 import subprocess
 import os
@@ -49,7 +46,22 @@ def samples_list() :
 				else :
 					samples["id"].append(element.rsplit(".",1)[0].replace(".1","").replace(".r1","").replace("_1","").replace("_r1","").replace(".2","").replace(".r2","").replace("_2","").replace("_r2",""))
 	return samples
-	  
+
+
+
+# check if varaible is None or empty
+def check_value (var):
+	if var is None :
+		return False
+	elif type(var) is int:
+		return True
+	elif type(var) is str :
+		if len(var.strip()) == 0 :
+			return False
+		else :
+			return True
+
+
 
 
 if config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"].strip() == "" :
@@ -70,10 +82,10 @@ include: "modules/formatting.smk"
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
-if config["DATA"]["GENOME"].strip().strip() != "":
-	if config["DATA"]["ANNOTATION"].strip() != "" :
+if check_value(config["DATA"]["GENOME"]):
+	if check_value(config["DATA"]["ANNOTATION"]):
 		include: "modules/teflon_prep_annotation.smk"
-	elif config["DATA"]["LIBRARY"].strip() != "" :
+	elif check_value(config["DATA"]["LIBRARY"]):
 		include: "modules/teflon_prep_custom.smk"
 else : 
 	sys.exit("Invalid inputs")
