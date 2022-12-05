@@ -9,6 +9,14 @@ sys.path.insert(1, teflonBase)
 from teflon_scripts import mean_stats as ms
 from teflon_scripts import genotyper_poolType as pt
 from teflon_scripts import pseudo2refConvert as p2rC
+from teflon_scripts import pop_frequency as pf
+from teflon_scripts import pop_frequency2 as pf2
+
+def mkdir_if_not_exist(*dirs):
+    for dir in dirs:
+        if not os.path.exists(dir):
+            os.makedirs(dir,exist_ok=True)
+            print("creating directory: %s" %(dir))
 
 def load_pickle(pFILE):
     tmpFILE=pFILE.replace(os.path.basename(pFILE),os.path.basename(pFILE)+".tmp")
@@ -49,27 +57,14 @@ def main():
     prep_TF=os.path.abspath(args.DIR)
     prefix=os.path.abspath(args.DIR).split("/")[-1].replace(".prep_TF","")
     dataType=args.dataType
+    samplesFILE=args.samples
     if dataType not in "haploid, diploid, or pooled":
         return "Error datatype must be either haploid, diploid, or pooled"
         sys.exit()
 
-    # identify population file
-    if args.population != -1:
-        population={}
-        with open(os.path.abspath(args.population), 'r') as fIN:
-            for line in fIN:
-                group=line.split()[1]
-                sample=line.split()[0]
-                if (group in population):
-                    population[group].append(sample)
-                else:
-                    population[group] = [sample]
-    print(population)
-
-
     # read samples and stats
     samples=[]
-    with open(os.path.abspath(args.samples), 'r') as fIN:
+    with open(os.path.abspath(samplesFILE), 'r') as fIN:
         for line in fIN:
             bamFILE=line.split()[0].replace(".bam",".subsmpl.bam")
             statsFile = bamFILE.replace(".bam", ".stats.txt")
@@ -96,6 +91,8 @@ def main():
     # create the genotype directory
     countDir = os.path.join(cwd,"3-countPos")
     genoDir = os.path.join(cwd,"4-genotypes")
+    samplesDir = os.path.join(genoDir,"samples")
+    mkdir_if_not_exist(samplesDir)
 
     # define lower-bound coverage thresholds
     if loFilt == -1:
@@ -133,9 +130,22 @@ def main():
 
     # genotype samples
     if dataType == "pooled":
-        pt.pt_portal(countDir,genoDir,samples, posMap, stats, p2rC, l_thresh, h_thresh)
+        pt.pt_portal(countDir,samplesDir,samples, posMap, stats, p2rC, l_thresh, h_thresh)
     else:
         print("""coming soon...use "pooled" to obtain presence and absence read counts""")
+        
+    pf.all_frequency(samplesFILE,samplesDir,pt)
+    pf2.all_frequency(samplesFILE,samplesDir)
+    # identify population file
+    
+    if args.population != -1:
+        populationsFILE = args.population
+        populationsDir = os.path.join(genoDir,"populations")
+        mkdir_if_not_exist(populationsDir)
+        pf.pop_frequency(populationsFILE,populationsDir,samplesDir,pt)
+        pf2.pop_frequency(populationsFILE,populationsDir,samplesDir)
+
+
     print("TEFLON GENOTYPE FINISHED!")
 
 if __name__ == "__main__":

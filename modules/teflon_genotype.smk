@@ -4,7 +4,7 @@ rule teflon_genotype :
 
 	output:
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.pseudoSpace.genotypes.txt",samples_all=samples_all),
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/{samples_all}.genotypes.txt",samples_all=samples_all)
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{samples_all}.genotypes.txt",samples_all=samples_all)
 
 	log:
 		error = ".logs/teflon_genotype/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err",
