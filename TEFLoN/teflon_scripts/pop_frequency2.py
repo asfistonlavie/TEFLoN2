@@ -2,7 +2,6 @@ import os,sys
 
 def pop_frequency(popFILE,popDir,genoDir):
 	populations={}
-	print('lalalalalala')
 	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tteID\t"
 	with open(os.path.abspath(popFILE), 'r') as fIN:
 		for line in fIN:
@@ -40,7 +39,10 @@ def pop_frequency(popFILE,popDir,genoDir):
 				if(id not in frequency):
 					frequency[id] = {}
 				total = statsGroup[id]["polymorphs"] + statsGroup[id]["presents"] + statsGroup[id]["absents"]
-				frequency[id][group] = float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total
+				if(total == 0):
+					frequency[id][group] == -9
+				else :
+					frequency[id][group] = round(float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total,3)
 				line = line + "\t" + str(frequency[id][group]) + "\t" + statsGroup[id]["teID"] + "\n"
 				fOUT.write(line)
 
@@ -82,7 +84,9 @@ def all_frequency(samplesFILE,genoDir):
 				if(id not in frequency):
 					frequency[id] = []
 				total = statsAll[id]["polymorphs"] + statsAll[id]["presents"] + statsAll[id]["absents"]
-				frequency[id] = float((statsAll[id]["presents"]) + float(statsAll[id]["polymorphs"]*0.5))/total
+				if(total == 0):
+					frequency[id] = -9
+				else:
+					frequency[id] = round(float((statsAll[id]["presents"]) + float(statsAll[id]["polymorphs"]*0.5))/total,3)
 				line = line + "\t" + str(frequency[id]) + "\t" + statsAll[id]["teID"] + "\n"
 				fOUT.write(line)
-	#sample_names.txt
