@@ -2,7 +2,7 @@ import os,sys
 
 def pop_frequency(popFILE,popDir,genoDir):
 	populations={}
-	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tteID\t"
+	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tvalues\t"
 	with open(os.path.abspath(popFILE), 'r') as fIN:
 		for line in fIN:
 			fields = line.split()
@@ -21,9 +21,9 @@ def pop_frequency(popFILE,popDir,genoDir):
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",5)
-					id,frequence,teID = fields[0], float(fields[4]), fields[5]
+					id,frequence,values = fields[5], float(fields[4]), fields[0]
 					if(id not in statsGroup):
-						statsGroup[id] = {"presents":0,"absents":0,"polymorphs":0,"no data":0,"teID":teID}
+						statsGroup[id] = {"presents":0,"absents":0,"polymorphs":0,"no data":0,"values":values}
 					if frequence == -9 :
 						statsGroup[id]["no data"] += 1
 					elif frequence < 0.25 :
@@ -35,7 +35,7 @@ def pop_frequency(popFILE,popDir,genoDir):
 		groupFILE = os.path.join(popDir,group + ".population.genotypes2.txt")
 		with open(groupFILE,"w") as fOUT:
 			for id in statsGroup:
-				line = id + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["polymorphs"]) + "\t" + str(statsGroup[id]["absents"])
+				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["polymorphs"]) + "\t" + str(statsGroup[id]["absents"])
 				if(id not in frequency):
 					frequency[id] = {}
 				total = statsGroup[id]["polymorphs"] + statsGroup[id]["presents"] + statsGroup[id]["absents"]
@@ -43,14 +43,14 @@ def pop_frequency(popFILE,popDir,genoDir):
 					frequency[id][group] == -9
 				else :
 					frequency[id][group] = round(float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total,3)
-				line = line + "\t" + str(frequency[id][group]) + "\t" + statsGroup[id]["teID"] + "\n"
+				line = line + "\t" + str(frequency[id][group]) + "\t" + id + "\n"
 				fOUT.write(line)
 
 	allFrequencyPopFILE = os.path.join(popDir,"all_frequency.population.genotypes2.txt")
 	with open(allFrequencyPopFILE, "w") as fOUT:
 		fOUT.write(header[:-1] + "\n")
 		for element in frequency:
-			line = element +  "\t" + statsGroup[element]["teID"]
+			line = statsGroup[element]["values"] +  "\t" + element
 			for group in frequency[element] :
 				line = line +"\t" + str(frequency[element][group])
 			fOUT.write(line + "\n")
@@ -66,9 +66,9 @@ def all_frequency(samplesFILE,genoDir):
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",5)
-					id,frequence,teID = fields[0], float(fields[4]), fields[5]
+					id,frequence,values = fields[5], float(fields[4]), fields[0]
 					if(id not in statsAll):
-						statsAll[id] = {"presents":0,"absents":0,"polymorphs":0,"no data":0,"teID":teID}
+						statsAll[id] = {"presents":0,"absents":0,"polymorphs":0,"no data":0,"values":values}
 					if frequence == -9 :
 						statsAll[id]["no data"] += 1
 					elif frequence < 0.25 :
@@ -80,7 +80,7 @@ def all_frequency(samplesFILE,genoDir):
 		allFILE = os.path.join(genoDir,"all_samples.genotypes2.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:
-				line = id + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"])
+				line = str(statsAll[id]["values"]) + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"])
 				if(id not in frequency):
 					frequency[id] = []
 				total = statsAll[id]["polymorphs"] + statsAll[id]["presents"] + statsAll[id]["absents"]
@@ -88,5 +88,5 @@ def all_frequency(samplesFILE,genoDir):
 					frequency[id] = -9
 				else:
 					frequency[id] = round(float((statsAll[id]["presents"]) + float(statsAll[id]["polymorphs"]*0.5))/total,3)
-				line = line + "\t" + str(frequency[id]) + "\t" + statsAll[id]["teID"] + "\n"
+				line = line + "\t" + str(frequency[id]) + "\t" + id + "\n"
 				fOUT.write(line)
