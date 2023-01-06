@@ -2,7 +2,7 @@ import os,sys
 
 def pop_frequency(popFILE,popDir,genoDir,pt):
 	populations={}
-	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tvalues\t"
+	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tteID\t"
 	with open(os.path.abspath(popFILE), 'r') as fIN:
 		for line in fIN:
 			fields = line.split()
