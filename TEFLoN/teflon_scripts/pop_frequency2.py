@@ -40,7 +40,7 @@ def pop_frequency(popFILE,popDir,genoDir):
 					frequency[id] = {}
 				total = statsGroup[id]["polymorphs"] + statsGroup[id]["presents"] + statsGroup[id]["absents"]
 				if(total == 0):
-					frequency[id][group] == -9
+					frequency[id][group] = -9
 				else :
 					frequency[id][group] = round(float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total,3)
 				line = line + "\t" + str(frequency[id][group]) + "\t" + id + "\n"
