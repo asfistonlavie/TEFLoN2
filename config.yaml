@@ -35,8 +35,8 @@ PARAMS:
 		COVERAGE_OVERRIDE:    "" #[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: "Warning: coverage could not be estimated"
 		THREADS:    16 #[required] maximum number of threads the rule can use  
 	COLLAPSE:
-		THREASHOLD_SAMPLE:    "1" #[required] TEs must be supported by >= n reads in at least one sample
-		THREASHOLD_ALL:    "1" #[required] TEs must be supported by >= n reads summed across all samples
+		THRESHOLD_SAMPLE:    "1" #[required] TEs must be supported by >= n reads in at least one sample
+		THRESHOLD_ALL:    "1" #[required] TEs must be supported by >= n reads summed across all samples
 		COVERAGE_OVERRIDE:    "" #[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: "Warning: coverage could not be estimated"
 		QUALITY:    "20" #[required] map quality threshold
 		THREADS:    16 #[required] maximum number of threads the rule can use  
@@ -44,8 +44,8 @@ PARAMS:
 		QUALITY:    "20" #[required] map quality threshold
 		THREADS:    20 #[required] maximum number of threads the rule can use  
 	GENOTYPE:
-		THREASHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
-		THREASHOLD_HIGHER :    "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
+		THRESHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
+		THRESHOLD_HIGHER :    "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
 		DATA_TYPE :    "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
 		POPULATION :    "/home/ozone/Professional/TEFLoN2/data_input/population.txt" #[optional]  path to population file
 

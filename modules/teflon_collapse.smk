@@ -27,8 +27,8 @@ rule teflon_collapse :
         prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
         snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
         samtools = config["DEPENDANCES"]["SAMTOOLS"],
-        thresholdSample = config["PARAMS"]["COLLAPSE"]["THREASHOLD_SAMPLE"],
-        thresholdAll = config["PARAMS"]["COLLAPSE"]["THREASHOLD_ALL"],
+        thresholdSample = config["PARAMS"]["COLLAPSE"]["THRESHOLD_SAMPLE"],
+        thresholdAll = config["PARAMS"]["COLLAPSE"]["THRESHOLD_ALL"],
         quality = config["PARAMS"]["COLLAPSE"]["QUALITY"],
         coverageOverride = config["PARAMS"]["COLLAPSE"]["COVERAGE_OVERRIDE"],
         python = config["DEPENDANCES"]["PYTHON3"]

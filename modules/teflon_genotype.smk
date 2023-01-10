@@ -17,8 +17,8 @@ rule teflon_genotype :
 		wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
 		prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
 		snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
-		thresholdLower = config["PARAMS"]["GENOTYPE"]["THREASHOLD_LOWER"],
-		thresholdHigher = config["PARAMS"]["GENOTYPE"]["THREASHOLD_HIGHER"],
+		thresholdLower = config["PARAMS"]["GENOTYPE"]["THRESHOLD_LOWER"],
+		thresholdHigher = config["PARAMS"]["GENOTYPE"]["THRESHOLD_HIGHER"],
 		datatype = config["PARAMS"]["GENOTYPE"]["DATA_TYPE"],
 		python = config["DEPENDANCES"]["PYTHON3"],
 		population = config["PARAMS"]["GENOTYPE"]["POPULATION"]
@@ -32,9 +32,9 @@ rule teflon_genotype :
 		"-wd {params.wd}  "
 		"-d {params.prepTF} "
 		"-s {params.snames} ")
-		if (check_value(config["PARAMS"]["GENOTYPE"]["THREASHOLD_LOWER"])) :
+		if (check_value(config["PARAMS"]["GENOTYPE"]["THRESHOLD_LOWER"])) :
 			cmd = cmd + ("-lt {params.thresholdLower} ")
-		if (check_value(config["PARAMS"]["GENOTYPE"]["THREASHOLD_HIGHER"])) :
+		if (check_value(config["PARAMS"]["GENOTYPE"]["THRESHOLD_HIGHER"])) :
 			cmd = cmd + ("-ht {params.thresholdHigher} ")
 		if (check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"])) :
 			cmd = cmd + ("-pop {params.population} ")
