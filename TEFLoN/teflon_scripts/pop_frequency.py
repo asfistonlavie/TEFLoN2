@@ -1,6 +1,6 @@
 import os,sys
 
-def pop_frequency(popFILE,popDir,genoDir,pt):
+def pop_frequency(popFILE,popDir,genoDir,pt,populationLoThresh,populationHiThresh):
 	populations={}
 	header = "chr\t5'breakpoint\t3'breackpoint\tlevel1\tlevel2\tstand\treference_TE_ID\t5'soft-clipped_reads\t3'soft-clipped_read\tteID\t"
 	with open(os.path.abspath(popFILE), 'r') as fIN:
@@ -20,8 +20,8 @@ def pop_frequency(popFILE,popDir,genoDir,pt):
 			sampleGeno = os.path.join(genoDir,sample + ".genotypes.txt")
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
-					fields = line[:-1].rsplit("\t",5)
-					id, presents, absents, ambiguous,values = fields[5], int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
+					fields = line[:-1].rsplit("\t",6)
+					id, presents, absents, ambiguous,values = fields[6], int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
 					if(id in statsGroup):
 						statsGroup[id]["presents"] += presents
 						statsGroup[id]["absents"] += absents
@@ -35,7 +35,16 @@ def pop_frequency(popFILE,popDir,genoDir,pt):
 				if(id not in frequency):
 					frequency[id] = {}
 				frequency[id][group] = (pt.fq(line.split()))
-				line = line + "\t" + str(frequency[id][group]) + "\t" + id + "\n"
+				interpretation = ""
+				if float(frequency[id][group]) == -9 :
+					interpretation = "no_data"
+				elif float(frequency[id][group]) < float(populationLoThresh) :
+					interpretation = "absent"
+				elif float(frequency[id][group]) > float(populationHiThresh) :
+					interpretation = "present"
+				else:
+					interpretation = "polymorphic"
+				line = line + "\t" + str(frequency[id][group]) + "\t" + interpretation + "\t" + id + "\n"
 				fOUT.write(line)
 
 	allFrequencyPopFILE = os.path.join(popDir,"all_frequency.population.genotypes.txt")
@@ -48,7 +57,7 @@ def pop_frequency(popFILE,popDir,genoDir,pt):
 			fOUT.write(line + "\n")
 
 
-def all_frequency(samplesFILE,genoDir,pt):
+def all_frequency(samplesFILE,genoDir,pt,populationLoThresh,populationHiThresh):
 	with open(os.path.abspath(samplesFILE), 'r') as fIN:
 		frequency = {}
 		statsAll = {}
@@ -57,8 +66,9 @@ def all_frequency(samplesFILE,genoDir,pt):
 			sampleGeno = os.path.join(genoDir,sample + ".genotypes.txt")
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
-					fields = line[:-1].rsplit("\t",5)
-					id, presents, absents, ambiguous, values = fields[5] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
+					fields = line[:-1].rsplit("\t",6)
+					id, presents, absents, ambiguous, values = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
+					print(id)
 					if(id in statsAll):
 						statsAll[id]["presents"] += presents
 						statsAll[id]["absents"] += absents
@@ -72,5 +82,14 @@ def all_frequency(samplesFILE,genoDir,pt):
 				if(id not in frequency):
 					frequency[id] = []
 				frequency[id] = pt.fq(line.split())
-				line = line + "\t" + str(frequency[id]) + "\t" + id + "\n"
+				interpretation = ""
+				if float(frequency[id]) == -9 :
+					interpretation = "no_data"
+				elif float(frequency[id]) < float(populationLoThresh) :
+					interpretation = "absent"
+				elif float(frequency[id]) > float(populationHiThresh) :
+					interpretation = "present"
+				else:
+					interpretation = "polymorphic"
+				line = line + "\t" + str(frequency[id]) + "\t" + interpretation + "\t" + id + "\n"
 				fOUT.write(line)

@@ -1,6 +1,5 @@
 #all path can be relatif or absolute
 
-
 DEPENDANCES:
     PYTHON3:    "python3" #[required] path to python 3 executable 
     BWA:    "bwa" #[required] path to bwa executable 
@@ -48,10 +47,13 @@ PARAMS:
         THRESHOLD_LOWER:   1  #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
         THRESHOLD_HIGHER:  100   #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
         DATA_TYPE:    "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
-        POPULATION:    "/home/ozone/Professional/TEFLoN2/data_input/population.txt" #[optional]  path to population file
-        DIPLOID:
-            THRESHOLD_PRESENCE:
-            THRESHOLD_ABSENCE:
-        HAPLOID:
-            THRESHOLD_PRESENCE:
-
+        SAMPLE:
+            POOLED_OR_DIPLOID:
+                THRESHOLD_ABSENCE:    "0.6"
+                THRESHOLD_PRESENCE:   "0.9"
+            HAPLOID:
+                THRESHOLD_PRESENCE: "0.8"
+        POPULATION:
+            FILE :     "/home/ozone/Professional/TEFLoN2/data_input/population.txt" #[optional]  path to population file
+            THRESHOLD_ABSENCE: ""
+            THRESHOLD_PRESENCE:   ""
