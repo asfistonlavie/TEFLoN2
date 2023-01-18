@@ -1,9 +1,9 @@
 #rule that executes the teflon_prep_annotation script that prepares the custom reference
 rule teflon_prep_annotation:
     input:
-        annotation = "data_input/library/" + config["DATA"]["ANNOTATION"],
-        hierarchy = "data_input/library/" + config["DATA"]["HIERARCHY"],
-        genome = "data_input/reference/" + config["DATA"]["GENOME"]
+        annotation = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["ANNOTATION"],
+        hierarchy = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["HIERARCHY"],
+        genome = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/reference/" + config["DATA_INPUT"]["GENOME"]
 
     output:
         directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),
@@ -19,7 +19,7 @@ rule teflon_prep_annotation:
     params:
         wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
-        canonicalTE = config["DATA"]["LIBRARY"],
+        canonicalTE = config["DATA_INPUT"]["LIBRARY"],
         python = config["DEPENDANCES"]["PYTHON3"]
 
     resources:
@@ -32,7 +32,7 @@ rule teflon_prep_annotation:
         "-t {input.hierarchy} "
         "-g {input.genome} "
         "-p {params.prefix} ")
-        if (check_value(config["DATA"]["LIBRARY"])) :
+        if (check_value(config["DATA_INPUT"]["LIBRARY"])) :
             cmd = cmd + ("-f {params.canonicalTE} ")
         cmd = cmd + ("1> {log.output} 2> {log.error}")
         shell(cmd)

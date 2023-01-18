@@ -9,7 +9,7 @@ def get_mem_mb(wildcards, attempt):
 
 def reads1 (wcs):
 	name = wcs.reads
-	wd = "data_input/samples/reads1/"
+	wd = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads1/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r1 in ["_1","_r1",".1",".r1"] :
 			if os.path.exists(wd + name + file_r1 +file_ext) :
@@ -20,7 +20,7 @@ def reads1 (wcs):
 
 def reads2 (wcs):
 	name = wcs.reads
-	wd = "data_input/samples/reads2/"
+	wd = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads2/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r2 in ["_2","_r2",".2",".r2"] :
 			if os.path.exists(wd + name + file_r2 +file_ext) :
@@ -32,7 +32,7 @@ def reads2 (wcs):
 
 
 def samples_list() :
-	base = "data_input/samples/"
+	base = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/"
 	folders = ["bam/","reads/","reads1/","reads2/"]
 	wd = []
 	samples = {"id":[]}
@@ -81,10 +81,10 @@ include: "modules/formatting.smk"
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
-if check_value(config["DATA"]["GENOME"]):
-	if check_value(config["DATA"]["ANNOTATION"]):
+if check_value(config["DATA_INPUT"]["GENOME"]):
+	if check_value(config["DATA_INPUT"]["ANNOTATION"]):
 		include: "modules/teflon_prep_annotation.smk"
-	elif check_value(config["DATA"]["LIBRARY"]):
+	elif check_value(config["DATA_INPUT"]["LIBRARY"]):
 		include: "modules/teflon_prep_custom.smk"
 else : 
 	sys.exit("Invalid inputs")
