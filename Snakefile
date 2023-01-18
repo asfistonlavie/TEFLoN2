@@ -63,7 +63,6 @@ def check_value (var):
 
 
 
-
 if config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"].strip() == "" :
 	config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"] = "data_output_"
 else :
