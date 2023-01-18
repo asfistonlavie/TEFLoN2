@@ -1,9 +1,9 @@
 #rule that executes the teflon_prep_annotation script that prepares the custom reference
 rule teflon_prep_annotation:
     input:
-        annotation = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["ANNOTATION"],
-        hierarchy = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["HIERARCHY"],
-        genome = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/reference/" + config["DATA_INPUT"]["GENOME"]
+        annotation = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["ANNOTATION"],
+        hierarchy = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["HIERARCHY"],
+        genome = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/reference/" + config["DATA_INPUT"]["GENOME"]
 
     output:
         directory(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/" + config["PARAMS"]["GENERAL"]["PREFIX"] + ".prep_TF"),

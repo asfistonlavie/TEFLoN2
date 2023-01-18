@@ -9,7 +9,7 @@ def get_mem_mb(wildcards, attempt):
 
 def reads1 (wcs):
 	name = wcs.reads
-	wd = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads1/"
+	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r1 in ["_1","_r1",".1",".r1"] :
 			if os.path.exists(wd + name + file_r1 +file_ext) :
@@ -20,7 +20,7 @@ def reads1 (wcs):
 
 def reads2 (wcs):
 	name = wcs.reads
-	wd = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads2/"
+	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r2 in ["_2","_r2",".2",".r2"] :
 			if os.path.exists(wd + name + file_r2 +file_ext) :
@@ -32,7 +32,7 @@ def reads2 (wcs):
 
 
 def samples_list() :
-	base = config["PARAMS"]["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/"
+	base = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/"
 	folders = ["bam/","reads/","reads1/","reads2/"]
 	wd = []
 	samples = {"id":[]}
@@ -74,6 +74,7 @@ localrules:
 #rule all defines the output of the pipeline
 ##global variable
 
+wd = config["DATA_INPUT"]["WORKING_DIRECTORY"]
 dict_samples = samples_list()
 samples_all = set(dict_samples["id"])
 

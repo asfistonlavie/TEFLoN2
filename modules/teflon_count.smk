@@ -1,16 +1,17 @@
 rule teflon_count : 
     input:
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/1-mapping/{samples_all}.sorted.subsmpl.bam",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/1-mapping/{samples_all}.sorted.subsmpl.bam.bai",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/1-mapping/{samples_all}.sorted.subsmpl.cov.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/1-mapping/{samples_all}.sorted.subsmpl.stats.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/3-countPos/{samples_all}.all_positions_sorted.collapsed.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/3-countPos/union.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/3-countPos/union_sorted.txt",
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/3-countPos/union_sorted.collapsed.txt"
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.subsmpl.bam",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.subsmpl.bam.bai",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.subsmpl.cov.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.subsmpl.stats.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.all_positions_sorted.collapsed.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union_sorted.txt",
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/union_sorted.collapsed.txt"
 
     output:
-        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/3-countPos/{samples_all}.counts.txt"
+        config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.counts.txt"
+
     log:
         error = ".logs/teflon_count/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.err",
         output = ".logs/teflon_count/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.out"
@@ -19,9 +20,9 @@ rule teflon_count :
         ".benchmarks/teflon_count/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_all}.benchmark.txt"
     
     params:
-        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"],
-        prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
-        snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+"/sample_names.txt",
+        wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"],
+        prepTF = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_TF/",
+        snames = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/sample_names.txt",
         sample = "{samples_all}",
         bwa = config["DEPENDANCES"]["BWA"],
         samtools = config["DEPENDANCES"]["SAMTOOLS"],
