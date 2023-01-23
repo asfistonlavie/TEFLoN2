@@ -21,6 +21,7 @@ def main():
 		rwd=os.path.join(cwd,"reference")
 		swd=os.path.join(cwd,"samples")
 		sbwd=os.path.join(swd,"bam")
+		sr1wd=os.path.join(swd,"reads")
 		sr1wd=os.path.join(swd,"reads1")
 		sr2wd=os.path.join(swd,"reads2")
 
