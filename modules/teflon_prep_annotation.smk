@@ -19,7 +19,7 @@ rule teflon_prep_annotation:
     params:
         wd = config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/",
         prefix = config["PARAMS"]["GENERAL"]["PREFIX"],
-        canonicalTE = config["DATA_INPUT"]["LIBRARY"],
+        canonicalTE = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/library/" + config["DATA_INPUT"]["LIBRARY"],
         python = config["DEPENDANCES"]["PYTHON3"]
 
     resources:
