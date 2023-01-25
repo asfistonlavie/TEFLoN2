@@ -21,13 +21,13 @@ def main():
 		rwd=os.path.join(cwd,"reference")
 		swd=os.path.join(cwd,"samples")
 		sbwd=os.path.join(swd,"bam")
-		sr1wd=os.path.join(swd,"reads")
+		srwd=os.path.join(swd,"reads")
 		sr1wd=os.path.join(swd,"reads1")
 		sr2wd=os.path.join(swd,"reads2")
 
 
 
-	mkdir_if_not_exist(cwd,lwd,rwd,swd,sbwd,sr1wd,sr2wd)
+	mkdir_if_not_exist(cwd,lwd,rwd,swd,sbwd,srwd,sr1wd,sr2wd)
 
 	print("YOUR INPUT DATA FOLDER IS READY!")
 
