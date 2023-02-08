@@ -13,9 +13,10 @@ def pop_frequency(popFILE,popDir,genoDir,populationLoThresh,populationHiThresh):
 				populations[group] = [sample]
 				header = header + group + "_popFrequency\t" 
 
-	frequency = {}
-	statsGroup = {}
+
 	for group in populations :
+		frequency = {}
+		statsGroup = {}
 		for sample in populations[group]:
 			sampleGeno = os.path.join(genoDir,sample + ".genotypes.txt")
 			with open(sampleGeno,"r") as fIN:
