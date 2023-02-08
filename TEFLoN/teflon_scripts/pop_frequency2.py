@@ -91,7 +91,7 @@ def all_frequency(samplesFILE,genoDir,populationLoThresh,populationHiThresh):
 		allFILE = os.path.join(genoDir,"all_samples.genotypes2.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:
-				line = str(statsAll[id]["values"]) + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"] + "\t" + str(statsAll[id]["no data"]))
+				line = str(statsAll[id]["values"]) + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"]) + "\t" + str(statsAll[id]["no data"])
 				if(id not in frequency):
 					frequency[id] = []
 				total = statsAll[id]["polymorphs"] + statsAll[id]["presents"] + statsAll[id]["absents"]

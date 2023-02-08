@@ -68,7 +68,6 @@ def all_frequency(samplesFILE,genoDir,pt,populationLoThresh,populationHiThresh):
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",6)
 					id, presents, absents, ambiguous, values = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
-					print(id)
 					if(id in statsAll):
 						statsAll[id]["presents"] += presents
 						statsAll[id]["absents"] += absents
