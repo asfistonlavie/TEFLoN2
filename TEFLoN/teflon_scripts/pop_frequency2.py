@@ -36,13 +36,14 @@ def pop_frequency(popFILE,popDir,genoDir,populationLoThresh,populationHiThresh):
 		groupFILE = os.path.join(popDir,group + ".population.genotypes2.txt")
 		with open(groupFILE,"w") as fOUT:
 			for id in statsGroup:
-				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["polymorphs"]) + "\t" + str(statsGroup[id]["absents"])
+				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["polymorphs"]) + "\t" + str(statsGroup[id]["absents"]) + "\t" + str(statsGroup[id]["no data"])
 				if(id not in frequency):
 					frequency[id] = {}
 				total = statsGroup[id]["polymorphs"] + statsGroup[id]["presents"] + statsGroup[id]["absents"]
 				if(total == 0):
 					frequency[id][group] = -9
 				else :
+					total = total +  statsGroup[id]["no data"]
 					frequency[id][group] = round(float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total,3)
 				interpretation = ""
 				if float(frequency[id][group]) == -9 :
@@ -90,13 +91,14 @@ def all_frequency(samplesFILE,genoDir,populationLoThresh,populationHiThresh):
 		allFILE = os.path.join(genoDir,"all_samples.genotypes2.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:
-				line = str(statsAll[id]["values"]) + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"])
+				line = str(statsAll[id]["values"]) + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["polymorphs"]) + "\t" + str(statsAll[id]["absents"] + "\t" + str(statsAll[id]["no data"]))
 				if(id not in frequency):
 					frequency[id] = []
 				total = statsAll[id]["polymorphs"] + statsAll[id]["presents"] + statsAll[id]["absents"]
 				if(total == 0):
 					frequency[id] = -9
 				else:
+					total = total + statsAll[id]["no data"]
 					frequency[id] = round(float((statsAll[id]["presents"]) + float(statsAll[id]["polymorphs"]*0.5))/total,3)
 				interpretation = ""
 				if float(frequency[id]) == -9 :
