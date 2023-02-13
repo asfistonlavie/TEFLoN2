@@ -21,13 +21,14 @@ def pop_frequency(popFILE,popDir,genoDir,pt,populationLoThresh,populationHiThres
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",6)
-					id, presents, absents, ambiguous,values = fields[6], int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
-					if(id in statsGroup):
-						statsGroup[id]["presents"] += presents
-						statsGroup[id]["absents"] += absents
-						statsGroup[id]["ambiguous"] += ambiguous
-					else:
-						statsGroup[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"values":values}
+					id, presents, absents, ambiguous,values, type = fields[6], int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fields[1]
+					if (type != "no_data" ):
+						if(id in statsGroup):
+							statsGroup[id]["presents"] += presents
+							statsGroup[id]["absents"] += absents
+							statsGroup[id]["ambiguous"] += ambiguous
+						else:
+							statsGroup[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"values":values}
 		groupFILE = os.path.join(popDir,group + ".population.genotypes.txt")
 		with open(groupFILE,"w") as fOUT:
 			for id in statsGroup:
@@ -67,13 +68,14 @@ def all_frequency(samplesFILE,genoDir,pt,populationLoThresh,populationHiThresh):
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",6)
-					id, presents, absents, ambiguous, values = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0]
-					if(id in statsAll):
-						statsAll[id]["presents"] += presents
-						statsAll[id]["absents"] += absents
-						statsAll[id]["ambiguous"] += ambiguous
-					else:
-						statsAll[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous, "values":values}
+					id, presents, absents, ambiguous, values, type = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fiels[1]
+					if (type != "no_data" ):
+						if(id in statsAll):
+							statsAll[id]["presents"] += presents
+							statsAll[id]["absents"] += absents
+							statsAll[id]["ambiguous"] += ambiguous
+						else:
+							statsAll[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous, "values":values}
 		allFILE = os.path.join(genoDir,"all_samples.genotypes.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:

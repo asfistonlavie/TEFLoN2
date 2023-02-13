@@ -43,7 +43,6 @@ def pop_frequency(popFILE,popDir,genoDir,populationLoThresh,populationHiThresh):
 				if(total == 0):
 					frequency[id][group] = -9
 				else :
-					total = total +  statsGroup[id]["no data"]
 					frequency[id][group] = round(float((statsGroup[id]["presents"]) + float(statsGroup[id]["polymorphs"]*0.5))/total,3)
 				interpretation = ""
 				if float(frequency[id][group]) == -9 :
@@ -98,7 +97,6 @@ def all_frequency(samplesFILE,genoDir,populationLoThresh,populationHiThresh):
 				if(total == 0):
 					frequency[id] = -9
 				else:
-					total = total + statsAll[id]["no data"]
 					frequency[id] = round(float((statsAll[id]["presents"]) + float(statsAll[id]["polymorphs"]*0.5))/total,3)
 				interpretation = ""
 				if float(frequency[id]) == -9 :
