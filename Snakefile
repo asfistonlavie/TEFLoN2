@@ -100,5 +100,5 @@ include: "modules/teflon_genotype.smk"
 
 rule all:
 	input:
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.genotypes.txt",reads=samples_all),

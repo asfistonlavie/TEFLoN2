@@ -3,7 +3,7 @@ rule teflon_genotype :
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.counts.txt",samples_all=samples_all)
 
 	output:
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.pseudoSpace.genotypes.txt",samples_all=samples_all),
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{samples_all}.pseudoSpace.genotypes.txt",samples_all=samples_all),
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{samples_all}.genotypes.txt",samples_all=samples_all)
 
 	log:
