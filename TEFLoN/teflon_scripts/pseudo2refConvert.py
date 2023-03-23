@@ -61,6 +61,13 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,fr
                                 ls.append("present")
                             else :
                                 ls.append("absent")
+                        elif dataType == "diploid" :
+                            if float(ls[12]) < float(frequencyLoThresh) :
+                                ls.append("absent")
+                            elif float(ls[12]) > float(frequencyHiThresh) :
+                                ls.append("present")
+                            else :
+                                ls.append("heterozygous")
                         else :
                             if float(ls[12]) < float(frequencyLoThresh) :
                                 ls.append("absent")
@@ -68,6 +75,7 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,fr
                                 ls.append("present")
                             else :
                                 ls.append("polymorphic")
+
                     else :
                         ls.append("no_data")
 

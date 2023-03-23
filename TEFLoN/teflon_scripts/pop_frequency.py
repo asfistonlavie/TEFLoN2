@@ -21,21 +21,27 @@ def pop_frequency(popFILE,popDir,genoDir,pt,populationLoThresh,populationHiThres
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",6)
-					id, presents, absents, ambiguous,values, type = fields[6], int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fields[1]
+					id, presents, absents, ambiguous,values, type = fields[6], int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fields[5]
 					if (type != "no_data" ):
 						if(id in statsGroup):
 							statsGroup[id]["presents"] += presents
 							statsGroup[id]["absents"] += absents
 							statsGroup[id]["ambiguous"] += ambiguous
 						else:
-							statsGroup[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"values":values}
+							statsGroup[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"no_data":0,"values":values}
+					else :
+						if(id in statsGroup):
+							statsGroup[id]["no_data"] += 1
+						else:
+							statsGroup[id] = {"presents":0,"absents":0,"ambiguous":0,"no_data":1,"values":values}
+
 		groupFILE = os.path.join(popDir,group + ".population.genotypes.txt")
 		with open(groupFILE,"w") as fOUT:
 			for id in statsGroup:
-				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["absents"]) + "\t" + str(statsGroup[id]["ambiguous"])
+				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["absents"]) + "\t" + str(statsGroup[id]["ambiguous"]) + "\t" + str(statsGroup[id]["no_data"])
 				if(id not in frequency):
 					frequency[id] = {}
-				frequency[id][group] = (pt.fq(line.split()))
+				frequency[id][group] = (pt.fq(line.split()[-1]))
 				interpretation = ""
 				if float(frequency[id][group]) == -9 :
 					interpretation = "no_data"
@@ -68,21 +74,26 @@ def all_frequency(samplesFILE,genoDir,pt,populationLoThresh,populationHiThresh):
 			with open(sampleGeno,"r") as fIN:
 				for line in fIN:
 					fields = line[:-1].rsplit("\t",6)
-					id, presents, absents, ambiguous, values, type = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fiels[1]
+					id, presents, absents, ambiguous, values, type = fields[6] , int(fields[1]), int(fields[2]), int(fields[3]), fields[0], fields[5]
 					if (type != "no_data" ):
 						if(id in statsAll):
 							statsAll[id]["presents"] += presents
 							statsAll[id]["absents"] += absents
 							statsAll[id]["ambiguous"] += ambiguous
 						else:
-							statsAll[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous, "values":values}
+							statsAll[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"no_data":0,"values":values}
+					else :
+						if(id in statsGroup):
+							statsGroup[id]["no_data"] += 1
+						else:
+							statsGroup[id] = {"presents":0,"absents":0,"ambiguous":0,"no_data":1,"values":values}
 		allFILE = os.path.join(genoDir,"all_samples.genotypes.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:
-				line = str(statsAll[id]["values"])  + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["absents"]) + "\t" + str(statsAll[id]["ambiguous"])
+				line = str(statsAll[id]["values"])  + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["absents"]) + "\t" + str(statsAll[id]["ambiguous"])+ "\t" + str(statsGroup[id]["no_data"])
 				if(id not in frequency):
 					frequency[id] = []
-				frequency[id] = pt.fq(line.split())
+				frequency[id] = pt.fq(line.split()[:-1])
 				interpretation = ""
 				if float(frequency[id]) == -9 :
 					interpretation = "no_data"

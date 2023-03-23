@@ -137,9 +137,7 @@ def main():
     print("NOTE: all sites with adjusted read counts > upper-bound coverage threshold will be marked -9")
 
 
-    #load pseudo2ref.pickle
-    # pickleFILE=os.path.join(prep_TF,prefix+".pseudo2ref.pickle.gz")
-    # posMap=load_pickle(pickleFILE)
+
     pseudo2refFILE = os.path.join(prep_TF,prefix+".pseudo2ref.txt")
     print(pseudo2refFILE)
     with open(pseudo2refFILE,"r") as file :
@@ -151,7 +149,7 @@ def main():
     pf2.all_frequency(samplesFILE,samplesDir,populationLoThresh,populationHiThresh)
 
     # identify population file
-    
+
     if args.population != -1:
         populationsFILE = args.population
         populationsDir = os.path.join(genoDir,"populations")

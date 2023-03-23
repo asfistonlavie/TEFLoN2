@@ -42,7 +42,7 @@ def pt_portal(countDir, genoDir, samples, posMap, stats, p2rC, l_thresh, h_thres
                 tmp.append(fq(cts[j][i]))
         outCall.append(tmp)
     for i in range(len(cts)):
-        outFILE1=os.path.join(countDir,samples[i][1]+".pseudoSpace.genotypes.txt")
+        outFILE1=os.path.join(genoDir,samples[i][1]+".pseudoSpace.genotypes.txt")
         with open(outFILE1, "w") as fOUT:
             for j in range(len(cts[i])):
                 fOUT.write("\t".join([str(x) for x in cts[i][j]])+"\t%s\n" %(str(outCall[j][i])))
