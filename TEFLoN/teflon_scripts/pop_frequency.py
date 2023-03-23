@@ -83,14 +83,14 @@ def all_frequency(samplesFILE,genoDir,pt,populationLoThresh,populationHiThresh):
 						else:
 							statsAll[id] = {"presents":presents,"absents":absents,"ambiguous":ambiguous,"no_data":0,"values":values}
 					else :
-						if(id in statsGroup):
-							statsGroup[id]["no_data"] += 1
+						if(id in statsAll):
+							statsAll[id]["no_data"] += 1
 						else:
-							statsGroup[id] = {"presents":0,"absents":0,"ambiguous":0,"no_data":1,"values":values}
+							statsAll[id] = {"presents":0,"absents":0,"ambiguous":0,"no_data":1,"values":values}
 		allFILE = os.path.join(genoDir,"all_samples.genotypes.txt")
 		with open(allFILE,"w") as fOUT:
 			for id in statsAll:
-				line = str(statsAll[id]["values"])  + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["absents"]) + "\t" + str(statsAll[id]["ambiguous"])+ "\t" + str(statsGroup[id]["no_data"])
+				line = str(statsAll[id]["values"])  + "\t" + str(statsAll[id]["presents"]) + "\t" + str(statsAll[id]["absents"]) + "\t" + str(statsAll[id]["ambiguous"])+ "\t" + str(statsAll[id]["no_data"])
 				if(id not in frequency):
 					frequency[id] = []
 				frequency[id] = pt.fq(line.split()[:-1])
