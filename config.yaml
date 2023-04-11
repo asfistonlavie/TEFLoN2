@@ -22,7 +22,10 @@ PARAMS:
     SAMTOOLS:
         THREADS:    10 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:
+        SPECIES : "" #Specify the species or clade of the input sequence. The species name must be a valid NCBI Taxonomy Database species name and be containedin the RepeatMasker repeat database. Some examples are: human,mouse,rattus,"ciona savignyi",arabidopsis,mammal, carnivore, rodentia, rat, cow, pig, cat, dog, chicken, fugu,danio, "ciona intestinalis" drosophila, anopheles, worm, diatoaea,artiodactyl, arabidopsis, rice, wheat, and maize
         CUTOFF: "" #[optional] SW cutoff score for RepeatMasker, default=250 
+        FRAG: "" #[optional]  Maximum sequence length masked without fragmenting for RepepatMasker (default 60000)
+        ENGINE : "" #[optional][crossmatch|wublast|abblast|ncbi|rmblast|hmmer] Use an alternate search engine to the default for RepeatMasker.
         MIN_LENGTH: "" #[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200 
         SPLIT_DIST: "" #[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200 
         DIVERGENCE: "" #[optional] only those repeats < x percent diverged from the consensus seq will be included in final annotation, default=20 

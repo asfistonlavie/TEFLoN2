@@ -10,13 +10,20 @@ from teflon_scripts import repeatMaskerOut2hierarchy as rep2hier
 from teflon_scripts import pseudoGenerate as pg
 from teflon_scripts import ref2pseudoConvert as r2pC
 
-def repeatMask(wd,prefix,RM,ref,cpu,repLib,div,cutoff):
+def repeatMask(wd,prefix,RM,ref,cpu,repLib,div,cutoff,species,frag,engine):
     try:
         print("Copying %s to %s" %(ref,wd))
         ref_dup=os.path.join(wd,prefix+".prep_RM",os.path.basename(ref))
         os.system("cp %s %s" %(ref,ref_dup))
         print("Running RepeatMasker...")
-        cmd="perl %s -a -div %s -no_is -nolow -norna -cutoff %s -pa %s --lib %s %s" %(RM,div,cutoff,cpu,repLib,ref_dup)
+        cmd="perl %s -a -div %s -no_is -nolow -norna -cutoff %s -frag %s -pa %s " %(RM,div,cutoff,frag,cpu)
+        if repLib != 0:
+            cmd=cmd + "--lib %s " %(repLib)
+        if species != 0:
+            cmd=cmd + "-species %s " %(species)
+        if engine != 0:
+            cmd=cmd + "-engine %s " %(engine)
+        cmd=cmd + "%s" %(ref_dup)
         print("cmd:",cmd)
         p = sp.Popen(shlex.split(cmd),stdout=sp.PIPE, stderr=sp.PIPE)
         pERR=p.communicate()[1]
@@ -34,9 +41,12 @@ def main():
     parser.add_argument('-wd',dest='wd',help='full path to working directory', default=0)
     parser.add_argument('-e',dest='repMask',help='full path to RepeatMasker executable')
     parser.add_argument('-g',dest='genome',help='reference genome')
-    parser.add_argument('-l',dest='lib',help='custom library')
+    parser.add_argument('-l',dest='lib',help='custom library',default=0)
     parser.add_argument('-p',dest='pre',help='prefix for all newly created files')
+    parser.add_argument('-species',dest='species',help='Specify the species or clade of the input sequence.',default=0)
     parser.add_argument('-c',dest='cutoff',help='Sets cutoff score for masking repeats',type=int,default=225)
+    parser.add_argument('-frag',dest='frag',help='Maximum sequence length masked without fragmenting for RepepatMasker (default 60000)',type=int,default=60000)
+    parser.add_argument('-engine',dest='engine',help='Use an alternate search engine to the default for RepeatMasker.',default=0)
     parser.add_argument('-m',dest='minLen',help='minimum length for RM predicted TE to be reported in annotation',type=int,default=200)
     parser.add_argument('-s',dest='splitDist',help='RM predicted TEs of the same family separated by distances less than the splitDist will be combined into a single annotated TE',type=int, default=100)
     parser.add_argument('-d',dest='div',help='masks only those repeats < x percent diverged from consensus seq',type=int, default=20)
@@ -65,7 +75,7 @@ def main():
 
     #Mask the reference
     masked_faFILE=os.path.join(prep_RM_DIR,os.path.basename(args.genome)+".masked")
-    repeatMask(cwd,prefix,args.repMask,args.genome,args.cpu,args.lib,args.div,args.cutoff)
+    repeatMask(cwd,prefix,args.repMask,args.genome,args.cpu,args.lib,args.div,args.cutoff,args.species,args.frag,args.engine)
 
     #Create annotation.bed
     RM_bedFILE=os.path.join(prep_RM_DIR,prefix+".bed")

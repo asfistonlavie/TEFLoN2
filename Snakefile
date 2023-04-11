@@ -85,7 +85,7 @@ include: "modules/bamtofastq.smk"
 if check_value(config["DATA_INPUT"]["GENOME"]):
 	if check_value(config["DATA_INPUT"]["ANNOTATION"]):
 		include: "modules/teflon_prep_annotation.smk"
-	elif check_value(config["DATA_INPUT"]["LIBRARY"]):
+	else :
 		include: "modules/teflon_prep_custom.smk"
 else : 
 	sys.exit("Invalid inputs")
