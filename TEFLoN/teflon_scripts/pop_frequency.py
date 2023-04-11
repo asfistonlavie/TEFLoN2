@@ -41,7 +41,7 @@ def pop_frequency(popFILE,popDir,genoDir,pt,populationLoThresh,populationHiThres
 				line = str(statsGroup[id]["values"]) + "\t" + str(statsGroup[id]["presents"]) + "\t" + str(statsGroup[id]["absents"]) + "\t" + str(statsGroup[id]["ambiguous"]) + "\t" + str(statsGroup[id]["no_data"])
 				if(id not in frequency):
 					frequency[id] = {}
-				frequency[id][group] = (pt.fq(line.split()[-1]))
+				frequency[id][group] = (pt.fq(line.split()[:-1]))
 				interpretation = ""
 				if float(frequency[id][group]) == -9 :
 					interpretation = "no_data"
