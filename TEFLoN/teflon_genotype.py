@@ -76,7 +76,7 @@ def main():
 		
 		# read samples and stats
 		sample=[]
-		bamFILE=bam.split()[0].replace(".bam",".subsmpl.bam")
+		bamFILE=bam.replace(".bam",".subsmpl.bam")
 		statsFile = bamFILE.replace(".bam", ".stats.txt")
 		with open(statsFile, 'r') as fIN:
 			for l in fIN:
