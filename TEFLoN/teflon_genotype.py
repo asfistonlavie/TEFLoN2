@@ -1,5 +1,4 @@
 import argparse, sys, os, gzip
-import pickle as pickle
 import gc
 import json
 
@@ -17,22 +16,6 @@ def mkdir_if_not_exist(*dirs):
 		if not os.path.exists(dir):
 			os.makedirs(dir,exist_ok=True)
 			print("creating directory: %s" %(dir))
-
-def load_pickle(pFILE):
-	tmpFILE=pFILE.replace(os.path.basename(pFILE),os.path.basename(pFILE)+".tmp")
-	cmd="gunzip -c %s > %s" %(pFILE,tmpFILE)
-	print("cdm:",cmd)
-	os.system(cmd)
-	print("loading pickle:",tmpFILE)
-	print("NOTE: this step can be time and memory intensive for large reference genomes")
-	inFILE = open(tmpFILE, "rb")
-	gc.disable()
-	pDICT=pickle.load(inFILE)
-	gc.enable()
-	inFILE.close()
-	os.system("rm %s" %(tmpFILE))
-	print("pickle loaded!")
-	return pDICT
 
 def main():
 	parser = argparse.ArgumentParser()

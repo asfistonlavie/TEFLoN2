@@ -31,6 +31,15 @@ teflon_count:
     cpus: "{threads}"
     mem: "{resources.mem_mb}"
 
-teflon_genotype:
+teflon_genotype_individual:
+    #jobname: "{rule}_{params.sample}"
+    mem: "{resources.mem_mb}"
+
+teflon_genotype_all:
+    #jobname: "{rule}_{params.sample}"
+    mem: "{resources.mem_mb}"
+
+
+teflon_genotype_population:
     #jobname: "{rule}_{params.sample}"
     mem: "{resources.mem_mb}"
