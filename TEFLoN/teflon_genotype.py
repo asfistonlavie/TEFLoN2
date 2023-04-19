@@ -79,20 +79,20 @@ def main():
 		bamFILE=bam.split()[0].replace(".bam",".subsmpl.bam")
 		statsFile = bamFILE.replace(".bam", ".stats.txt")
 		with open(statsFile, 'r') as fIN:
-					for l in fIN:
-						if 'average length' in l:
-							readLen=int(float(l.split()[-1]))
-						if 'insert size average' in l:
-							insz=int(float(l.split()[-1]))
-						if 'insert size standard deviation' in l:
-							sd=int(float(l.split()[-1]))
+			for l in fIN:
+				if 'average length' in l:
+					readLen=int(float(l.split()[-1]))
+				if 'insert size average' in l:
+					insz=int(float(l.split()[-1]))
+				if 'insert size standard deviation' in l:
+					sd=int(float(l.split()[-1]))
 		covFILE = bamFILE.replace(".bam", ".cov.txt")
 		with open(covFILE, "r") as fIN:
-					for l in fIN:
-						if l.startswith("Av"):
-							cov = float(l.split()[-1])
-						if l.startswith("St"):
-							cov_sd = float(l.split()[-1])
+			for l in fIN:
+				if l.startswith("Av"):
+					cov = float(l.split()[-1])
+				if l.startswith("St"):
+					cov_sd = float(l.split()[-1])
 		sample.append(bamFILE, pre, [readLen, insz, sd, cov, cov_sd])
 
 
