@@ -77,25 +77,29 @@ def main():
 		# read samples and stats
 		sample=[]
 		bamFILE=bam.replace(".bam",".subsmpl.bam")
+		sample.append(bamFILE)
+		sample.append(pre)
 		statsFile = bamFILE.replace(".bam", ".stats.txt")
 		with open(statsFile, 'r') as fIN:
 			for l in fIN:
 				if 'average length' in l:
 					readLen=int(float(l.split()[-1]))
+					sample.append(readLen)
 				if 'insert size average' in l:
 					insz=int(float(l.split()[-1]))
+					sample.append(insz)
 				if 'insert size standard deviation' in l:
 					sd=int(float(l.split()[-1]))
+					sample.append(sd)
 		covFILE = bamFILE.replace(".bam", ".cov.txt")
 		with open(covFILE, "r") as fIN:
 			for l in fIN:
 				if l.startswith("Av"):
 					cov = float(l.split()[-1])
+					sample.append(cov)
 				if l.startswith("St"):
 					cov_sd = float(l.split()[-1])
-		sample.append(bamFILE, pre, readLen, insz, sd, cov, cov_sd)
-
-
+					sample.append(cov_sd)
 
 		# average the stats for each sample
 		stats=ms.mean_stats_portal(sample)
