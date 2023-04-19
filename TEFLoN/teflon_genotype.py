@@ -93,7 +93,7 @@ def main():
 					cov = float(l.split()[-1])
 				if l.startswith("St"):
 					cov_sd = float(l.split()[-1])
-		sample.append(bamFILE, pre, [readLen, insz, sd, cov, cov_sd])
+		sample.append(bamFILE, pre, readLen, insz, sd, cov, cov_sd)
 
 
 
@@ -117,7 +117,7 @@ def main():
 
 		# define upper-bound coverage threshold
 		if hiFilt == -1:
-			h_thresh = int(sample[2][3]+ (2*sample[2][4]))
+			h_thresh = int(sample[5]+ (2*sample[6]))
 		else:
 			h_thresh = hiFilt
 		print("Upper-bound coverage threshold filters corresponding to samples %s is %s" %(sample[1],h_thresh))
