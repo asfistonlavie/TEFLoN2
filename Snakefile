@@ -65,7 +65,6 @@ def check_value (var):
 			return True
 
 
-
 if config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"].strip() == "" :
 	config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"] = "data_output_"
 else :
@@ -101,7 +100,27 @@ include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
 
 
-rule all:
-	input:
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.genotypes.txt",reads=samples_all),
+
+if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
+	popFILE = config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]
+	group = []
+	with open(popFILE,"r") as fIN:
+		for line in fIN:
+			if line.endswith("\n") :
+				fields = line[:-1].split("\t")
+			else : 
+				fields = line.split("\t")
+			group.append(fields[1])
+	group = set(group)
+
+	rule all:
+		input:
+			expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/{pop}.genotypes.txt",pop=group),
+			expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/{pop}.genotypes2.txt",pop=group)
+
+
+else :
+	rule all:
+		input:
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"
