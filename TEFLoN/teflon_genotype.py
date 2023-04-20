@@ -46,11 +46,6 @@ def main():
 	prefix=os.path.abspath(args.DIR).split("/")[-1].replace(".prep_TF","")
 	dataType=args.dataType
 	samplesFILE=args.samples
-	if dataType not in "haploid, diploid, or pooled":
-		return "Error datatype must be either haploid, diploid, or pooled"
-		sys.exit()
-
-	
 
 	frequencyLoThresh=args.frequencyLoThresh
 	if frequencyLoThresh == -1:
@@ -63,7 +58,12 @@ def main():
 	populationLoThresh=args.populationLoThresh
 	populationHiThresh=args.populationHiThresh
 
-	if args.ID != -1:
+	if float(args.ID) != -1:
+
+		if dataType not in "haploid, diploid, or pooled":
+			return "Error datatype must be either haploid, diploid, or pooled"
+			sys.exit()
+
 		bam,pre="",""
 		with open(os.path.abspath(args.samples), "r") as fIN:
 			for line in fIN:
@@ -141,7 +141,6 @@ def main():
 		pt.pt_portal(countDir,samplesDir,sample, posMap, readLen, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh)
 
 	# identify population file
-
 	elif args.population != -1:
 		populationsFILE = args.population
 		populationsDir = os.path.join(genoDir,"populations")

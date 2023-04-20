@@ -80,7 +80,7 @@ rule teflon_genotype_all :
 	resources:
 		mem_mb=get_mem_mb
 
-	run:# delete everything so we can re-run things
+	run:
 		cmd = ("{params.python} TEFLoN/teflon_genotype.py "
 		"-wd {params.wd}  "
 		"-d {params.prepTF} "
@@ -122,7 +122,7 @@ rule teflon_genotype_population :
 	resources:
 		mem_mb=get_mem_mb
 
-	run:# delete everything so we can re-run things
+	run:
 		cmd = ("{params.python} TEFLoN/teflon_genotype.py "
 		"-wd {params.wd}  "
 		"-d {params.prepTF} "
