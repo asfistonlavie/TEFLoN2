@@ -50,6 +50,12 @@ def main():
 	populationLoThresh=args.populationLoThresh
 	populationHiThresh=args.populationHiThresh
 
+	# create the genotype directory
+	countDir = os.path.join(cwd,"3-countPos")
+	genoDir = os.path.join(cwd,"4-genotypes")
+	samplesDir = os.path.join(genoDir,"samples")
+	mkdir_if_not_exist(samplesDir)
+
 	if args.ID != -1:
 		if dataType not in "haploid, diploid, or pooled":
 			return "Error datatype must be either haploid, diploid, or pooled"
@@ -105,12 +111,6 @@ def main():
 			for l in fIN:
 				readLen = float(l.split()[-1])
 		
-		# create the genotype directory
-		countDir = os.path.join(cwd,"3-countPos")
-		genoDir = os.path.join(cwd,"4-genotypes")
-		samplesDir = os.path.join(genoDir,"samples")
-		mkdir_if_not_exist(samplesDir)
-
 		# define lower-bound coverage thresholds
 		if loFilt == -1:
 			l_thresh = 1
