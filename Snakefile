@@ -97,6 +97,7 @@ include: "modules/mapping.smk"
 include: "modules/teflon_discover.smk"
 include: "modules/teflon_collapse.smk"
 include: "modules/teflon_count.smk"
+include: "modules/teflon_genotype.smk"
 
 
 if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
@@ -110,7 +111,7 @@ if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
 				fields = line.split("\t")
 			group.append(fields[1])
 	group = set(group)
-	include: "modules/teflon_genotype.smk"
+	include: "modules/teflon_genotype_pop.smk"
 
 
 	rule all:
@@ -120,7 +121,6 @@ if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
 
 
 else :
-	include: "modules/teflon_genotype.smk"
 	rule all:
 		input:
 			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
