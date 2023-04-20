@@ -46,23 +46,21 @@ def main():
 	prefix=os.path.abspath(args.DIR).split("/")[-1].replace(".prep_TF","")
 	dataType=args.dataType
 	samplesFILE=args.samples
-
-	frequencyLoThresh=args.frequencyLoThresh
-	if frequencyLoThresh == -1:
-		if dataType == "haploid":
-			frequencyLoThresh = 0.5
-		if dataType == "diploid" or dataType == "pooled" :
-			frequencyLoThresh = 0.25
-
 	frequencyHiThresh=args.frequencyHiThresh
 	populationLoThresh=args.populationLoThresh
 	populationHiThresh=args.populationHiThresh
 
-	if float(args.ID) != -1:
-
+	if args.ID != -1:
 		if dataType not in "haploid, diploid, or pooled":
 			return "Error datatype must be either haploid, diploid, or pooled"
 			sys.exit()
+
+		frequencyLoThresh=args.frequencyLoThresh
+		if frequencyLoThresh == -1:
+			if dataType == "haploid":
+				frequencyLoThresh = 0.5
+			if dataType == "diploid" or dataType == "pooled" :
+				frequencyLoThresh = 0.25
 
 		bam,pre="",""
 		with open(os.path.abspath(args.samples), "r") as fIN:
