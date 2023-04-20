@@ -21,8 +21,7 @@ def fq(line):
 		return round(int(line[9])/float(int(line[9]) + int(line[10])), 3)
 
 
-def pt_portal(countDir, genoDir, sample, posMap, stats, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh):
-	readLen=stats[0]
+def pt_portal(countDir, genoDir, sample, posMap, readLen, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh):
 	cts=[]
 	inFILE=os.path.join(countDir,sample[1]+".counts.txt")
 	with open(inFILE, "r") as fIN:

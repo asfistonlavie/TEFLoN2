@@ -1,7 +1,7 @@
 def average(lst):
     return int(sum(lst)/float(len(lst)))
 
-def mean_stats_portal(samples):
+def mean_stats_portal(samples,outFILE1):
     means=[[],[],[],[],[]]
     for sample in samples:
         #print sample
@@ -22,5 +22,8 @@ def mean_stats_portal(samples):
                     means[3].append(int(float(line.split()[-1])))
                 if line.startswith("St"):
                     means[4].append(int(float(line.split()[-1])))
+    with open(outFILE1, "w") as fOUT:
+        fOUT.write(str(average(means[0])) + '\n')
+
     return [average(means[0]),average(means[1]),average(means[2]),average(means[3]),average(means[4])]
 

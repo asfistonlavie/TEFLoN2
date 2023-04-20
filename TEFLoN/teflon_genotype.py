@@ -102,8 +102,11 @@ def main():
 					sample.append(cov_sd)
 
 		# average the stats for each sample
-		stats=ms.mean_stats_portal(sample)
-
+		averageLenghtIN = os.path.join(cwd,"1-mapping","averageLength.all.txt")
+		with open(averageLenghtIN, "r") as fIN:
+			for l in fIN:
+				readLen = float(l.split()[-1])
+		
 		# create the genotype directory
 		countDir = os.path.join(cwd,"3-countPos")
 		genoDir = os.path.join(cwd,"4-genotypes")
@@ -135,7 +138,7 @@ def main():
 			posMap = json.load(file)
 
 
-		pt.pt_portal(countDir,samplesDir,sample, posMap, stats, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh)
+		pt.pt_portal(countDir,samplesDir,sample, posMap, readLen, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh)
 
 	# identify population file
 

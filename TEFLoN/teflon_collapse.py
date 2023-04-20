@@ -106,7 +106,8 @@ def main():
     sa.subsample_alignments_portal(samples, exeSAM, nProc, qual, covOverride,os.path.abspath(args.DIR))
 
     # average the stats for each sample
-    stats=ms.mean_stats_portal(samples)
+    averageLenghtOUT = os.path.join(cwd,"1-mapping","averageLength.all.txt")
+    stats=ms.mean_stats_portal(samples,averageLenghtOUT)
     readLen,insz=stats[0],stats[1]
 
     # create the genotype directory
