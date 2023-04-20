@@ -58,6 +58,6 @@ PARAMS:
             HAPLOID:
                 THRESHOLD_PRESENCE: "0.8"
         POPULATION:
-            FILE :   "/home/ozone/Professional/TEFLoN2/data_input_test/population.txt" #[optional]  path to population file
+            FILE :   "data_input_test/population.txt" #[optional]  path to population file
             THRESHOLD_ABSENCE: ""
             THRESHOLD_PRESENCE:   ""

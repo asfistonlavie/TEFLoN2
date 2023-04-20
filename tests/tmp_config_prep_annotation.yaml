@@ -7,7 +7,7 @@ DEPENDANCES:
     REPEATMASKER:   "repeatmasker" #[requiered if prep_custom] path to repeatmasker executable
 
 DATA_INPUT:
-    WORKING_DIRECTORY:  "/home/ozone/Professional/TEFLoN2/data_input_test" # [required] path to arbresecne of your data input. Default folder is data_input
+    WORKING_DIRECTORY:  "data_input_test" # [required] path to arbresecne of your data input. Default folder is data_input
     GENOME: "sample_reference_genome.fasta" #[required] name of reference file in data_input/reference  
     ANNOTATION: "sample_reference_te_annotation.bed" #[required if prep_annotation] name of annotation file in data_input/library
     LIBRARY:    "" #[required if prep_custom][optional if prep_annotation] name of TE library file for your organism in data_input/library
@@ -58,6 +58,6 @@ PARAMS:
             HAPLOID:
                 THRESHOLD_PRESENCE: "0.8"
         POPULATION:
-            FILE:  "/home/ozone/Professional/TEFLoN2/data_input_test/population.txt" #[optional]  path to population file
+            FILE:  "data_input_test/population.txt" #[optional]  path to population file
             THRESHOLD_ABSENCE: ""
             THRESHOLD_PRESENCE:   ""
