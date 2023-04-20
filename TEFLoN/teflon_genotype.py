@@ -29,6 +29,7 @@ def main():
 	parser.add_argument('-flt',dest='frequencyLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic or absent. For haploid data,default = 0.5. For diloid or pooled data default=0.25)',type=float,default=-1)
 	parser.add_argument('-flh',dest='frequencyHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic or absent. For haploid data, there is no. For diloid or pooled data default=0.75)',type=float,default=0.75)
 	parser.add_argument('-pop',dest="population",help='',default=-1)
+	parser.add_argument('-g',dest="group",help='',default=-1)
 	parser.add_argument('-plt',dest='populationLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic or absent at population level. (default=0.25)',type=float,default=0.25)
 	parser.add_argument('-plh',dest='populationHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic or absent at population level.(default=0.75)',type=float,default=0.75)
 	args = parser.parse_args()
@@ -135,19 +136,37 @@ def main():
 		with open(pseudo2refFILE,"r") as file :
 			posMap = json.load(file)
 
-
 		pt.pt_portal(countDir,samplesDir,sample, posMap, readLen, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh)
 
 	# identify population file
 	elif args.population != -1:
 		populationsFILE = args.population
+		nameGroup = args.group
 		populationsDir = os.path.join(genoDir,"populations")
 		mkdir_if_not_exist(populationsDir)
-		pf.pop_frequency(populationsFILE,populationsDir,samplesDir,pt,populationLoThresh,populationHiThresh)
-		pf2.pop_frequency(populationsFILE,populationsDir,samplesDir,populationLoThresh,populationHiThresh)
+		if(nameGroup != -1) : 
+			population = []
+			with open(os.path.abspath(populationsFILE), 'r') as fIN:
+				for line in fIN:
+					if line.endswith("\n") :
+						fields = line[:-1].split("\t")
+					else : 
+						fields = line.split("\t")
+					group,sample = fields[1], fields[0]
+					
+					if group == nameGroup :
+						population.append(sample)
+
+			pf.pop_frequency(population,nameGroup,populationsDir,samplesDir,pt,populationLoThresh,populationHiThresh)
+			pf2.pop_frequency(population,nameGroup,populationsDir,samplesDir,populationLoThresh,populationHiThresh)
+
+		else :
+			pf.pop_frequency_all(populationsFILE,populationsDir)
+			pf2.pop_frequency_all(populationsFILE,populationsDir)
 
 	#calcultate frequency for all samples
 	else :
+
 		pf.all_frequency(samplesFILE,samplesDir,pt,populationLoThresh,populationHiThresh)
 		pf2.all_frequency(samplesFILE,samplesDir,populationLoThresh,populationHiThresh)
 
