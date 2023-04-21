@@ -110,7 +110,7 @@ def main():
 		averageLenghtIN = os.path.join(cwd,"1-mapping","averageLength.all.txt")
 		with open(averageLenghtIN, "r") as fIN:
 			for l in fIN:
-				readLen = float(l.split()[-1])
+				readLen = l.split()[-1]
 		
 		# define lower-bound coverage thresholds
 		if loFilt == -1:
@@ -135,7 +135,7 @@ def main():
 		print(pseudo2refFILE)
 		with open(pseudo2refFILE,"r") as file :
 			posMap = json.load(file)
-
+			
 		pt.pt_portal(countDir,samplesDir,sample, posMap, readLen, p2rC, l_thresh, h_thresh, dataType, frequencyLoThresh, frequencyHiThresh)
 
 	# identify population file

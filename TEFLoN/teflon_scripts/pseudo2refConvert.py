@@ -82,4 +82,4 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,fr
                     fOUT.write("\t".join([str(x) for x in ls])+"\tte"+str(line_ct)+"\n")
                     line_ct=int(line_ct)
                     line_ct+=1
-
+                    
