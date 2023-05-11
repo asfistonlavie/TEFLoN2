@@ -26,12 +26,12 @@ def main():
 	parser.add_argument('-lt',dest='loThresh',help='sites genotyped as -9 if adjusted read counts less than than this threshold (default=1)', type=int, default=-1)
 	parser.add_argument('-ht',dest='hiThresh',help='sites genotyped as -9 if adjusted read counts greater than this threshold (default=mean_coverage + 2*STDEV)', type=int, default=-1)
 	parser.add_argument('-dt',dest='dataType',help='haploid, diploid, or pooled')
-	parser.add_argument('-flt',dest='frequencyLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic or absent. For haploid data,default = 0.5. For diloid or pooled data default=0.25)',type=float,default=-1)
-	parser.add_argument('-flh',dest='frequencyHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic or absent. For haploid data, there is no. For diloid or pooled data default=0.75)',type=float,default=0.75)
+	parser.add_argument('-flt',dest='frequencyLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. (default=0.05)',type=float,default=0.05)
+	parser.add_argument('-flh',dest='frequencyHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. (default=0.95)',type=float,default=0.95)
 	parser.add_argument('-pop',dest="population",help='',default=-1)
 	parser.add_argument('-g',dest="group",help='',default=-1)
-	parser.add_argument('-plt',dest='populationLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic or absent at population level. (default=0.25)',type=float,default=0.25)
-	parser.add_argument('-plh',dest='populationHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic or absent at population level.(default=0.75)',type=float,default=0.75)
+	parser.add_argument('-plt',dest='populationLoThresh',help='Lower threshold used to define whether insertions are present, polymorphic or absent at population level. (default=0.05)',type=float,default=0.05)
+	parser.add_argument('-plh',dest='populationHiThresh',help='Hight threshold used to define whether insertions are present, polymorphic or absent at population level.(default=0.95)',type=float,default=0.95)
 	args = parser.parse_args()
 
 	# identify current working directory
@@ -48,6 +48,7 @@ def main():
 	dataType=args.dataType
 	samplesFILE=args.samples
 	frequencyHiThresh=args.frequencyHiThresh
+	frequencyLoThresh=args.frequencyLoThresh
 	populationLoThresh=args.populationLoThresh
 	populationHiThresh=args.populationHiThresh
 
@@ -62,13 +63,7 @@ def main():
 			return "Error datatype must be either haploid, diploid, or pooled"
 			sys.exit()
 
-		frequencyLoThresh=args.frequencyLoThresh
-		if frequencyLoThresh == -1:
-			if dataType == "haploid":
-				frequencyLoThresh = 0.5
-			if dataType == "diploid" or dataType == "pooled" :
-				frequencyLoThresh = 0.25
-
+		
 		bam,pre="",""
 		with open(os.path.abspath(args.samples), "r") as fIN:
 			for line in fIN:

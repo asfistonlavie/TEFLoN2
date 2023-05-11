@@ -52,11 +52,8 @@ PARAMS:
         THRESHOLD_HIGHER:  100   #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
         DATA_TYPE:  "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
         SAMPLE:
-            POOLED_OR_DIPLOID:
-                THRESHOLD_ABSENCE:  "0.6"
-                THRESHOLD_PRESENCE:   "0.9"
-            HAPLOID:
-                THRESHOLD_PRESENCE: "0.8"
+            THRESHOLD_ABSENCE:  "0.6"
+            THRESHOLD_PRESENCE:   "0.9"
         POPULATION:
             FILE :   "data_input_test/population.txt" #[optional]  path to population file
             THRESHOLD_ABSENCE: ""

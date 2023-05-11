@@ -57,10 +57,12 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,fr
                         line_ct="0"+str(line_ct)
                     if float(ls[12]) != -9 :
                         if dataType == "haploid" :
-                            if float(ls[12]) >= float(frequencyLoThresh) :
+                            if float(ls[12]) < float(frequencyLoThresh) :
+                                ls.append("absent")
+                            elif float(ls[12]) > float(frequencyHiThresh) :
                                 ls.append("present")
                             else :
-                                ls.append("absent")
+                                ls.append("no_data")
                         elif dataType == "diploid" :
                             if float(ls[12]) < float(frequencyLoThresh) :
                                 ls.append("absent")
