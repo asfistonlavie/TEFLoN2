@@ -3,7 +3,7 @@ rule teflon_genotype_individual :
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.counts.txt"
 
 	output:
-		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{samples_all}.pseudoSpace.genotypes.txt",
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/pseudoSpace/{samples_all}.pseudoSpace.genotypes.txt",
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{samples_all}.genotypes.txt"
 
 	log:
@@ -47,7 +47,7 @@ rule teflon_genotype_individual :
 
 rule teflon_genotype_all :
 	input:
-		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
+		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/pseudoSpace/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.genotypes.txt",reads=samples_all)
 
 	output:
