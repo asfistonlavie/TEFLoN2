@@ -37,8 +37,8 @@ def samples_list() :
 	wd = []
 	samples = {"id":[]}
 	for i in folders :
-		wd = os.path.abspath(base + i)
-		list_samples = os.listdir(wd)
+		wd = base + i
+		list_samples = os.listdir(os.path.abspath(wd))
 		for element in list_samples:
 			if ".fastq" in element or ".fq" in element or "bam" in element:
 				id = element.rsplit(".",1)[0]
