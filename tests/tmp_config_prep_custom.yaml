@@ -19,6 +19,8 @@ PARAMS:
         PREFIX: "test_prep_custom" #[required] name of run
         MEMORY: 30000  #[required] Memory in mb to be used by the rules. If a rule does not work increase this number 
         MEMORY_SUPP:    20000 #[required]  If you use the --retries option of snakemake, if a rule fails to use memory, add to the memory this extra.
+    COMPRESS:
+        THREADS:    10
     SAMTOOLS:
         THREADS:    1 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:

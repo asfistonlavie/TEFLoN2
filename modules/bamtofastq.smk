@@ -28,8 +28,8 @@ rule samtools_fastq:
 		bam = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/bam/{BAM}_sorted.bam"
 		
 	output:
-		r1 = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads1/{BAM}_1.fastq",
-		r2 = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads2/{BAM}_2.fastq"
+		r1 = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads1/{BAM}_1.fastq.gz",
+		r2 = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/reads2/{BAM}_2.fastq.gz"
 
 	log:
 		error = ".logs/samtools_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{BAM}.err"

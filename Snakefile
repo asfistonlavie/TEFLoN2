@@ -12,10 +12,12 @@ def reads1 (wcs):
 	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r1 in ["_1","_r1",".1",".r1"] :
-			if os.path.exists(wd + name + file_r1 +file_ext) :
-				read1 = wd + name + file_r1 + file_ext
+			file = wd + name + file_r1 +file_ext
+			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+				read1 = wd + name + file_r1 + file_ext + ".gz"
 				return read1
-	read1 = wd + name + "_1.fastq"
+	read1 = wd + name + "_1.fastq.gz"
+	print(read1)
 	return read1
 
 def reads2 (wcs):
@@ -23,31 +25,58 @@ def reads2 (wcs):
 	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
 	for file_ext in [".fastq", ".fq"] :
 		for file_r2 in ["_2","_r2",".2",".r2"] :
-			if os.path.exists(wd + name + file_r2 +file_ext) :
-				read2 = wd + name + file_r2 + file_ext
+			file = wd + name + file_r2 +file_ext
+			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+				read2 = wd + name + file_r2 + file_ext + ".gz"
 				return read2
-	read2 = wd + name + "_2.fastq"
+	read2 = wd + name + "_2.fastq.gz"
 	return read2
 
 
 
+
+def reads_compress (wcs):
+	name = wcs.reads
+	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/"
+	for folder in ["reads1/", "reads2/"] :
+		if os.path.exists(wd + folder + name) :
+			read = wd + folder + name
+			return read
+
+
 def samples_list() :
 	base = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/"
-	folders = ["bam/","reads/","reads1/","reads2/"]
+	folders_reads = ["reads1/","reads2/"]
+	folders_for_formating = ["bam/","reads/"] 
 	wd = []
 	samples = {"id":[]}
-	for i in folders :
+	for i in folders_reads :
 		wd = base + i
 		list_samples = os.listdir(os.path.abspath(wd))
 		for element in list_samples:
-			if ".fastq" in element or ".fq" in element or "bam" in element:
-				id = element.rsplit(".",1)[0]
+			if ".fastq" in element or ".fq" in element :
+				if ".gz" in element:
+					id = element.rsplit(".",2)[0]
+				else:
+					id = element.rsplit(".",1)[0]
 				ext_underscore = id.rsplit("_",1)
 				ext_point = id.rsplit(".",1)
 				if (len(ext_underscore) == 2 and (ext_underscore[1] == "1" or ext_underscore[1] == "2" or ext_underscore[1] == "r1" or ext_underscore[1] == "r2")) :
 					samples["id"].append(ext_underscore[0])
 				if (len(ext_point) == 2 and (ext_point[1] == "1" or ext_point[1] == "2" or ext_point[1] == "r1" or ext_point[1] == "r2")) :
 					samples["id"].append(ext_point[0])
+
+	for i in folders_for_formating:
+		wd = base + i
+		list_samples = os.listdir(os.path.abspath(wd))
+		for element in list_samples:
+			if ".fastq" in element or ".fq" in element or ".bam" in element:
+				if ".gz" in element:
+					id = element.rsplit(".",2)[0]
+				else:
+					id = element.rsplit(".",1)[0]
+				samples["id"].append(id)
+
 	return samples
 
 
@@ -79,6 +108,7 @@ localrules:
 wd = config["DATA_INPUT"]["WORKING_DIRECTORY"]
 dict_samples = samples_list()
 samples_all = set(dict_samples["id"])
+
 
 include: "modules/formatting.smk"
 include: "modules/bamtofastq.smk"
