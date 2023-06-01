@@ -17,7 +17,6 @@ def reads1 (wcs):
 				read1 = wd + name + file_r1 + file_ext + ".gz"
 				return read1
 	read1 = wd + name + "_1.fastq.gz"
-	print(read1)
 	return read1
 
 def reads2 (wcs):
