@@ -16,7 +16,7 @@ rule compress_fastq:
 		output = ".logs/compress_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.out"
 
 	benchmark:
-		".logs/compress_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.benchmark.txt"
+		".benchmarks/compress_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.benchmark.txt"
 
 	shell:
 		"pigz --best --processes {threads} {input.read} 1> {log.output} 2> {log.error}"
@@ -36,7 +36,7 @@ rule rename_reads:
 		output = ".logs/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{name}.out"
 
 	benchmark:
-		".logs/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{name}.benchmark.txt"
+		".benchmarks/rename_reads/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{name}.benchmark.txt"
 
 	shell:
 		"mv {input.read} {output.read_final} 1> {log.output} 2> {log.error}"
@@ -54,6 +54,10 @@ rule deinterleave_fastq:
 	threads: config["PARAMS"]["COMPRESS"]["THREADS"]
 
 	priority: 1
+
+        log:
+                error = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.err",
+                output = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.out"
 
 	benchmark:
 		".benchmarks/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.benchmark.txt"
