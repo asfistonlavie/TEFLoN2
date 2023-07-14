@@ -124,6 +124,7 @@ else :
 #Calling snakemake modules
 include: "modules/mapping.smk"
 include: "modules/teflon_discover.smk"
+include: "modules/subsample.smk"
 include: "modules/teflon_collapse.smk"
 include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
