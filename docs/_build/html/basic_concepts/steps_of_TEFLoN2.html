@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steps of TEFLoN2 &mdash; TEFLoN2  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Output files summary" href="output_file_summary.html" />
+    <link rel="prev" title="TEFLoN2 Tutorial" href="../getting_started/teflon2_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TEFLoN2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/teflon2_tutorial.html">TEFLoN2 Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Steps of TEFLoN2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preparation">Data preparation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-annotation">Preparation annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-custom">Preparation custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mapping">Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discover">Discover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collapse">Collapse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#count">Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#genotype-sample">Genotype (sample)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#genotype-population">Genotype (population)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="output_file_summary.html">Output files summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Executing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../executing/configure_parameter_file.html">Config parameter file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../executing/command_line_interface.html">Command line interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_info/citations.html">Citing and Citations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TEFLoN2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Steps of TEFLoN2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/basic_concepts/steps_of_TEFLoN2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="steps-of-teflon2">
+<h1>Steps of TEFLoN2<a class="headerlink" href="#steps-of-teflon2" title="Permalink to this heading"></a></h1>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
+<p>Required input data to TEFLoN2 are :</p>
+<ul class="simple">
+<li><p>Reference genome (.fasta)</p></li>
+<li><p>Short paired-end reads (.fastq(.gz)) or/and binary alignment map (.bam)</p></li>
+<li><p>TEs annotation of reference (.bed6) or/and TEs library (.fasta)</p></li>
+</ul>
+<p>TEFLoN2 requires to prepare a specific mapping dataset.
+It detects all TE insertions (de novo and references TEs), then
+filter out low quality data to create a catalog of TE insertion, genotype them and finally estime their allele frequency.</p>
+</section>
+<section id="data-preparation">
+<h2>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading"></a></h2>
+<p>Depending on the input you have TEFLoN2 uses teflon_preparation_annotation or teflon_preparation_custom.</p>
+<section id="preparation-annotation">
+<h3>Preparation annotation<a class="headerlink" href="#preparation-annotation" title="Permalink to this heading"></a></h3>
+<p>If you use TEs annotation of reference, TEFLoN2 will use teflon_prep_annoation.</p>
+<p>You should place your files as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data_input/
+├── library
+│       ├── sample_reference_hierarchy.txt [required]
+│       ├── REFERENCE_TE_ANNOTATION.bed [required]
+│       └── TE_LIBRARY.fasta [optional]
+├── reference
+│       └── REFERENCE_GENOME.fasta [required]
+└── samples
+    ├── bam
+    │   └── SAMPLE_NAME.bam
+    ├── reads
+    │   └── SAMPLE_NAME.fastq
+    ├── reads1
+    │   └── SAMPLE_NAME_r1.fastq
+    └── reads2
+        └── SAMPLE_NAME_r2.fastq
+</pre></div>
+</div>
+<p>In this step, TEFLoN2 uses the TE annotations to extract them from the reference in order to use them as ET sequences. It removes them from the reference and keeps the information of their positions in the reference.</p>
+<p>Here is the structure of the output files obtained after the execution of Preparation annotation step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+└── 0-reference
+        ├── PREFIX.prep_MP
+        │       ├── PREFIX.annotatedTE.fa
+        │       ├── PREFIX.mappingRef.fa
+        │       ├── PREFIX.mappingRef.fa.amb
+        │       ├── PREFIX.mappingRef.fa.ann
+        │       ├── PREFIX.mappingRef.fa.bwt
+        │       ├── PREFIX.mappingRef.fa.pac
+        │       ├── PREFIX.mappingRef.fa.sa
+        │       └── PREFIX.pseudo.fa
+        └── PREFIX.prep_TF
+            ├── PREFIX.genomeSize.txt
+            ├── PREFIX.hier
+            ├── PREFIX.pseudo2ref.txt
+            ├── PREFIX.ref2pseudo.txt
+            └── PREFIX.te.pseudo.bed
+</pre></div>
+</div>
+<p>The most useful output is PREFIX.mappingRef.fa composed of the reference sequence without TE and TE sequences.</p>
+</section>
+<section id="preparation-custom">
+<h3>Preparation custom<a class="headerlink" href="#preparation-custom" title="Permalink to this heading"></a></h3>
+<p>If you do not use TEs annotation of refrence, it is required that you use an TEs library.</p>
+<p>You should place your files as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data_input/
+├── library
+│       └── TE_LIBRARY.fasta
+├── reference
+│       └── REFERENCE_GENOME.fasta
+└── samples
+    ├── bam
+    │   └── SAMPLE2_NAME.bam
+    ├── reads
+    │   └── SAMPLE_NAME.fastq
+    ├── reads1
+    │   └── SAMPLE_NAME_r1.fastq
+    └── reads2
+        └── SAMPLE_NAME_r2.fastq
+</pre></div>
+</div>
+<p>In this step, TEFLoN2 uses <a class="reference external" href="https://www.repeatmasker.org/">RepeatMasker</a>  which, together with the TE consensus library, masks the TE sequences of the reference and then removes them.</p>
+<p>Here is the structure of the output files obtained after the execution of Preparation custom step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+└── 0-reference
+        ├── PREFIX.prep_MP
+        │       ├── PREFIX.annotatedTE.fa
+        │       ├── PREFIX.mappingRef.fa
+        │       ├── PREFIX.mappingRef.fa.amb
+        │       ├── PREFIX.mappingRef.fa.ann
+        │       ├── PREFIX.mappingRef.fa.bwt
+        │       ├── PREFIX.mappingRef.fa.pac
+        │       ├── PREFIX.mappingRef.fa.sa
+        │       └── PREFIX.pseudo.fa
+        ├── PREFIX.prep_TF
+        │   ├── PREFIX.genomeSize.txt
+        │   ├── PREFIX.hier
+        │   ├── PREFIX.pseudo2ref.txt
+        │   ├── PREFIX.ref2pseudo.txt
+        │   └── PREFIX.te.pseudo.bed
+        └── PREFIX.prep_RM
+            ├── GENOME.fasta
+            ├── GENOME.fasta.align
+            ├── GENOME.fasta.cat.gz
+            ├── GENOME.fasta.masked
+            ├── GENOME.fasta.out
+            ├── GENOME.fasta.tbl
+            └── PREFIX.bed
+</pre></div>
+</div>
+<p>The most useful output is PREFIX.mappingRef.fa composed of the reference sequence without TE and TE sequences.</p>
+</section>
+<section id="mapping">
+<h3>Mapping<a class="headerlink" href="#mapping" title="Permalink to this heading"></a></h3>
+<p>Mapping step maps the short paired-end reads (.fastq) on PREFIX.mappingRef.fa.</p>
+<p>Here is the structure of the output files obtained after the execution of Mapping step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+│       ├── SAMPLE_NAME.sorted.bam
+│       └── SAMPLE_NAME.sorted.bam.bai
+└── sample_names.txt
+</pre></div>
+</div>
+<p>We obtain a <a class="reference external" href="https://support.illumina.com/help/BS_App_RNASeq_Alignment_OLH_1000000006112/Content/Source/Informatics/BAM-Format.htm">binary alignment map</a> (BAM) for each sample.</p>
+</section>
+</section>
+<section id="discover">
+<h2>Discover<a class="headerlink" href="#discover" title="Permalink to this heading"></a></h2>
+<p>Discover step detects potential putative TE breakpoints in each sample.</p>
+<p>To do this, it uses information from the alignment files (BAM): <a class="reference external" href="https://en.wikipedia.org/wiki/SAM_(file_format)">flags and CIGAR</a> of each read.</p>
+<p>3 situations are possible:</p>
+<ol class="arabic simple">
+<li><p>Both readings of the pair map with the reference. There is no putative TE breakpoints.</p></li>
+<li><p>The two reads do not map. No information can be deduced.</p></li>
+<li><p>One of the two reads maps to the reference and the other to a consensus sequence of TEs. A putative TE breakpoints is at this loci, which may or may not be present in the reference.</p></li>
+</ol>
+<p>Here is the structure of the output files obtained after the execution of Discover step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+│       ├── SAMPLE_NAME.sorted.cov.txt
+│       ├── SAMPLE_NAME.sorted.stats.txt
+└── 3-countPos
+        ├── SAMPLE_NAME.all_positions_sorted.txt
+        └── SAMPLE_NAME.all_positions.txt
+</pre></div>
+</div>
+<p>We obtain all position of putative TE breakpoints (SAMPLE_NAME.all_positions_sorted.txt) in each sample.</p>
+</section>
+<section id="collapse">
+<h2>Collapse<a class="headerlink" href="#collapse" title="Permalink to this heading"></a></h2>
+<p>Collapse step filters putatve TE breakpoints at the individual and then at the population level.
+The user must define two thresholds:</p>
+<ol class="arabic simple">
+<li><p>An individual threshold that defines for each individual the number of reads that must support the insertion to retain it.</p></li>
+<li><p>A population threshold which defines the number of reads that must support the insertion in all individuals, to retain it.</p></li>
+</ol>
+<p>It creates subsamples of the same depth of each sample. These subsamples will be used in Count step.</p>
+<p>Here is the structure of the output files obtained after the execution of Collapse step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+│       ├── averageLength.all.txt
+│       ├── SAMPLE_NAME.sorted.subsmpl.bam
+│       ├── SAMPLE_NAME.sorted.subsmpl.bam.bai
+│       ├── SAMPLE_NAME.sorted.subsmpl.cov.txt
+│       └── SAMPLE_NAME.sorted.subsmpl.stats.txt
+└── 3-countPos
+        ├── SAMPLE_NAME.all_positions_sorted.collapsed.txt
+        ├── union_sorted.collapsed.txt
+        ├── union_sorted.txt
+        └── union.txt
+</pre></div>
+</div>
+<p>The most useful output is union_sorted.collapsed.txt composed of all TE breakpoints of all sample also known as the catalog of putative TE breakpoints</p>
+</section>
+<section id="count">
+<h2>Count<a class="headerlink" href="#count" title="Permalink to this heading"></a></h2>
+<p>Count step examine reads flanking the TE breakpoint and genotype them according to their support of presence/absence of TE for each sample.</p>
+<p>Here is the structure of the output files obtained after the execution of Count step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+└── 3-countPos
+        └── SAMPLE_NAME.counts.txt
+</pre></div>
+</div>
+</section>
+<section id="genotype-sample">
+<h2>Genotype (sample)<a class="headerlink" href="#genotype-sample" title="Permalink to this heading"></a></h2>
+<p>Genotype (sample) step gather all the information and estimate the allelic frequency of each TE breakpoints for each sample.</p>
+<p>Here is the structure of the output files obtained after the execution of Genotype step.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+├── 3-countPos
+└── 4-genotypes
+        └── samples
+                ├── pseudoSpace
+                │       └── SAMPLE_NAME.pseudoSpace.genotypes.txt
+                ├── SAMPLE_NAME.genotypes.txt
+                ├── all_samples.genotypes.txt
+                └── all_samples.genotypes2.txt
+</pre></div>
+</div>
+</section>
+<section id="genotype-population">
+<h2>Genotype (population)<a class="headerlink" href="#genotype-population" title="Permalink to this heading"></a></h2>
+<p>If you use population file, Genotype (population) step gather all the information and estimate the population frequency of each TE breakpoints for each population.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WORK_DIRECTORY/data_output_PREFIX/
+├── 0-reference
+├── 1-mapping
+├── 3-countPos
+└── 4-genotypes
+        ├── samples
+        |       └── pseudoSpace
+        └── populations
+            ├── NAME_POP.population.genotypes2.txt
+            ├── NAME_POP.population.genotypes.txt
+            ├── all_frequency.population.genotypes2.txt
+            └── all_frequency.population.genotypes.txt
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/teflon2_tutorial.html" class="btn btn-neutral float-left" title="TEFLoN2 Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="output_file_summary.html" class="btn btn-neutral float-right" title="Output files summary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Corentin Marco.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

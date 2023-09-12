@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; TEFLoN2  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TEFLoN2 Tutorial" href="teflon2_tutorial.html" />
+    <link rel="prev" title="Welcome to TEFLoN2’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TEFLoN2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#teflon2">TEFLoN2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-singularityce">Using SingularityCE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manually">Manually</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-3">Python 3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#burrows-wheeler-alignment-tool-bwa">Burrows-Wheeler Alignment Tool (BWA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">SAMtools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">RepeatMasker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">SnakeMake</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="teflon2_tutorial.html">TEFLoN2 Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_concepts/steps_of_TEFLoN.html">Steps of TEFLoN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_concepts/output_file_summary.html">Output files summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Executing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../executing/configure_parameter_file.html">Config parameter file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../executing/command_line_interface.html">Command line interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_info/citations.html">Citing and Citations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TEFLoN2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>Before you can use TEFLoN2 , you will need to install its dependencies.
+TEFLoN2 uses Python 3, BWA (Burrows-Wheeler Alignment Tool), Samtools, RepeatMasker and SnakeMake.</p>
+<section id="teflon2">
+<h2>TEFLoN2<a class="headerlink" href="#teflon2" title="Permalink to this heading"></a></h2>
+<p>TEFLON2 is installed on <a class="reference external" href="https://github.com/asfistonlavie/TEFLoN2">Github repository</a> or your console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt update
+<span class="gp">$ </span>sudo apt install git
+<span class="gp">$ </span>git clone https://github.com/asfistonlavie/TEFLoN2.git
+</pre></div>
+</div>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org">Python</a> ≥ 3</p></li>
+<li><p><a class="reference external" href="http://bio-bwa.sourceforge.net">BWA</a> ≥ 0.7.17</p></li>
+<li><p><a class="reference external" href="https://www.htslib.org">SAMtools</a> ≥ 1.15</p></li>
+<li><p><a class="reference external" href="https://www.repeatmasker.org/">RepeatMasker</a> ≥ 4.1.2</p></li>
+<li><p><a class="reference external" href="https://snakemake.readthedocs.io">Snakemake</a> ≥ 7.7.0</p></li>
+<li><p><a class="reference external" href="https://sylabs.io/docs/">SingularityCE</a> 3.11.0</p></li>
+</ul>
+</section>
+<section id="using-singularityce">
+<h3>Using SingularityCE<a class="headerlink" href="#using-singularityce" title="Permalink to this heading"></a></h3>
+<p>For install <a class="reference external" href="https://sylabs.io/docs/">SingularityCE</a>, follow installation instructions on <a class="reference external" href="https://docs.sylabs.io/guides/main/admin-guide/installation.html">SingularityCE site</a>.</p>
+<p>A Singularity container is available with all tools compiled in. The Singularity file provided in this repo and can be compiled as such:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo singularity build TEFLoN.simg Singularity
+</pre></div>
+</div>
+<p>if you can’t use sudo :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build --fakeroot TEFLoN.simg Singularity</span>
+</pre></div>
+</div>
+</section>
+<section id="manually">
+<h3>Manually<a class="headerlink" href="#manually" title="Permalink to this heading"></a></h3>
+<p>For manual installation, it is best to go directly to the tool documentation.</p>
+<section id="python-3">
+<h4>Python 3<a class="headerlink" href="#python-3" title="Permalink to this heading"></a></h4>
+<p>To check the version of your python :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python --version
+</pre></div>
+</div>
+<p>If python &lt; 3, install python 3 on <a class="reference external" href="https://www.python.org/doc/">their site</a> or your console:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt update
+<span class="gp">$ </span>sudo apt install python3
+</pre></div>
+</div>
+<p>If all went well you now have python 3 on your computer.</p>
+</section>
+<section id="burrows-wheeler-alignment-tool-bwa">
+<h4>Burrows-Wheeler Alignment Tool (BWA)<a class="headerlink" href="#burrows-wheeler-alignment-tool-bwa" title="Permalink to this heading"></a></h4>
+<p>If your computer has bwa installed, check the version of your bwa :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>bwa
+</pre></div>
+</div>
+<p>If bwa is not installed or version &lt;  0.7.17 :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt update
+<span class="go">sudo apt -y install bwa</span>
+</pre></div>
+</div>
+<p>Recheck bwa version and if there are any problems, go to the <a class="reference external" href="https://bio-bwa.sourceforge.net/">bwa site</a>.</p>
+</section>
+<section id="id1">
+<h4>SAMtools<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>If your computer has SAMtools installed, check the version of your SAMtools :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>samtools --version
+</pre></div>
+</div>
+<p>If samtools is not installed or SAMtools &lt; 1.15, follow installation instructions on <a class="reference external" href="http://www.htslib.org/">samtools site</a>.</p>
+</section>
+<section id="id2">
+<h4>RepeatMasker<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<p>For install <a class="reference external" href="https://www.repeatmasker.org/">RepeatMasker</a>, follow installation instructions on <a class="reference external" href="http://www.repeatmasker.org/RepeatMasker/">RepeatMasker site</a>.</p>
+</section>
+<section id="id3">
+<h4>SnakeMake<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<p>If your computer has SnakeMake installed, check the version of your SnakeMake :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake --version
+</pre></div>
+</div>
+<p>If SnakeMake is not installed or version &lt; 7.7.0, follow installation instruction on <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/getting_started/installation.html">SnakeMake site</a>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to TEFLoN2’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="teflon2_tutorial.html" class="btn btn-neutral float-right" title="TEFLoN2 Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Corentin Marco.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

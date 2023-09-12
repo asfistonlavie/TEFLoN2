@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Config parameter file &mdash; TEFLoN2  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command line interface" href="command_line_interface.html" />
+    <link rel="prev" title="Output files summary" href="../basic_concepts/output_file_summary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TEFLoN2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/teflon2_tutorial.html">TEFLoN2 Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_concepts/steps_of_TEFLoN2.html">Steps of TEFLoN2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_concepts/output_file_summary.html">Output files summary</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Executing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Config parameter file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-of-teflon2">Configuration of TEFLoN2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config-cluster">Config Cluster</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="command_line_interface.html">Command line interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_info/citations.html">Citing and Citations</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TEFLoN2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Config parameter file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/executing/configure_parameter_file.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="config-parameter-file">
+<h1>Config parameter file<a class="headerlink" href="#config-parameter-file" title="Permalink to this heading"></a></h1>
+<dl class="simple">
+<dt>Configuration files are used to tell TEFLoN2 what to use.</dt><dd><p>TEFLoN2 has two configuration files:</p>
+<ul class="simple">
+<li><p>Workflow configuration</p></li>
+<li><p>Cluster configuration</p></li>
+</ul>
+</dd>
+</dl>
+<section id="configuration-of-teflon2">
+<h2>Configuration of TEFLoN2<a class="headerlink" href="#configuration-of-teflon2" title="Permalink to this heading"></a></h2>
+<p>TEFLoN2 uses Snakemake to perform its analyses. You have then first to provide your parameters in a .yaml file (see an example in the config.yaml file). Parameters are :</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#all path can be relatif or absolute</span><span class="w"></span>
+
+<span class="nt">DEPENDANCES</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">PYTHON3</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;/path/to/python3&quot;</span><span class="w"> </span><span class="c1">#[required] path to python 3 executable</span><span class="w"></span>
+<span class="w">    </span><span class="nt">BWA</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;path/to/bwa&quot;</span><span class="w"> </span><span class="c1">#[required] path to bwa executable</span><span class="w"></span>
+<span class="w">    </span><span class="nt">SAMTOOLS</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;path/to/samtools&quot;</span><span class="w"> </span><span class="c1">#[required] path to samtools executable</span><span class="w"></span>
+<span class="w">    </span><span class="nt">REPEATMASKER</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;path/to/repeatmasker&quot;</span><span class="w"> </span><span class="c1">#[requiered if prep_custom] path to repeatmasker executable</span><span class="w"></span>
+
+<span class="nt">DATA_INPUT</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">WORKING_DIRECTORY</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;data_input&quot;</span><span class="w"> </span><span class="c1"># [required] path to arbresecne of your data input. Default folder is data_input</span><span class="w"></span>
+<span class="w">    </span><span class="nt">GENOME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;name_reference_file.fasta&quot;</span><span class="w"> </span><span class="c1">#[required] name of reference file in data_input/reference</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ANNOTATION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;name_annotation_file.bed&quot;</span><span class="w"> </span><span class="c1">#[required if prep_annotation] name of annotation file in data_input/library</span><span class="w"></span>
+<span class="w">    </span><span class="nt">LIBRARY</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;name_TE_library.fasta&quot;</span><span class="w"> </span><span class="c1">#[required if prep_custom][optional if prep_annotation] name of TE library file for your organism in data_input/library</span><span class="w"></span>
+<span class="w">    </span><span class="nt">HIERARCHY</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;name_TE_hirarchiy.txt&quot;</span><span class="w"> </span><span class="c1">#[requiered if prep_annotation] name of TE hirarchy file in data_input/library</span><span class="w"></span>
+
+<span class="nt">PARAMS</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">GENERAL</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">WORKING_DIRECTORY</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] path to working directory. Default: in the current directory</span><span class="w"></span>
+<span class="w">        </span><span class="nt">PREFIX</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;name_run&quot;</span><span class="w"> </span><span class="c1">#[required] name of run</span><span class="w"></span>
+<span class="w">        </span><span class="nt">MEMORY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30000</span><span class="w">  </span><span class="c1">#[required] Memory in mb to be used by the rules. If a rule does not work increase this number</span><span class="w"></span>
+<span class="w">        </span><span class="nt">MEMORY_SUPP</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">20000</span><span class="w"> </span><span class="c1">#[required]  If you use the --retries option of snakemake, if a rule fails to use memory, add to the memory this extra.</span><span class="w"></span>
+<span class="w">    </span><span class="nt">COMPRESS</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">  </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">SAMTOOLS</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"> </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">PREP_CUSTOM</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">SPECIES</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#Specify the species or clade of the input sequence. The species name must be a valid NCBI Taxonomy Database species name and be containedin the RepeatMasker repeat database. Some examples are: human,mouse,rattus,&quot;ciona savignyi&quot;,arabidopsis,mammal, carnivore, rodentia, rat, cow, pig, cat, dog, chicken, fugu,danio, &quot;ciona intestinalis&quot; drosophila, anopheles, worm, diatoaea,artiodactyl, arabidopsis, rice, wheat, and maize</span><span class="w"></span>
+<span class="w">        </span><span class="nt">CUTOFF</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] SW cutoff score for RepeatMasker, default=250</span><span class="w"></span>
+<span class="w">        </span><span class="nt">FRAG</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional]  Maximum sequence length masked without fragmenting for RepepatMasker (default 60000)</span><span class="w"></span>
+<span class="w">        </span><span class="nt">ENGINE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional][crossmatch|wublast|abblast|ncbi|rmblast|hmmer] Use an alternate search engine to the default for RepeatMasker.</span><span class="w"></span>
+<span class="w">        </span><span class="nt">MIN_LENGTH</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200</span><span class="w"></span>
+<span class="w">        </span><span class="nt">SPLIT_DIST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200</span><span class="w"></span>
+<span class="w">        </span><span class="nt">DIVERGENCE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] only those repeats &lt; x percent diverged from the consensus seq will be included in final annotation, default=20</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w"> </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">DISCOVER</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">LEVEL_HIERARCHY1</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;family&quot;</span><span class="w"> </span><span class="c1">#[required] level of the hierarchy file to guide initial TE search. #NOTE: It is recommended that you use the lowest level in the hierarchy file (i.e. &quot;family&quot; for data without a user-curated hierarchy)</span><span class="w"></span>
+<span class="w">        </span><span class="nt">LEVEL_HIERARCHY2</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;class&quot;</span><span class="w"> </span><span class="c1">#[required] level of the hierarchy to group similar TEs.    #NOTE: This must be either the same level of the hierarchy used in -l1 or a higher level (clustering at higher levels will reduce the number of TE instances found, but improve accuracy for discriminating TE identity)</span><span class="w"></span>
+<span class="w">        </span><span class="nt">QUALITY</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;20&quot;</span><span class="w"> </span><span class="c1">#[required] map quality threshold #NOTE: Mapped reads with map qualities lower than this number will be discarded</span><span class="w"></span>
+<span class="w">        </span><span class="nt">EXCLUDE</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] newline separated file containing the name of any TE families to exclude from analysis #NOTE: Use same names as in column one of the hierarchy file</span><span class="w"></span>
+<span class="w">        </span><span class="nt">STANDARD_DEVIATION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] insert size standard deviation #NOTE: Used to manually override the insert size StdDev identified by samtools stat (check this number in the generated stats.txt file to ensure it seems more or less correct based on knowledge of sequencing library!)</span><span class="w"></span>
+<span class="w">        </span><span class="nt">COVERAGE_OVERRIDE</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: &quot;Warning: coverage could not be estimated&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w"> </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">COLLAPSE</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THRESHOLD_SAMPLE</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="c1">#[required] TEs must be supported by &gt;= n reads in at least one sample</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THRESHOLD_ALL</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="c1">#[required] TEs must be supported by &gt;= n reads summed across all samples</span><span class="w"></span>
+<span class="w">        </span><span class="nt">COVERAGE_OVERRIDE</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: &quot;Warning: coverage could not be estimated&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">QUALITY</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;20&quot;</span><span class="w"> </span><span class="c1">#[required] map quality threshold</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w"> </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">COUNT</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">QUALITY</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;20&quot;</span><span class="w"> </span><span class="c1">#[required] map quality threshold</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THREADS</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w"> </span><span class="c1">#[required] maximum number of threads the rule can use</span><span class="w"></span>
+<span class="w">    </span><span class="nt">GENOTYPE</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THRESHOLD_LOWER</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="c1">#[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1</span><span class="w"></span>
+<span class="w">        </span><span class="nt">THRESHOLD_HIGHER</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;100&quot;</span><span class="w"> </span><span class="c1">#[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV</span><span class="w"></span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">DATAs an example, a cluster configuration file is provided, but it is not exhaustive and is specific to the cluster we have used A_TYPE</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;pooled&quot;</span><span class="w"> </span><span class="c1">#[required] must be either haploid, diploid, or pooled</span><span class="w"></span>
+<span class="w">        </span><span class="nt">SAMPLE</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">THRESHOLD_ABSENCE</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optinal] Frequency threshold</span><span class="w"></span>
+<span class="w">            </span><span class="nt">THRESHOLD_PRESENCE</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optinal] Frequency threshold</span><span class="w"></span>
+<span class="w">        </span><span class="nt">POPULATION</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">FILE</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optional]  path to population file</span><span class="w"></span>
+<span class="w">            </span><span class="nt">THRESHOLD_ABSENCE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optinal] Frequency threshold</span><span class="w"></span>
+<span class="w">            </span><span class="nt">THRESHOLD_PRESENCE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">#[optinal] Frequency threshold</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The main parameters are:</p>
+<ul class="simple">
+<li><p>GENOME:  Fasta file containing the reference genome of the species of interest.</p></li>
+<li><p>LIBRARY: A Multifasta file containing the canonical sequence of transposable elements</p></li>
+<li><p>ANNOTATION: BED file containing the TE annotation in reference genome.</p></li>
+<li><p>LEVEL_HIERARCHY1/2, THEASHOLD_SAMPLE/ALL: Required thresholds to operate TEFLoN2</p></li>
+<li><p>QUALITY: Map quality threshold for each steap</p></li>
+<li><p>TOOLS: Path to the tools</p></li>
+<li><p>THREADS: Number of threads to execute a step</p></li>
+<li><p>THRESHOLD : Threshold for data analysis</p></li>
+<li><p>DATA_TYPE: Type of data for different interpretations</p></li>
+</ul>
+</section>
+<section id="config-cluster">
+<h2>Config Cluster<a class="headerlink" href="#config-cluster" title="Permalink to this heading"></a></h2>
+<p>As an example, a cluster configuration file is provided, but it is not exhaustive and is specific to the cluster we have used</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../basic_concepts/output_file_summary.html" class="btn btn-neutral float-left" title="Output files summary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="command_line_interface.html" class="btn btn-neutral float-right" title="Command line interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Corentin Marco.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
