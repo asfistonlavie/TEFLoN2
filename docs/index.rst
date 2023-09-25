@@ -15,7 +15,7 @@ It (cf. figure 1.B) detects all TE insertions (de novo and references TEs), then
 
 .. image:: images/TEFLoN2_architecture.png
 
-TEFLoN2 can be run on high performance computers (bigmem), cluster or HPC cluste.
+TEFLoN2 can run on high performance computers (bigmem), cluster or HPC cluste.
 
 ---------------
 Getting started
