@@ -3,7 +3,8 @@
 DEPENDANCES:
     PYTHON3:    "/path/to/python3" #[required] path to python 3 executable 
     BWA:    "path/to/bwa" #[required] path to bwa executable 
-    SAMTOOLS:   "path/to/samtools" #[required] path to samtools executable 
+    SAMTOOLS:   "path/to/samtools" #[required] path to samtools executable
+    AWK: "awk" #[required] path to awk executable
     REPEATMASKER:   "path/to/repeatmasker" #[requiered if prep_custom] path to repeatmasker executable
 
 DATA_INPUT:
@@ -24,10 +25,10 @@ PARAMS:
     SAMTOOLS:
         THREADS:    10 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:
-        SPECIES : "" #Specify the species or clade of the input sequence. The species name must be a valid NCBI Taxonomy Database species name and be containedin the RepeatMasker repeat database. Some examples are: human,mouse,rattus,"ciona savignyi",arabidopsis,mammal, carnivore, rodentia, rat, cow, pig, cat, dog, chicken, fugu,danio, "ciona intestinalis" drosophila, anopheles, worm, diatoaea,artiodactyl, arabidopsis, rice, wheat, and maize
+        SPECIES: "" #Specify the species or clade of the input sequence. The species name must be a valid NCBI Taxonomy Database species name and be containedin the RepeatMasker repeat database. Some examples are: human,mouse,rattus,"ciona savignyi",arabidopsis,mammal, carnivore, rodentia, rat, cow, pig, cat, dog, chicken, fugu,danio, "ciona intestinalis" drosophila, anopheles, worm, diatoaea,artiodactyl, arabidopsis, rice, wheat, and maize
         CUTOFF: "" #[optional] SW cutoff score for RepeatMasker, default=250 
         FRAG: "" #[optional]  Maximum sequence length masked without fragmenting for RepepatMasker (default 60000)
-        ENGINE : "" #[optional][crossmatch|wublast|abblast|ncbi|rmblast|hmmer] Use an alternate search engine to the default for RepeatMasker.
+        ENGINE: "" #[optional][crossmatch|wublast|abblast|ncbi|rmblast|hmmer] Use an alternate search engine to the default for RepeatMasker.
         MIN_LENGTH: "" #[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200 
         SPLIT_DIST: "" #[optional] minimum length for RepeatMasker-predicted TE to be reported in the final annotation, default=200 
         DIVERGENCE: "" #[optional] only those repeats < x percent diverged from the consensus seq will be included in final annotation, default=20 
@@ -51,12 +52,12 @@ PARAMS:
         THREADS:    20 #[required] maximum number of threads the rule can use  
     GENOTYPE:
         THRESHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
-        THRESHOLD_HIGHER :  "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
-        DATA_TYPE : "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
+        THRESHOLD_HIGHER:  "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
+        DATA_TYPE: "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
         SAMPLE:
             THRESHOLD_ABSENCE:  ""
             THRESHOLD_PRESENCE:   ""
         POPULATION:
-            FILE :  "" #[optional]  path to population file
+            FILE:  "" #[optional]  path to population file
             THRESHOLD_ABSENCE: ""
-            THRESHOLD_PRESENCE:   ""
+            THRESHOLD_PRESENCE: ""

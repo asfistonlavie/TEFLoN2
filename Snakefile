@@ -126,6 +126,7 @@ include: "modules/mapping.smk"
 include: "modules/teflon_discover.smk"
 include: "modules/subsample.smk"
 include: "modules/teflon_collapse.smk"
+include: "modules/preliminaryResults.smk"
 include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
 
@@ -147,11 +148,11 @@ if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
 	rule all:
 		input:
 			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt",
 
 
 else :
 	rule all:
 		input:
 			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt",

@@ -45,7 +45,7 @@ rule teflon_genotype_individual :
 		shell(cmd)
 
 
-rule teflon_genotype_all :
+rule teflon_genotype_all:
 	input:
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/pseudoSpace/{reads}.pseudoSpace.genotypes.txt",reads=samples_all),
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/{reads}.genotypes.txt",reads=samples_all)

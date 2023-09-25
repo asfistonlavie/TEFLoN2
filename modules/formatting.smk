@@ -1,6 +1,3 @@
-
-
-
 rule compress_fastq:
 	input:
 		read = config["DATA_INPUT"]["WORKING_DIRECTORY"]+"/samples/{reads}",

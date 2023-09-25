@@ -1,4 +1,4 @@
-rule teflon_genotype_population :
+rule teflon_genotype_population:
 	input:
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
 		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"
@@ -43,7 +43,7 @@ rule teflon_genotype_population :
 
 
 
-rule teflon_genotype_all_populations :
+rule teflon_genotype_all_populations:
 	input:
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/{pop}.population.genotypes.txt",pop=group),
 		expand(config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/{pop}.population.genotypes2.txt",pop=group)

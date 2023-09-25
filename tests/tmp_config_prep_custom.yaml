@@ -4,6 +4,7 @@ DEPENDANCES:
     PYTHON3:    "python3" #[required] path to python 3 executable 
     BWA:    "bwa" #[required] path to bwa executable 
     SAMTOOLS:   "samtools" #[required] path to samtools executable 
+    AWK: "awk" #[required] path to awk executable 
     REPEATMASKER:   "/usr/local/bin/RepeatMasker/RepeatMasker" #[requiered if prep_custom] path to repeatmasker executable
 
 DATA_INPUT:

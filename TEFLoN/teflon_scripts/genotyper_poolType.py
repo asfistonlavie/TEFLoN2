@@ -39,4 +39,4 @@ def pt_portal(countDir, genoDir, sample, posMap, readLen, p2rC, l_thresh, h_thre
 		for i in range(len(cts)):
 			fOUT.write("\t".join([str(x) for x in cts[i]])+"\t%s\n" %(str(outCall[i])))
 	outFILE2=os.path.join(genoDir,sample[1]+".genotypes.txt")
-	p2rC.pseudo2refConvert_portal(outFILE1,posMap,dataType,frequencyLoThresh,frequencyHiThresh,outFILE2)
+	p2rC.pseudo2refConvert_portal(outFILE1,posMap,outFILE2,dataType,frequencyLoThresh,frequencyHiThresh)

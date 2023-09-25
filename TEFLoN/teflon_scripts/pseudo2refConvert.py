@@ -20,7 +20,7 @@ def isGap(ch,pos,psmap):
     else:
         return 0
 
-def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,frequencyHiThresh,outFILE):
+def pseudo2refConvert_portal(bedFILE,pseudo2refMap,outFILE,dataType=None,frequencyLoThresh=None,frequencyHiThresh=None):
     pseudoMap=pseudo2refMap
     print("Converting coordinates from pseudospace to reference-based coordinates...")
     with open(bedFILE, 'r') as fIN, open(outFILE, 'w') as fOUT:
@@ -55,31 +55,32 @@ def pseudo2refConvert_portal(bedFILE,pseudo2refMap,dataType,frequencyLoThresh,fr
                             ls[2]=gapFlanks(chrom,ls[2],pseudoMap,"R")
                     if line_ct<10:
                         line_ct="0"+str(line_ct)
-                    if float(ls[12]) != -9 :
-                        if dataType == "haploid" :
-                            if float(ls[12]) < float(frequencyLoThresh) :
-                                ls.append("absent")
-                            elif float(ls[12]) > float(frequencyHiThresh) :
-                                ls.append("present")
+                    if dataType != None and frequencyLoThresh !=None and frequencyHiThresh !=None:
+                        if float(ls[12]) != -9 :
+                            if dataType == "haploid" :
+                                if float(ls[12]) < float(frequencyLoThresh) :
+                                    ls.append("absent")
+                                elif float(ls[12]) > float(frequencyHiThresh) :
+                                    ls.append("present")
+                                else :
+                                    ls.append("no_data")
+                            elif dataType == "diploid" :
+                                if float(ls[12]) < float(frequencyLoThresh) :
+                                    ls.append("absent")
+                                elif float(ls[12]) > float(frequencyHiThresh) :
+                                    ls.append("present")
+                                else :
+                                    ls.append("heterozygous")
                             else :
-                                ls.append("no_data")
-                        elif dataType == "diploid" :
-                            if float(ls[12]) < float(frequencyLoThresh) :
-                                ls.append("absent")
-                            elif float(ls[12]) > float(frequencyHiThresh) :
-                                ls.append("present")
-                            else :
-                                ls.append("heterozygous")
-                        else :
-                            if float(ls[12]) < float(frequencyLoThresh) :
-                                ls.append("absent")
-                            elif float(ls[12]) > float(frequencyHiThresh) :
-                                ls.append("present")
-                            else :
-                                ls.append("polymorphic")
+                                if float(ls[12]) < float(frequencyLoThresh) :
+                                    ls.append("absent")
+                                elif float(ls[12]) > float(frequencyHiThresh) :
+                                    ls.append("present")
+                                else :
+                                    ls.append("polymorphic")
 
-                    else :
-                        ls.append("no_data")
+                        else :
+                            ls.append("no_data")
 
                     fOUT.write("\t".join([str(x) for x in ls])+"\tte"+str(line_ct)+"\n")
                     line_ct=int(line_ct)
