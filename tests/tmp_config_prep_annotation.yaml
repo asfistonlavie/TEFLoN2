@@ -46,7 +46,8 @@ PARAMS:
         THRESHOLD_ALL:  1 #[required] TEs must be supported by >= n reads summed across all samples
         COVERAGE_OVERRIDE:  "" #[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: "Warning: coverage could not be estimated"
         QUALITY:    20 #[required] map quality threshold
-        THREADS:    16 #[required] maximum number of threads the rule can use     
+        THREADS:    16 #[required] maximum number of threads the rule can use
+        STOP: 1 #[required] 0: TEFLoN2 runs for all steps ; 1: TEFLoN2 runs up to TEFLoN_callapse
     COUNT:
         QUALITY:    20 #[required] map quality threshold
         THREADS:    20 #[required] maximum number of threads the rule can use  

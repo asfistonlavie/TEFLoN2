@@ -131,28 +131,34 @@ include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
 
 
-if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
-	popFILE = config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]
-	group = []
-	with open(popFILE,"r") as fIN:
-		for line in fIN:
-			if line.endswith("\n") :
-				fields = line[:-1].split("\t")
-			else : 
-				fields = line.split("\t")
-			group.append(fields[1])
-	group = set(group)
-	include: "modules/teflon_genotype_pop.smk"
+if (config["PARAMS"]["COLLAPSE"]["STOP"] == 0 or check_value(config["PARAMS"]["COLLAPSE"]["STOP"]) == False)  :
+	if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
+		popFILE = config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]
+		group = []
+		with open(popFILE,"r") as fIN:
+			for line in fIN:
+				if line.endswith("\n") :
+					fields = line[:-1].split("\t")
+				else : 
+					fields = line.split("\t")
+				group.append(fields[1])
+		group = set(group)
+		include: "modules/teflon_genotype_pop.smk"
 
 
-	rule all:
-		input:
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt",
+		rule all:
+			input:
+				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",
+				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"
 
+
+	else :
+		rule all:
+			input:
+				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
+				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"
 
 else :
 	rule all:
-		input:
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt",
+		input: 
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/2-preliminaryResults/TE_catalog.summary"
