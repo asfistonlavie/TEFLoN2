@@ -60,9 +60,9 @@ def samples_list() :
 					id = element.rsplit(".",1)[0]
 				ext_underscore = id.rsplit("_",1)
 				ext_point = id.rsplit(".",1)
-				if (len(ext_underscore) == 2 and (ext_underscore[1] == "1" or ext_underscore[1] == "2" or ext_underscore[1] == "r1" or ext_underscore[1] == "r2")) :
+				if (len(ext_underscore) == 2 and (ext_underscore[1] == "1" or ext_underscore[1] == "2" or ext_underscore[1] == "r1" or ext_underscore[1] == "r2" or ext_underscore[1] == "R1" or ext_underscore[1] == "R2")) :
 					samples["id"].append(ext_underscore[0])
-				if (len(ext_point) == 2 and (ext_point[1] == "1" or ext_point[1] == "2" or ext_point[1] == "r1" or ext_point[1] == "r2")) :
+				if (len(ext_point) == 2 and (ext_point[1] == "1" or ext_point[1] == "2" or ext_point[1] == "r1" or ext_point[1] == "r2" or ext_underscore[1] == "R1" or ext_underscore[1] == "R2")) :
 					samples["id"].append(ext_point[0])
 
 	for i in folders_for_formating:
