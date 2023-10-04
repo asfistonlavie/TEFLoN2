@@ -10,7 +10,7 @@ rule teflon_prep_custom:
 
     log:
         error = ".logs/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".err",
-        output = ".logs/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".output"
+        output = ".logs/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".out"
 
     benchmark:
         ".benchmarks/teflon_prep_custom/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".benchmark.txt"
