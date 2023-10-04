@@ -17,6 +17,7 @@ TEFLON2 is installed on `Github repository <https://github.com/asfistonlavie/TEF
 	$ sudo apt update
 	$ sudo apt install git
 	$ git clone https://github.com/asfistonlavie/TEFLoN2.git
+	$ cd TEFLoN2
 
 
 
