@@ -116,3 +116,16 @@ To run submit.sh, run :
 	sbatch submit.sh
 
 For more information on Slurm, go to `SLURM documentation <https://slurm.schedmd.com/containers.html>`_.
+
+
+Log files
+---------
+
+After each stage of Snakemake, log and benchmark files are created.
+To consult you can run:
+
+.. code-block:: console
+
+	cat .logs/[name_step]/[name_run].[name_sample].err
+	cat .logs/[name_step]/[name_run].[name_sample].err
+	cat .benchmarks/[name_step]/[name_run].[name_sample].benchmark.txt
