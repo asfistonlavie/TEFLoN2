@@ -18,7 +18,6 @@ samtools_view:
     mem: "{resources.mem_mb}"
 
 teflon_discover:
-    #jobname: "{rule}_{params.sample}"
     cpus: "{threads}"
     mem: "{resources.mem_mb}"
 
@@ -27,19 +26,14 @@ teflon_collapse:
     mem: "{resources.mem_mb}"
 
 teflon_count:
-    #jobname: "{rule}_{params.sample}"
     cpus: "{threads}"
     mem: "{resources.mem_mb}"
 
 teflon_genotype_individual:
-    #jobname: "{rule}_{params.sample}"
     mem: "{resources.mem_mb}"
 
 teflon_genotype_all:
-    #jobname: "{rule}_{params.sample}"
     mem: "{resources.mem_mb}"
 
-
 teflon_genotype_population:
-    #jobname: "{rule}_{params.sample}"
     mem: "{resources.mem_mb}"

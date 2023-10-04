@@ -52,13 +52,13 @@ PARAMS:
         QUALITY:    20 #[required] map quality threshold
         THREADS:    20 #[required] maximum number of threads the rule can use  
     GENOTYPE:
-        THRESHOLD_LOWER:   1  #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
-        THRESHOLD_HIGHER:  100   #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
-        DATA_TYPE:  "haploid" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
+        THRESHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
+        THRESHOLD_HIGHER:  "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
+        DATA_TYPE: "haploid" #[required] must be either haploid, diploid, or pooled
         SAMPLE:
-            THRESHOLD_ABSENCE:  ""
-            THRESHOLD_PRESENCE:   ""
+            THRESHOLD_ABSENCE:  "" #[optinal] lower threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.05)
+            THRESHOLD_PRESENCE:   "" #[optinal] hight threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.95)
         POPULATION:
             FILE:  "data_input_test/population.txt" #[optional]  path to population file
-            THRESHOLD_ABSENCE: ""
-            THRESHOLD_PRESENCE:   ""
+            THRESHOLD_ABSENCE: "" #[optinal] lower threshold used to define whether insertions are present, polymorphic or absent at population level. Value between 0 and 1 (default=0.05)
+            THRESHOLD_PRESENCE: "" #[optinal] Hight threshold used to define whether insertions are present, polymorphic or absent at population level.Value between 0 and 1 (default=0.95)

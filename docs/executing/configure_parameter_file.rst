@@ -70,16 +70,14 @@ TEFLoN2 uses Snakemake to perform its analyses. You have then first to provide y
         GENOTYPE:
             THRESHOLD_LOWER:    "1" #[optinal] sites genotyped as -9 if adjusted read counts lower than this threshold, default=1
             THRESHOLD_HIGHER:  "100" #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
-            DATAs an example, a cluster configuration file is provided, but it is not exhaustive and is specific to the cluster we have used A_TYPE: "pooled" #[required] must be either haploid, diploid, or pooled
+            DATA_TYPE: "pooled" #[required] must be either haploid, diploid, or pooled
             SAMPLE:
-                THRESHOLD_ABSENCE:  "" #[optinal] Frequency threshold
-                THRESHOLD_PRESENCE:   "" #[optinal] Frequency threshold
+                THRESHOLD_ABSENCE:  "" #[optinal] lower threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.05)
+                THRESHOLD_PRESENCE:   "" #[optinal] hight threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.95)
             POPULATION:
                 FILE:  "" #[optional]  path to population file
-                THRESHOLD_ABSENCE: "" #[optinal] Frequency threshold
-                THRESHOLD_PRESENCE: "" #[optinal] Frequency threshold
-
-The main parameters are:
+                THRESHOLD_ABSENCE: "" #[optinal] lower threshold used to define whether insertions are present, polymorphic or absent at population level. Value between 0 and 1 (default=0.05)
+                THRESHOLD_PRESENCE: "" #[optinal] Hight threshold used to define whether insertions are present, polymorphic or absent at population level.Value between 0 and 1 (default=0.95)
 
 * GENOME:  Fasta file containing the reference genome of the species of interest.
 * LIBRARY: A Multifasta file containing the canonical sequence of transposable elements
@@ -94,4 +92,46 @@ The main parameters are:
 Config Cluster
 --------------
 
-As an example, a cluster configuration file is provided, but it is not exhaustive and is specific to the cluster we have used
+As an example, a cluster configuration file is provided, but it is not exhaustive and is specific to the cluster we have used.
+
+.. code-block:: yaml
+
+    __default__:
+        partition: fast
+        cpus: 1  
+        output: "logs_slurm/{rule}.{wildcards}.out"  ## redirect slurm-JOBID.txt to your directory
+        error: "logs_slurm/{rule}.{wildcards}.err"  ## redirect slurm-JOBID.txt to your directory
+        mem: 2000
+
+    teflon_prep_custom:
+        cpus: "{threads}" ## => use `threads` define in rule
+        mem: "{resources.mem_mb}"
+
+    mapping:
+        cpus: "{threads}"
+        mem: "{resources.mem_mb}"
+
+    samtools_view:
+        cpus: "{threads}"
+        mem: "{resources.mem_mb}"
+
+    teflon_discover:
+        cpus: "{threads}"
+        mem: "{resources.mem_mb}"
+
+    teflon_collapse:
+        cpus: "{threads}"
+        mem: "{resources.mem_mb}"
+
+    teflon_count:
+        cpus: "{threads}"
+        mem: "{resources.mem_mb}"
+
+    teflon_genotype_individual:
+        mem: "{resources.mem_mb}"
+
+    teflon_genotype_all:
+        mem: "{resources.mem_mb}"
+
+    teflon_genotype_population:
+        mem: "{resources.mem_mb}"

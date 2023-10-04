@@ -24,6 +24,7 @@ Dependencies
 ------------
 
 .. _Python: https://www.python.org
+.. _AWK: https://www.gnu.org/software/gawk/manual/gawk.html
 .. _BWA: http://bio-bwa.sourceforge.net
 .. _SAMtools: https://www.htslib.org
 .. _RepeatMasker: https://www.repeatmasker.org/
@@ -31,28 +32,36 @@ Dependencies
 .. _SingularityCE: https://sylabs.io/docs/
 
 * Python_ ≥ 3
+* AWK_ ≥ 5.1.0
 * BWA_ ≥ 0.7.17
 * SAMtools_ ≥ 1.15
-* RepeatMasker_ ≥ 4.1.2
+* RepeatMasker_ ≥ 4.1.2 (optinal)
 * Snakemake_ ≥ 7.7.0
-* SingularityCE_ 3.11.0
 
-Using SingularityCE
--------------------
 
-For install SingularityCE_, follow installation instructions on `SingularityCE site <https://docs.sylabs.io/guides/main/admin-guide/installation.html>`_.
+Using SingularityCE (optinal)
+-----------------------------
+
+
+For install SingularityCE_ ≥ 3.11.0, follow installation instructions on `SingularityCE site <https://docs.sylabs.io/guides/main/admin-guide/installation.html>`_.
 
 A Singularity container is available with all tools compiled in. The Singularity file provided in this repo and can be compiled as such:
 
 .. code-block:: console
 
-	$ sudo singularity build TEFLoN.simg Singularity
+	$ sudo singularity build TEFLoN2.simg Singularity
 
 if you can't use sudo :
 
 .. code-block:: console
 
-	singularity build --fakeroot TEFLoN.simg Singularity
+	singularity build --fakeroot TEFLoN2.simg Singularity
+
+To use the TEFLoN2.simg container, you can use :
+
+.. code-block:: console
+
+	singularity exec TEFLoN2.simg snakemake --configfile config.yaml -s Snakefile -p -j $MAX_JOBS
 
 
 Manually

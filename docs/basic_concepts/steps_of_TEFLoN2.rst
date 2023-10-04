@@ -13,6 +13,25 @@ Required input data to TEFLoN2 are :
 * Short paired-end reads (.fastq(.gz)) or/and binary alignment map (.bam)
 * TEs annotation of reference (.bed6) or/and TEs library (.fasta)
 
+.. code-block:: none
+
+	data_input/
+	├── library
+	│	├── sample_reference_hierarchy.txt
+	│	├── REFERENCE_TE_ANNOTATION.bed
+	│	└── TE_LIBRARY.fasta
+	├── reference
+	│	└── REFERENCE_GENOME.fasta [required]
+	└── samples
+	    ├── bam
+	    │	└── SAMPLE_NAME.bam
+	    ├── reads
+	    │	└── SAMPLE_NAME.[fastq fq](.gz)
+	    ├── reads1
+	    │	└── SAMPLE_NAME[. _][1 r1 R1].[fastq fq](.gz)
+	    └── reads2
+	        └── SAMPLE_NAME[. _][2 r2 R2].[fastq fq](.gz)
+
 
 TEFLoN2 requires to prepare a specific mapping dataset. 
 It detects all TE insertions (de novo and references TEs), then
@@ -24,8 +43,9 @@ Data preparation
 
 Depending on the input you have TEFLoN2 uses teflon_preparation_annotation or teflon_preparation_custom.
 
-Preparation annotation
-^^^^^^^^^^^^^^^^^^^^^^
+
+Preparation annotation - With TEs annotation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you use TEs annotation of reference, TEFLoN2 will use teflon_prep_annoation.
 
@@ -44,11 +64,11 @@ You should place your files as follows:
 	    ├── bam
 	    │	└── SAMPLE_NAME.bam
 	    ├── reads
-	    │	└── SAMPLE_NAME.fastq 
+	    │	└── SAMPLE_NAME.[fastq fq](.gz)
 	    ├── reads1
-	    │	└── SAMPLE_NAME_r1.fastq 
+	    │	└── SAMPLE_NAME[. _][1 r1 R1].[fastq fq](.gz)
 	    └── reads2
-	        └── SAMPLE_NAME_r2.fastq 
+	        └── SAMPLE_NAME[. _][2 r2 R2].[fastq fq](.gz)
 
 In this step, TEFLoN2 uses the TE annotations to extract them from the reference in order to use them as ET sequences. It removes them from the reference and keeps the information of their positions in the reference. 
 
@@ -76,8 +96,8 @@ Here is the structure of the output files obtained after the execution of Prepar
 
 The most useful output is PREFIX.mappingRef.fa composed of the reference sequence without TE and TE sequences.
 
-Preparation custom
-^^^^^^^^^^^^^^^^^^
+Preparation custom - Without TEs annotation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you do not use TEs annotation of refrence, it is required that you use an TEs library.
 
@@ -87,18 +107,18 @@ You should place your files as follows:
 
 	data_input/
 	├── library
-	│	└── TE_LIBRARY.fasta 
+	│	└── TE_LIBRARY.fasta [required]
 	├── reference
-	│	└── REFERENCE_GENOME.fasta
+	│	└── REFERENCE_GENOME.fasta [required]
 	└── samples
 	    ├── bam
-	    │	└── SAMPLE2_NAME.bam
+	    │	└── SAMPLE_NAME.bam
 	    ├── reads
-	    │	└── SAMPLE_NAME.fastq
+	    │	└── SAMPLE_NAME.[fastq fq](.gz)
 	    ├── reads1
-	    │	└── SAMPLE_NAME_r1.fastq 
+	    │	└── SAMPLE_NAME[. _][1 r1 R1].[fastq fq](.gz)
 	    └── reads2
-	        └── SAMPLE_NAME_r2.fastq
+	        └── SAMPLE_NAME[. _][2 r2 R2].[fastq fq](.gz)
 
 
 In this step, TEFLoN2 uses RepeatMasker_  which, together with the TE consensus library, masks the TE sequences of the reference and then removes them.
