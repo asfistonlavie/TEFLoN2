@@ -11,7 +11,7 @@ def reads1 (wcs):
 	name = wcs.reads
 	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
 	for file_ext in [".fastq", ".fq"] :
-		for file_r1 in ["_1","_r1",".1",".r1"] :
+		for file_r1 in ["_1","_r1","_R1",".1",".r1",".R1"] :
 			file = wd + name + file_r1 +file_ext
 			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
 				read1 = wd + name + file_r1 + file_ext + ".gz"
@@ -23,7 +23,7 @@ def reads2 (wcs):
 	name = wcs.reads
 	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
 	for file_ext in [".fastq", ".fq"] :
-		for file_r2 in ["_2","_r2",".2",".r2"] :
+		for file_r2 in ["_2","_r2","_R2",".2",".r2",".R2"] :
 			file = wd + name + file_r2 +file_ext
 			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
 				read2 = wd + name + file_r2 + file_ext + ".gz"
