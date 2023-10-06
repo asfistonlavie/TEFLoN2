@@ -11,7 +11,7 @@ TEFLoN2 is an improvement of `TEFLoN <https://github.com/jradrion/TEFLoN>`_. All
 Like TEFLoN, TEFLoN2 uses paired-end illumina sequence data to both discover transposable elements (TEs) and perform TE genotyping.
 
 TEFLoN2 requires to prepare a specific mapping dataset (cf. figure 1.A). Then, one launches four individually automated scripts :
-It (cf. figure 1.B) detects all TE insertions (de novo and references TEs), then filter out low quality data to create a catalog of TE insertion, genotype them and finally estime their allele frequency.
+It (cf. figure 1.B) detects all TE insertions (de novo and references TEs), then filters out low quality data to create a catalog of TE insertions, genotype them and finally estimes their allele frequency.
 
 .. image:: images/TEFLoN2_architecture.png
 
@@ -28,19 +28,16 @@ Getting started
    :maxdepth: 1
 
    getting_started/installation
-   getting_started/teflon2_tutorial
-
-
+   getting_started/steps_of_TEFLoN2
+   getting_started/teflon2_test
 
 
 .. toctree::
-   :caption: Basic concepts
-   :name: basic_concepts
+   :caption: Outputs ### Basic concept
+   :name: output_files ### basic_concept
    :hidden:
-   :maxdepth: 1
-
-   basic_concepts/steps_of_TEFLoN2
-   basic_concepts/output_file_summary
+   :maxdepth: 1 
+   output_files/output_file_summary
 
 
 .. toctree::

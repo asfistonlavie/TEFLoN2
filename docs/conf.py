@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'TEFLoN2'
-copyright = '2022, Corentin Marco'
-author = 'Corentin Marco'
+copyright = '2023, Marco & Fiston-Lavier'
+author = 'Corentin Marco/Anna-Sophie Fiston-Lavier'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

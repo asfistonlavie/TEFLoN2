@@ -1,6 +1,6 @@
-================
-TEFLoN2 Tutorial
-================
+============
+TEFLoN2 test
+============
 
 After installing TEFLoN2 and its dependencies, you can test whether teflon2 works properly.
 
