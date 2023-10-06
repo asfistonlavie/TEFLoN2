@@ -28,16 +28,16 @@ Getting started
    :maxdepth: 1
 
    getting_started/installation
-   basic_concepts/steps_of_TEFLoN2
+   getting_started/steps_of_TEFLoN2
    getting_started/teflon2_test
 
 
 .. toctree::
-   :caption: Output ### Basic concept
+   :caption: Outputs ### Basic concept
    :name: output_files ### basic_concept
    :hidden:
    :maxdepth: 1 
-   basic_concepts/output_file_summary
+   output_files/output_file_summary
 
 
 .. toctree::
