@@ -34,7 +34,7 @@ Getting started
 
 .. toctree::
    :caption: Output ### Basic concept
-   :name: Output_files ### basic_concept
+   :name: output_files ### basic_concept
    :hidden:
    :maxdepth: 1 
    basic_concepts/output_file_summary
