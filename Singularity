@@ -84,7 +84,7 @@ _EOF_
 
     ## Download RMBlast
     cd /usr/bin
-    wget http://www.repeatmasker.org/rmblast-2.14.1+-x64-linux.tar.gz
+    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
 
