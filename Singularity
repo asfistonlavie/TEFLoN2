@@ -12,8 +12,9 @@ From: ubuntu:20.04
 		
 %labels
 	VERSION "TEFLoN2 v1.0"
-	Maintener Corentin Marco <corentin.marco.bioinfo@gmail.com>
-	October,2022
+	Maintener Corentin Marco
+	Maintener Fiston-Lavier Anna-Sophie
+	October,2023
 
 %post
 	# faster apt downloads
@@ -83,8 +84,8 @@ _EOF_
 
     ## Download RMBlast
     cd /usr/bin
-    wget http://www.repeatmasker.org/rmblast-2.11.0+-x64-linux.tar.gz
-    tar zxvf rmblast-2.11.0+-x64-linux.tar.gz
+    wget http://www.repeatmasker.org/rmblast-2.14.1+-x64-linux.tar.gz
+    tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
 
     # Download TRF
