@@ -6,16 +6,16 @@
 Welcome to TEFLoN2's documentation!
 ============================================
 
-TEFLoN2 is an improvement of `TEFLoN <https://github.com/jradrion/TEFLoN>`_. All improvements will allow it to be up to date, easier to use and more efficient.
+TEFLoN2 is an improvement of the original `TEFLoN <https://github.com/jradrion/TEFLoN>`_. Like TEFLoN, TEFLoN2 uses paired-end illumina sequence data to (1) discover transposable element (TE) insertions, (2) perform TE call (3) and estimate TE population frequency using pooled data. The original TEFLoN consisted of four python scripts that had to be run manually one by one. 
 
-Like TEFLoN, TEFLoN2 uses paired-end illumina sequence data to both discover transposable elements (TEs) and perform TE genotyping.
+TEFLoN2, the new version of TEFLoN is a snakemake pipeline that can now also estimate the TE allele and population frequency for a large amount of data as single in an automatic way. This new version is therefore ideally suited to the analysis of large population datasets.
 
-TEFLoN2 requires to prepare a specific mapping dataset (cf. figure 1.A). Then, one launches four individually automated scripts :
-It (cf. figure 1.B) detects all TE insertions (de novo and references TEs), then filters out low quality data to create a catalog of TE insertions, genotype them and finally estimes their allele frequency.
+TEFLoN2 requires to prepare a specific mapping dataset (cf. figure 1.A). Then, one launches four individually automated scripts : It (cf. figure 1.B) detects all TE insertions (de novo and references TEs) based on discordant paired-end reads, then filters out low quality data to create a catalog of TE insertions. For an accurate TE genotyping, the detected TE insertions are genotyped based on discordant paired-end and split reads. Finally, TEFLoN2 estimes their allele frequency in each single data and using a population file, returns the TE population frequency.
+
+All improvements made allow to easily up to date and launch TEFLoN2 (in one command line). TEFLoN2 can run on high performance computers (bigmem), cluster or HPC cluster.
 
 .. image:: images/TEFLoN2_architecture.png
 
-TEFLoN2 can run on high performance computers (bigmem), cluster or HPC cluste.
 
 ---------------
 Getting started
