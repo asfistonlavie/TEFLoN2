@@ -37,7 +37,7 @@ Dependencies
 * BWA_ ≥ 0.7.17
 * SAMtools_ ≥ 1.15
 * RepeatMasker_ ≥ 4.1.2 (optinal)
-* Snakemake_ 7.7.0
+* Snakemake_ ≥ 7.7.0
 
 
 Using SingularityCE (optinal)
