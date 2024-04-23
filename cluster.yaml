@@ -9,6 +9,10 @@ teflon_prep_custom:
     cpus: "{threads}" ## => use `threads` define in rule
     mem: 200000
 
+filterfastq:
+    cpus: "{threads}"
+    mem: "{resources.mem_mb}"
+
 mapping:
     cpus: "{threads}"
     mem: "{resources.mem_mb}"
