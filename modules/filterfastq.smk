@@ -9,8 +9,8 @@ rule filterfastq:
 
 	log:
 		error = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.err",
-		output = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.out"
-		htlm = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.html"
+		output = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.out",
+		htlm = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.html",
 		json = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.json"
 
 	
