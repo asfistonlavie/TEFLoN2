@@ -22,6 +22,9 @@ PARAMS:
         MEMORY_SUPP:    20000 #[required]  If you use the --retries option of snakemake, if a rule fails to use memory, add to the memory this extra.
     COMPRESS:
         THREADS:    10
+    FILTERFASTQ:
+        USE : 0 #[required] 0: Fastq is not filter (fastp). 1: Fastq is filter (fastp)
+        THREADS: 10
     SAMTOOLS:
         THREADS:    10 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:
@@ -47,7 +50,7 @@ PARAMS:
         COVERAGE_OVERRIDE:  "" #[optional] coverage override #Note: Used to manually override the coverage estimate if you get the error: "Warning: coverage could not be estimated"
         QUALITY:    20 #[required] map quality threshold
         THREADS:    16 #[required] maximum number of threads the rule can use
-        STOP: 1 #[required] 0: TEFLoN2 runs for all steps ; 1: TEFLoN2 runs up to TEFLoN_callapse
+        STOP: 0 #[required] 0: TEFLoN2 runs for all steps ; 1: TEFLoN2 runs up to TEFLoN_callapse
     COUNT:
         QUALITY:    20 #[required] map quality threshold
         THREADS:    20 #[required] maximum number of threads the rule can use  

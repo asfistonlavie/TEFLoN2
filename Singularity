@@ -67,7 +67,8 @@ _EOF_
         libcurl4-openssl-dev \
         libssl-dev \
         curl \
-        gawk
+        gawk \
+        fastp
 
 	##samtools 1.16.1
     cd /usr/bin

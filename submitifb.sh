@@ -19,6 +19,7 @@
 	module load python/3.9
 	module load bwa/
 	module load snakemake
+	module load fastp
 
 	######################################################################
 

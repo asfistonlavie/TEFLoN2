@@ -22,6 +22,9 @@ PARAMS:
         MEMORY_SUPP: 20000 #[required]  If you use the --retries option of snakemake, if a rule fails to use memory, add to the memory this extra.
     COMPRESS:
         THREADS: 10
+    FILTERFASTQ:
+        USE : 0 #[required] 0: Fastq is not filter (fastp). 1: Fastq is filter (fastp)
+        THREADS: 10
     SAMTOOLS:
         THREADS: 10 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:

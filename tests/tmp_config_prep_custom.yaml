@@ -22,6 +22,9 @@ PARAMS:
         MEMORY_SUPP:    20000 #[required]  If you use the --retries option of snakemake, if a rule fails to use memory, add to the memory this extra.
     COMPRESS:
         THREADS:    10
+    FILTERFASTQ:
+        USE : 0 #[required] 0: Fastq is not filter (fastp). 1: Fastq is filter (fastp)
+        THREADS: 10
     SAMTOOLS:
         THREADS:    1 #[required] maximum number of threads the rule can use  
     PREP_CUSTOM:
@@ -56,7 +59,7 @@ PARAMS:
         THRESHOLD_HIGHER:  100   #[optinal] sites genotyped as -9 if adjusted read counts higher than this threshold, default=mean_coverage + 2*STDEV
         DATA_TYPE:  "pooled" #[required] must be either haploid, diploid, or pooled #NOTE: haplid/diploid genotyper under construction, all types must use pooled
         SAMPLE:
-           THRESHOLD_ABSENCE:  "" #[optinal] lower threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.05)
+            THRESHOLD_ABSENCE:  "" #[optinal] lower threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.05)
             THRESHOLD_PRESENCE:   "" #[optinal] hight threshold used to define whether insertions are present, polymorphic, heterozygous, absent or no data. Value between 0 and 1 (default=0.95)
         POPULATION:
             FILE :   "data_input_test/population.txt" #[optional]  path to population file

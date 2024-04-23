@@ -7,30 +7,83 @@ import sys
 def get_mem_mb(wildcards, attempt):
 	return config["PARAMS"]["GENERAL"]["MEMORY"] +  (config["PARAMS"]["GENERAL"]["MEMORY_SUPP"] * (attempt - 1))
 
-def reads1 (wcs):
-	name = wcs.reads
-	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
-	for file_ext in [".fastq", ".fq"] :
-		for file_r1 in ["_1","_r1","_R1",".1",".r1",".R1"] :
-			file = wd + name + file_r1 +file_ext
-			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
-				read1 = wd + name + file_r1 + file_ext + ".gz"
-				return read1
-	read1 = wd + name + "_1.fastq.gz"
-	return read1
 
-def reads2 (wcs):
-	name = wcs.reads
-	wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
-	for file_ext in [".fastq", ".fq"] :
-		for file_r2 in ["_2","_r2","_R2",".2",".r2",".R2"] :
-			file = wd + name + file_r2 +file_ext
-			if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
-				read2 = wd + name + file_r2 + file_ext + ".gz"
-				return read2
-	read2 = wd + name + "_2.fastq.gz"
-	return read2
 
+# check if varaible is None or empty
+def check_value (var):
+	if var is None :
+		return False
+	elif type(var) is int:
+		return True
+	elif type(var) is str :
+		if len(var.strip()) == 0 :
+			return False
+		else :
+			return True
+
+
+if (config["PARAMS"]["FILTERFASTQ"]["USE"] == 1)  :
+	def reads1_fastp (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
+		for file_ext in [".fastq", ".fq"] :
+			for file_r1 in ["_1","_r1","_R1",".1",".r1",".R1"] :
+				file = wd + name + file_r1 +file_ext
+				if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+					read1 = wd + name + file_r1 + file_ext + ".gz"
+					return read1
+		read1 = wd + name + "_1.fastq.gz"
+		return read1
+
+	def reads2_fastp (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
+		for file_ext in [".fastq", ".fq"] :
+			for file_r2 in ["_2","_r2","_R2",".2",".r2",".R2"] :
+				file = wd + name + file_r2 +file_ext
+				if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+					read2 = wd + name + file_r2 + file_ext + ".gz"
+					return read2
+		read2 = wd + name + "_2.fastq.gz"
+		return read2
+
+
+	def reads1 (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
+		read1 = wd + name + "_1.filter.fastq.gz"
+		return read1
+
+	def reads2 (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
+		read2 = wd + name + "_2.filter.fastq.gz"
+		return read2
+
+else :
+	def reads1 (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads1/"
+		for file_ext in [".fastq", ".fq"] :
+			for file_r1 in ["_1","_r1","_R1",".1",".r1",".R1"] :
+				file = wd + name + file_r1 +file_ext
+				if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+					read1 = wd + name + file_r1 + file_ext + ".gz"
+					return read1
+		read1 = wd + name + "_1.fastq.gz"
+		return read1
+
+	def reads2 (wcs):
+		name = wcs.reads
+		wd = config["DATA_INPUT"]["WORKING_DIRECTORY"] + "/samples/reads2/"
+		for file_ext in [".fastq", ".fq"] :
+			for file_r2 in ["_2","_r2","_R2",".2",".r2",".R2"] :
+				file = wd + name + file_r2 +file_ext
+				if ( os.path.exists(file)  or os.path.exists(file + ".gz")) :
+					read2 = wd + name + file_r2 + file_ext + ".gz"
+					return read2
+		read2 = wd + name + "_2.fastq.gz"
+		return read2
 
 
 
@@ -80,19 +133,6 @@ def samples_list() :
 
 
 
-# check if varaible is None or empty
-def check_value (var):
-	if var is None :
-		return False
-	elif type(var) is int:
-		return True
-	elif type(var) is str :
-		if len(var.strip()) == 0 :
-			return False
-		else :
-			return True
-
-
 if config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"].strip() == "" :
 	config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"] = "data_output_"
 else :
@@ -108,7 +148,6 @@ wd = config["DATA_INPUT"]["WORKING_DIRECTORY"]
 dict_samples = samples_list()
 samples_all = set(dict_samples["id"])
 
-
 include: "modules/formatting.smk"
 include: "modules/bamtofastq.smk"
 
@@ -121,6 +160,10 @@ if check_value(config["DATA_INPUT"]["GENOME"]):
 else : 
 	sys.exit("Invalid inputs")
 
+if (config["PARAMS"]["FILTERFASTQ"]["USE"] == 1)  :
+	include: "modules/filterfastq.smk"
+
+
 #Calling snakemake modules
 include: "modules/mapping.smk"
 include: "modules/teflon_discover.smk"
@@ -129,6 +172,8 @@ include: "modules/teflon_collapse.smk"
 include: "modules/preliminaryResults.smk"
 include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
+
+
 
 
 if (config["PARAMS"]["COLLAPSE"]["STOP"] == 0 or check_value(config["PARAMS"]["COLLAPSE"]["STOP"]) == False)  :
