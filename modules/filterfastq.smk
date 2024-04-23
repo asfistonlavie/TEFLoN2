@@ -10,6 +10,8 @@ rule filterfastq:
 	log:
 		error = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.err",
 		output = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.out"
+		htlm = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.html"
+		json = ".logs/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.json"
 
 	
 	benchmark:
@@ -32,6 +34,6 @@ rule filterfastq:
 		"--in2 {input.r2} "
 		"--out1 {output.out1} "
 		"--out2 {output.out2} "
-		"--html /dev/null "
-		"--json /dev/null "
+		"--html {log.html} "
+		"--json {log.json} "
 		"-w {threads} 1> {log.output} 2> {log.error}"
