@@ -15,6 +15,9 @@ rule filterfastq:
 	benchmark:
 		".benchmarks/filterfastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{reads}.benchmark.txt"
 
+	params:
+		fastp = config["DEPENDANCES"]["FASTP"]
+
 	resources:
 		mem_mb=get_mem_mb
 
@@ -24,7 +27,7 @@ rule filterfastq:
 		mem_mb=get_mem_mb
 
 	shell:
-		"fastp "
+		"{params.fastp} "
 		"--in1 {input.r1} "
 		"--in2 {input.r2} "
 		"--out1 {output.out1} "

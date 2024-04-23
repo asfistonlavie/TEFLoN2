@@ -4,7 +4,8 @@ DEPENDANCES:
     PYTHON3: "/path/to/python3" #[required] path to python 3 executable 
     BWA: "path/to/bwa" #[required] path to bwa executable 
     SAMTOOLS: "path/to/samtools" #[required] path to samtools executable
-    AWK: "awk" #[required] path to awk executable
+    AWK: "path/to/awk" #[required] path to awk executable
+    FASTP: "path/to/fastp" #[requiered if filterfastq] path to fastp
     REPEATMASKER:  "path/to/repeatmasker" #[requiered if prep_custom] path to repeatmasker executable
 
 DATA_INPUT:
