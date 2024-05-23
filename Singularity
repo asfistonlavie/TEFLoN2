@@ -1,5 +1,6 @@
 Bootstrap: docker
 From: ubuntu:22.04
+
 %help
 	Container for TEFLoN2
 	https://github.com/asfistonlavie/TEFLoN2
@@ -16,16 +17,16 @@ From: ubuntu:22.04
 	Maintener Fiston-Lavier Anna-Sophie
 	October,2023
 
-%post
-	# faster apt downloads
-	export DEBIAN_FRONTEND=noninteractive
-	export LC_ALL=C
 
-# apt dependencies
-    apt update
-    apt install -y \
-    	tzdata \
-    	apt-utils \
+%post
+    # faster apt downloads
+    export DEBIAN_FRONTEND=noninteractive
+    export LC_ALL=C
+
+%post
+    apt-get update
+    apt-get install -y \
+        tzdata \
         autoconf \
         automake \
         bwa \
@@ -58,41 +59,24 @@ From: ubuntu:22.04
         gawk \
         fastp
 
-	##samtools 1.16.1
-    cd /usr/bin
-	wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
-	tar -vxjf samtools-1.16.1.tar.bz2
-	rm samtools-1.16.1.tar.bz2
-	cd samtools-1.16.1
+    # Téléchargez et compilez Samtools 1.16.1
+    wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
+    tar -vxjf samtools-1.16.1.tar.bz2
+    cd samtools-1.16.1
     make
     make install
 
-
-    #RepeatMasker 4.1.3
-    #Dependances
-
-    ## Download RMBlast
-    cd /usr/bin
+    # Téléchargez RMBlast et TRF, puis installez RepeatMasker 4.1.3
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
-
-
-    # Download TRF
     wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-    # To copy binary elsewhere
-    chmod +x trf409.linux64 
-
-
-
-    ##Download and install RepeatMasker
+    chmod +x trf409.linux64
     cd /usr/local/bin
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.3-p1.tar.gz
     tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
-    rm RepeatMasker-4.1.3-p1.tar.gz
     cd /usr/local/bin/RepeatMasker
-    perl ./configure --trf_prgm=/usr/bin/trf409.linux64  --rmblast_dir=/usr/bin/rmblast-2.11.0/bin
-
+    perl ./configure --trf_prgm=/usr/bin/trf409.linux64 --rmblast_dir=/usr/bin/rmblast-2.11.0/bin
 
 %environment
-	export LC_ALL=C
-	ENV DEBIAN_FRONTEND=noninteractive
+    export LC_ALL=C
+    ENV DEBIAN_FRONTEND=noninteractive
