@@ -24,6 +24,7 @@ From: ubuntu:22.04
 # apt dependencies
     apt update
     apt install -y \
+    	tzdata \
     	apt-utils \
         autoconf \
         automake \
