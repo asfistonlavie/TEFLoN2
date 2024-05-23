@@ -1,5 +1,5 @@
 Bootstrap: library
-From: ubuntu:20.04
+From: ubuntu:22.04
 %help
 	Container for TEFLoN2
 	https://github.com/asfistonlavie/TEFLoN2
@@ -20,19 +20,6 @@ From: ubuntu:20.04
 	# faster apt downloads
 	export DEBIAN_FRONTEND=noninteractive
 	export LC_ALL=C
-	(
-		. /etc/os-release
-		cat << _EOF_ > mirror.txt
-deb mirror://mirrors.ubuntu.com/mirrors.txt ${UBUNTU_CODENAME} main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt ${UBUNTU_CODENAME}-updates main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt ${UBUNTU_CODENAME}-backports main restricted universe multiverse
-deb mirror://mirrors.ubuntu.com/mirrors.txt ${UBUNTU_CODENAME}-security main restricted universe multiverse
-
-_EOF_
-		mv /etc/apt/sources.list /etc/apt/sources.list.bak
-		cat mirror.txt /etc/apt/sources.list.bak > /etc/apt/sources.list
-	)
-
 
 # apt dependencies
     apt update
@@ -107,7 +94,4 @@ _EOF_
 
 %environment
 	export LC_ALL=C
-
-%runscript
-	exec "$@"
-			
+	ENV DEBIAN_FRONTEND=noninteractive
