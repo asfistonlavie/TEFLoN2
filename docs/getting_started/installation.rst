@@ -3,9 +3,9 @@ Installation
 ============
 
 
-Before you can use TEFLoN2 , you will need to install its dependencies.
+Before you can use TEFLoN2, you'll need to install its dependencies.
 TEFLoN2 uses Python 3, BWA (Burrows-Wheeler Alignment Tool), Samtools, RepeatMasker and SnakeMake.
-
+It has been successfully launched on the LINUX/UBUNTU platform. 
 
 TEFLoN2
 =======
@@ -58,7 +58,7 @@ if you can't use sudo :
 
 	singularity build --fakeroot TEFLoN2.simg Singularity
 
-To use the TEFLoN2.simg container, you can use :
+After, to use the TEFLoN2.simg container, you have to use :
 
 .. code-block:: console
 
