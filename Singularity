@@ -19,8 +19,8 @@ From: ubuntu:22.04
 
 
 %post
+    export DEBIAN_FRONTEND=noninteractive
     export LC_ALL=C
-    DEBIAN_FRONTEND=noninteractive
 
 %post
     apt-get update
