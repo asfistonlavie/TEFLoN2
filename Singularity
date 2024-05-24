@@ -78,7 +78,3 @@ From: ubuntu:22.04
 %environment
 	export LC_ALL=C
 	ENV DEBIAN_FRONTEND=noninteractive
-
-
-%runscript
-	exec "$@"
