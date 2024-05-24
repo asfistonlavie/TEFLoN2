@@ -19,8 +19,6 @@ From: ubuntu:22.04
 
 
 %post
-    # faster apt downloads
-    export DEBIAN_FRONTEND=noninteractive
     export LC_ALL=C
 
 %post
