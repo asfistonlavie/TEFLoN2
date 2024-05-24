@@ -20,7 +20,7 @@ From: ubuntu:22.04
 
 %post
     export LC_ALL=C
-    ENV DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive
 
 %post
     apt-get update
