@@ -22,7 +22,6 @@ From: ubuntu:22.04
 	export DEBIAN_FRONTEND=noninteractive
 	export LC_ALL=C
 
-%post
 	apt-get update
 	apt-get install -y \
 		tzdata \
