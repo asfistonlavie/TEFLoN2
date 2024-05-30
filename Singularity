@@ -30,13 +30,11 @@ From: ubuntu:22.04
         cmake \
         gcc \
         build-essential \
-        software-properties-common \
         tar \
         unzip \
         wget \
         zlib1g-dev \
         sudo \
-        git-core \
         locales \
         python3-pip \
         ncbi-blast+ \
