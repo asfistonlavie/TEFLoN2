@@ -41,7 +41,6 @@ From: ubuntu:22.04
         bedtools \
         minimap2 \
         snakemake \
-        assemblytics \
         r-base \
         perl \
         pandoc-citeproc \
