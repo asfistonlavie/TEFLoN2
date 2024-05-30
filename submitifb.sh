@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=TEFLoN2_Snakemake # job name (-J)
 #SBATCH --cpus-per-task=1 # max nb of cores (-c)
-#SBATCH --mem= 2000 # max memory (-m)
+#SBATCH --mem=2000 # max memory (-m)
 #SBATCH --output=/path/tmp/teflon2.%j.out
 #SBATCH --error=/path/tmp/teflon2.%j.err
 #SBATCH --partition=long
