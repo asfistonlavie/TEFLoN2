@@ -1,28 +1,12 @@
 Bootstrap: docker
 From: ubuntu:22.04
 
-%help
-    Container for TEFLoN2
-    https://github.com/asfistonlavie/TEFLoN2
-    Includes
-        BWA  0.7.17
-        RepeatMasker 4.1.3
-        Ptyhon 3.8
-        Samtools 1.16.1
-        Snakemake  7.14.0
-
-%labels
-    VERSION "TEFLoN2 v1.0"
-    Maintener Corentin Marco
-    Maintener Fiston-Lavier Anna-Sophie
-    October,2023
-
 %post
     export DEBIAN_FRONTEND=noninteractive
     export LC_ALL=C
 
     apt-get update
-    apt-get install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         tzdata \
         autoconf \
         automake \
@@ -56,6 +40,9 @@ From: ubuntu:22.04
         gawk \
         fastp
 
+    dpkg-divert --local --rename --add /sbin/initctl
+    ln -s /bin/true /sbin/initctl
+
     # Téléchargez et compilez Samtools 1.16.1
     wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
     tar -vxjf samtools-1.16.1.tar.bz2
@@ -75,6 +62,9 @@ From: ubuntu:22.04
     tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
     cd RepeatMasker
     perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/rmblast
+
+%environment
+    export LC_ALL=C
 
 %environment
     export LC_ALL=C
