@@ -1,5 +1,21 @@
 Bootstrap: docker
-From: debian:stable-slim
+From: ubuntu:22.04
+
+%help
+    Container for TEFLoN2
+    https://github.com/asfistonlavie/TEFLoN2
+    Includes
+        BWA  0.7.17
+        RepeatMasker 4.1.3
+        Python 3.8
+        Samtools 1.16.1
+        Snakemake  7.14.0
+
+%labels
+    VERSION "TEFLoN2 v1.0"
+    Maintainer Corentin Marco
+    Maintainer Fiston-Lavier Anna-Sophie
+    October, 2023
 
 %post
     export DEBIAN_FRONTEND=noninteractive
