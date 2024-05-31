@@ -57,8 +57,8 @@ From: ubuntu:22.04
     pip3 install snakemake
 
     # Télécharger et installer fastp
-    wget http://opengene.org/fastp/fastp -O /usr/bin/fastp
-    chmod +x /usr/bin/fastp
+    wget http://opengene.org/fastp/fastp -O /usr/local/bin/fastp
+    chmod +x /usr/local/bin/fastp
 
 
     # Téléchargez et compilez Samtools 1.16.1
