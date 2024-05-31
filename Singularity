@@ -80,17 +80,29 @@ From: ubuntu:22.04
     make install
     cd ..
 
-	# Téléchargez RMBlast et TRF, puis installez RepeatMasker 4.1.3
-	wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
-	tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
-	wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-	chmod +x trf409.linux64
-	cd /usr/local/bin
-	wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.3-p1.tar.gz
-	tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
-	cd /usr/local/bin/RepeatMasker
-	perl ./configure --trf_prgm=/usr/bin/trf409.linux64 --rmblast_dir=/usr/bin/rmblast-2.11.0/bin
+    #RepeatMasker 4.1.3
+    #Dependances
 
+    ## Download RMBlast
+    cd /usr/bin
+    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
+    tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
+
+
+    # Download TRF
+    wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
+    # To copy binary elsewhere
+    chmod +x trf409.linux64 
+
+
+
+    ##Download and install RepeatMasker
+    cd /usr/local/bin
+    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.3-p1.tar.gz
+    tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
+    rm RepeatMasker-4.1.3-p1.tar.gz
+    cd /usr/local/bin/RepeatMasker
+    perl ./configure --trf_prgm=/usr/bin/trf409.linux64  --rmblast_dir=/usr/bin/rmblast-2.11.0/bin
 
 
 %environment
