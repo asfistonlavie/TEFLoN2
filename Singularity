@@ -55,7 +55,8 @@ From: ubuntu:22.04
         libncurses5-dev \
         pigz \
         perl \
-        tcl
+        tcl \
+        gzip 
 
     # Mettre à jour pip
     pip3 install --upgrade pip
@@ -80,34 +81,44 @@ From: ubuntu:22.04
     make install
     cd ..
 
-  # Installer les dépendances de RepeatMasker
+    #RepeatMasker 4.1.6
+    #Dependances
 
-    # Télécharger et installer RMBlast
-    cd /usr/local
-    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
-    tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
-    rm rmblast-2.14.1+-x64-linux.tar.gz
+    ## Download RMBlast
+    cd /usr/bin
+    wget http://www.repeatmasker.org/rmblast-2.14.1-x64-linux.tar.gz
+    tar zxvf rmblast-2.14.1-x64-linux.tar.gz
 
-    # Télécharger et installer TRF
-    wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-    chmod +x trf409.linux64
-    mv trf409.linux64 /usr/local/bin/trf409.linux64
+    ## Download TRF
+	cd /usr/bin/
+    git clone https://github.com/Benson-Genomics-Lab/TRF.git
+    cd TRF
+    mkdir build
+    cd build
+    ../configure
+    make
+    chmod +x /usr/bin/TRF
 
-    # Télécharger et installer RepeatMasker
-    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
-    tar -zxvf RepeatMasker-4.1.6.tar.gz
-    rm RepeatMasker-4.1.6.tar.gz
 
-    # Supprimer l'ancien répertoire RepeatMasker s'il existe
-    rm -rf /usr/local/RepeatMasker
+    ##Download and install RepeatMasker
+    cd /usr/local/bin
+    wget https://www.repeatmasker.org/RepeatMasker/ RepeatMasker-4.1.6.tar.gz
+    tar -zxvf  RepeatMasker-4.1.6.tar.gz
+    rm  RepeatMasker-4.1.6.tar.gz
 
-    # Déplacer le nouveau répertoire RepeatMasker
-    mv RepeatMasker /usr/local/RepeatMasker
+    wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
+    gunzip dfam38_full.0.h5.gz
+    mv dfam38_full.0.h5.gz /usr/local/RepeatMasker/Libraries/famdb
 
-    # Configurer RepeatMasker
+    cp RepBaseRepeatMaskerEdition-20181026.tar.gz /usr/local/RepeatMasker/
     cd /usr/local/RepeatMasker
-    perl ./configure -trf_prgm /usr/local/bin/trf409.linux64 -rmblast_dir /usr/local/rmblast
+    gunzip RepBaseRepeatMaskerEdition-20181026.tar.gz
+    tar xvf RepBaseRepeatMaskerEdition-20181026.tar
+    rm RepBaseRepeatMaskerEdition-20181026.tar
 
+
+    cd /usr/local/RepeatMasker
+    perl ./configure
 
 %environment
     export LC_ALL=C
