@@ -49,7 +49,6 @@ From: ubuntu:22.04
         libssl-dev \
         libbz2-dev \
         liblzma-dev \
-
         curl \
         gawk \
         python3 \
