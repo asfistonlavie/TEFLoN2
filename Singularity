@@ -48,6 +48,8 @@ From: ubuntu:22.04
         libcurl4-openssl-dev \
         libssl-dev \
         libbz2-dev \
+        liblzma-dev \
+
         curl \
         gawk \
         python3 \
