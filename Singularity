@@ -80,10 +80,9 @@ From: ubuntu:22.04
     make install
     cd ..
 
-    # RepeatMasker 4.1.3
-    # Dépendances
+# Installer les dépendances de RepeatMasker
 
-   # Télécharger et installer RMBlast
+    # Télécharger et installer RMBlast
     cd /usr/local
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
@@ -95,11 +94,14 @@ From: ubuntu:22.04
     mv trf409.linux64 /usr/local/bin/trf409.linux64
 
     # Télécharger et installer RepeatMasker
-    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.3-p1.tar.gz
-    tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
-    rm RepeatMasker-4.1.3-p1.tar.gz
-    cd RepeatMasker
-    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/rmblast
+    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
+    tar -zxvf RepeatMasker-4.1.6.tar.gz
+    rm RepeatMasker-4.1.6.tar.gz
+    mv RepeatMasker /usr/local/RepeatMasker
+
+    # Configurer RepeatMasker
+    cd /usr/local/RepeatMasker
+    perl ./configure -trf_prgm /usr/local/bin/trf409.linux64 -rmblast_dir /usr/local/rmblast
 
 %environment
     export LC_ALL=C
