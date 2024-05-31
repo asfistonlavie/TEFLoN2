@@ -87,6 +87,8 @@ From: ubuntu:22.04
     tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
     cd RepeatMasker
     perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/rmblast
+    ln -s /usr/local/bin/RepeatMasker/RepeatMasker /usr/local/bin/RepeatMasker
+
 
 %environment
     export LC_ALL=C
