@@ -80,7 +80,7 @@ From: ubuntu:22.04
     make install
     cd ..
 
-# Installer les dépendances de RepeatMasker
+  # Installer les dépendances de RepeatMasker
 
     # Télécharger et installer RMBlast
     cd /usr/local
@@ -97,11 +97,17 @@ From: ubuntu:22.04
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
     tar -zxvf RepeatMasker-4.1.6.tar.gz
     rm RepeatMasker-4.1.6.tar.gz
+
+    # Supprimer l'ancien répertoire RepeatMasker s'il existe
+    rm -rf /usr/local/RepeatMasker
+
+    # Déplacer le nouveau répertoire RepeatMasker
     mv RepeatMasker /usr/local/RepeatMasker
 
     # Configurer RepeatMasker
     cd /usr/local/RepeatMasker
     perl ./configure -trf_prgm /usr/local/bin/trf409.linux64 -rmblast_dir /usr/local/rmblast
+
 
 %environment
     export LC_ALL=C
