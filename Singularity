@@ -47,6 +47,7 @@ From: ubuntu:22.04
         libxml2-dev \
         libcurl4-openssl-dev \
         libssl-dev \
+        libbz2-dev \
         curl \
         gawk \
         python3 \
