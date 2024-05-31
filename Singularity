@@ -61,7 +61,10 @@ From: ubuntu:22.04
     pip3 install --upgrade pip
 
     # Installer Snakemake et pulp
-    pip3 install snakemake pulp==2.3.1
+    pip3 install \
+        snakemake \
+        pulp==2.3.1 \
+        six
 
     # Télécharger et installer fastp
     wget http://opengene.org/fastp/fastp -O /usr/local/bin/fastp
