@@ -54,7 +54,8 @@ From: ubuntu:22.04
         python3 \
         libncurses5-dev \
         pigz \
-        perl
+        perl \
+        tcl
 
     # Mettre à jour pip
     pip3 install --upgrade pip
