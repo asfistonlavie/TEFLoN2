@@ -90,14 +90,10 @@ From: ubuntu:22.04
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
-    ## Download TRF
-	cd /usr/bin/
-    git clone https://github.com/Benson-Genomics-Lab/TRF.git
-    cd TRF
-    mkdir build
-    cd build
-    ../configure
-    make
+    ## Download TRF 
+    cd /usr/bin/
+    wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
+    mv trf409.linux64 TRF
     chmod +x /usr/bin/TRF
 
 
