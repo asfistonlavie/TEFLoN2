@@ -52,7 +52,8 @@ From: ubuntu:22.04
         curl \
         gawk \
         python3 \
-        libncurses5-dev
+        libncurses5-dev \
+        pigz
 
     # Mettre à jour pip
     pip3 install --upgrade pip
