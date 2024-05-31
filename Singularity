@@ -40,8 +40,6 @@ From: ubuntu:22.04
         ncbi-blast+ \
         bedtools \
         minimap2 \
-        snakemake \
-        r-base \
         perl \
         pandoc-citeproc \
         python3-h5py \
@@ -50,8 +48,18 @@ From: ubuntu:22.04
         libcurl4-openssl-dev \
         libssl-dev \
         curl \
-        gawk \
-        fastp
+        gawk
+
+    # Mettre à jour pip
+    pip3 install --upgrade pip
+
+    # Installer Snakemake
+    pip3 install snakemake
+
+    # Télécharger et installer fastp
+    wget http://opengene.org/fastp/fastp -O /usr/bin/fastp
+    chmod +x /usr/bin/fastp
+
 
     # Téléchargez et compilez Samtools 1.16.1
     wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
