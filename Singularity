@@ -56,7 +56,8 @@ From: ubuntu:22.04
         pigz \
         perl \
         tcl \
-        gzip 
+        gzip \
+	git
 
     # Mettre à jour pip
     pip3 install --upgrade pip
