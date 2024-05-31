@@ -48,7 +48,9 @@ From: ubuntu:22.04
         libcurl4-openssl-dev \
         libssl-dev \
         curl \
-        gawk
+        gawk \
+        python3 \
+        libncurses5-dev
 
     # Mettre à jour pip
     pip3 install --upgrade pip
