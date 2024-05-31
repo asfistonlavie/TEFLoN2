@@ -103,7 +103,7 @@ From: ubuntu:22.04
 
     wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
     gunzip dfam38_full.0.h5.gz
-    mv dfam38_full.0.h5.gz /usr/local/RepeatMasker/Libraries/famdb
+    mv dfam38_full.0.h5 /usr/local/RepeatMasker/Libraries/famdb
 
     cp RepBaseRepeatMaskerEdition-20181026.tar.gz /usr/local/RepeatMasker/
     cd /usr/local/RepeatMasker
