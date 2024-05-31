@@ -102,9 +102,9 @@ From: ubuntu:22.04
 
     ##Download and install RepeatMasker
     cd /usr/local/bin
-    wget https://www.repeatmasker.org/RepeatMasker/ RepeatMasker-4.1.6.tar.gz
-    tar -zxvf  RepeatMasker-4.1.6.tar.gz
-    rm  RepeatMasker-4.1.6.tar.gz
+    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
+    tar -zxvf RepeatMasker-4.1.6.tar.gz
+    rm RepeatMasker-4.1.6.tar.gz
 
     wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
     gunzip dfam38_full.0.h5.gz
