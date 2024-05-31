@@ -80,30 +80,27 @@ From: ubuntu:22.04
     make install
     cd ..
 
-    #RepeatMasker 4.1.3
-    #Dependances
+    # RepeatMasker 4.1.3
+    # Dépendances
 
-    ## Download RMBlast
-    cd /usr/bin
+    # Télécharger et installer RMBlast
+    cd /usr/local/bin
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
+    mv rmblast-2.14.1 /usr/local/rmblast
+    rm rmblast-2.14.1+-x64-linux.tar.gz
 
-
-    # Download TRF
+    # Télécharger et installer TRF
     wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-    # To copy binary elsewhere
-    chmod +x trf409.linux64 
+    chmod +x trf409.linux64
+    mv trf409.linux64 /usr/local/bin/trf409.linux64
 
-
-
-    ##Download and install RepeatMasker
-    cd /usr/local/bin
+    # Télécharger et installer RepeatMasker
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.3-p1.tar.gz
     tar -zxvf RepeatMasker-4.1.3-p1.tar.gz
     rm RepeatMasker-4.1.3-p1.tar.gz
-    cd /usr/local/bin/RepeatMasker
-    perl ./configure --trf_prgm=/usr/bin/trf409.linux64  --rmblast_dir=/usr/bin/rmblast-2.11.0/bin
-
+    cd RepeatMasker
+    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/rmblast/bin
 
 %environment
     export LC_ALL=C
