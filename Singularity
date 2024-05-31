@@ -57,8 +57,8 @@ From: ubuntu:22.04
     # Mettre à jour pip
     pip3 install --upgrade pip
 
-    # Installer Snakemake
-    pip3 install snakemake
+    # Installer Snakemake et pulp
+    pip3 install snakemake pulp
 
     # Télécharger et installer fastp
     wget http://opengene.org/fastp/fastp -O /usr/local/bin/fastp
