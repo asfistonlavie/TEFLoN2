@@ -56,8 +56,7 @@ From: ubuntu:22.04
         pigz \
         perl \
         tcl \
-        gzip \
-	git
+        gzip 
 
     # Mettre à jour pip
     pip3 install --upgrade pip
@@ -93,8 +92,7 @@ From: ubuntu:22.04
     ## Download TRF 
     cd /usr/bin/
     wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-    mv trf409.linux64 TRF
-    chmod +x /usr/bin/TRF
+    chmod +x /usr/bin/trf409.linux64
 
 
     ##Download and install RepeatMasker
