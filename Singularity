@@ -89,31 +89,20 @@ From: ubuntu:22.04
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
-    ## Download TRF 
-    cd /usr/bin/
-    wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
-    chmod +x /usr/bin/trf409.linux64
 
+    # Download TRF
+    wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
+    # To copy binary elsewhere
+    chmod +x trf409.linux64 
 
     ##Download and install RepeatMasker
     cd /usr/local/bin
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
     tar -zxvf RepeatMasker-4.1.6.tar.gz
     rm RepeatMasker-4.1.6.tar.gz
+    cd /usr/local/bin/RepeatMasker
+    perl ./configure --trf_prgm=/usr/bin/trf409.linux64  --rmblast_dir=/usr/bin/rmblast-2.14.1/bin
 
-    wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
-    gunzip dfam38_full.0.h5.gz
-    mv dfam38_full.0.h5 /usr/local/RepeatMasker/Libraries/famdb
-
-    cp RepBaseRepeatMaskerEdition-20181026.tar.gz /usr/local/RepeatMasker/
-    cd /usr/local/RepeatMasker
-    gunzip RepBaseRepeatMaskerEdition-20181026.tar.gz
-    tar xvf RepBaseRepeatMaskerEdition-20181026.tar
-    rm RepBaseRepeatMaskerEdition-20181026.tar
-
-
-    cd /usr/local/RepeatMasker
-    perl ./configure
 
 %environment
     export LC_ALL=C
