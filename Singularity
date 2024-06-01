@@ -95,9 +95,10 @@ From: ubuntu:22.04
     # To copy binary elsewhere
     chmod +x trf409.linux64
 
+    mkdir /usr/local/bin/RepeatMasker/Libraries/famdb
+    cd /usr/local/bin/RepeatMasker/Libraries/famdb
     wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
     gunzip dfam38_full.0.h5.gz
-    mv dfam38_full.0.h5.gz /usr/local/bin/RepeatMasker/Libraries/famdb
 
     ##Download and install RepeatMasker
     cd /usr/local/bin
