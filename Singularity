@@ -93,7 +93,11 @@ From: ubuntu:22.04
     # Download TRF
     wget https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64
     # To copy binary elsewhere
-    chmod +x trf409.linux64 
+    chmod +x trf409.linux64
+
+    wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
+    gunzip dfam38_full.0.h5.gz
+    mv dfam38_full.0.h5.gz /usr/local/bin/RepeatMasker/Libraries/famdb
 
     ##Download and install RepeatMasker
     cd /usr/local/bin
