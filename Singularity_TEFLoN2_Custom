@@ -84,8 +84,9 @@ From: ubuntu:22.04
     #RepeatMasker 4.1.6
     #Dependances
 
+
     ## Download RMBlast
-    cd /usr/bin
+    cd /usr/local/bin
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
     tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
@@ -95,8 +96,14 @@ From: ubuntu:22.04
     # To copy binary elsewhere
     chmod +x trf409.linux64
 
+    #RepeatMasker
+    cd /usr/local/bin
+    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
+    gunzip RepeatMasker-4.1.6.tar.gz
+    tar xvf RepeatMasker-4.1.6.tar.gz
+
+
     #Download DFAM   
-    mkdir -p /usr/local/bin/RepeatMasker/Libraries/famdb
     cd /usr/local/bin/RepeatMasker/Libraries/famdb
     wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
     gunzip dfam38_full.0.h5.gz
@@ -108,15 +115,12 @@ From: ubuntu:22.04
    tar xvf RepBaseRepeatMaskerEdition-20181026.tar
    rm RepBaseRepeatMaskerEdition-20181026.tar
    
-
     ##Download and install RepeatMasker
-    cd /usr/local/bin
-    wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
-    tar -zxvf RepeatMasker-4.1.6.tar.gz
-    rm RepeatMasker-4.1.6.tar.gz
-    cd /usr/local/bin/RepeatMasker
-    perl ./configure --trf_prgm=/usr/bin/trf409.linux64  --rmblast_dir=/usr/bin/rmblast-2.14.1/bin
 
+    ln -s /usr/local/RepeatMasker/RepeatMasker /usr/local/bin/RepeatMasker
+    chmod a+x /usr/local/bin/RepeatMasker
+    cd /usr/local/bin/RepeatMasker
+    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64  --rmblast_dir=/usr/local/bin/rmblast-2.14.1/bin
 
 %environment
     export LC_ALL=C
