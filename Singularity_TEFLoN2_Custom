@@ -88,7 +88,7 @@ From: ubuntu:22.04
     ## Download RMBlast
     cd /usr/local/bin
     wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
-    tar zxvf rmblast-2.14.1+-x64-linux.tar.gz
+    tar -zxvf rmblast-2.14.1+-x64-linux.tar.gz
 
 
     # Download TRF
@@ -99,8 +99,7 @@ From: ubuntu:22.04
     #RepeatMasker
     cd /usr/local
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
-    gunzip RepeatMasker-4.1.6.tar.gz
-    tar xvf RepeatMasker-4.1.6.tar.gz
+    tar -zxvf RepeatMasker-4.1.6.tar.gz
 
 
     #Download DFAM   
@@ -111,9 +110,8 @@ From: ubuntu:22.04
    #Download
    cd /usr/local/RepeatMasker/
    wget https://www.girinst.org/server/RepBase/protected/repeatmaskerlibraries/RepBaseRepeatMaskerEdition-20181026.tar.gz
-   gunzip RepBaseRepeatMaskerEdition-20181026.tar.gz
-   tar xvf RepBaseRepeatMaskerEdition-20181026.tar
-   rm RepBaseRepeatMaskerEdition-20181026.tar
+   tar -zxvf RepBaseRepeatMaskerEdition-20181026.tar.gz
+   rm RepBaseRepeatMaskerEdition-20181026.tar.gz
    
     ##Download and install RepeatMasker
 
