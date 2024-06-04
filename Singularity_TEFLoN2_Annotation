@@ -1,0 +1,85 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%help
+    Container for TEFLoN2
+    https://github.com/asfistonlavie/TEFLoN2
+    Includes
+        BWA  0.7.17
+        RepeatMasker 4.1.3
+        Python 3.8
+        Samtools 1.16.1
+        Snakemake  7.14.0
+
+%labels
+    VERSION "TEFLoN2 v1.0"
+    Maintainer Corentin Marco
+    Maintainer Fiston-Lavier Anna-Sophie
+    October, 2023
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    export LC_ALL=C
+
+    apt-get update
+    apt-get install -y \
+        tzdata \
+        autoconf \
+        automake \
+        bwa \
+        cmake \
+        gcc \
+        build-essential \
+        tar \
+        unzip \
+        wget \
+        zlib1g-dev \
+        sudo \
+        locales \
+        python3-pip \
+        ncbi-blast+ \
+        bedtools \
+        minimap2 \
+        perl \
+        pandoc-citeproc \
+        python3-h5py \
+        libfontconfig1-dev \
+        libxml2-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libbz2-dev \
+        liblzma-dev \
+        curl \
+        gawk \
+        python3 \
+        libncurses5-dev \
+        pigz \
+        perl \
+        tcl \
+        gzip 
+
+    # Mettre à jour pip
+    pip3 install --upgrade pip
+
+    # Installer Snakemake et pulp
+    pip3 install \
+        snakemake \
+        pulp==2.3.1 \
+        six
+
+    # Télécharger et installer fastp
+    wget http://opengene.org/fastp/fastp -O /usr/local/bin/fastp
+    chmod +x /usr/local/bin/fastp
+
+
+    # Téléchargez et compilez Samtools 1.16.1
+    wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
+    tar -vxjf samtools-1.16.1.tar.bz2
+    cd samtools-1.16.1
+    ./configure --prefix=/usr/local
+    make
+    make install
+    cd ..
+
+%environment
+    export LC_ALL=C
