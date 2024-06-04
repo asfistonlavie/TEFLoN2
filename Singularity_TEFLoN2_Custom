@@ -95,10 +95,19 @@ From: ubuntu:22.04
     # To copy binary elsewhere
     chmod +x trf409.linux64
 
+    #Download DFAM   
     mkdir -p /usr/local/bin/RepeatMasker/Libraries/famdb
     cd /usr/local/bin/RepeatMasker/Libraries/famdb
     wget https://www.dfam.org/releases/Dfam_3.8/families/FamDB/dfam38_full.0.h5.gz
     gunzip dfam38_full.0.h5.gz
+
+   #Download
+   cd /usr/local/bin/RepeatMasker/
+   wget https://www.girinst.org/server/RepBase/protected/repeatmaskerlibraries/RepBaseRepeatMaskerEdition-20181026.tar.gz
+   gunzip RepBaseRepeatMaskerEdition-20181026.tar.gz
+   tar xvf RepBaseRepeatMaskerEdition-20181026.tar
+   rm RepBaseRepeatMaskerEdition-20181026.tar
+   
 
     ##Download and install RepeatMasker
     cd /usr/local/bin
