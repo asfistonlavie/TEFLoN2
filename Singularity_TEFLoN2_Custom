@@ -87,10 +87,10 @@ From: ubuntu:22.04
     #Dependances
 
 
-    ## Download RMBlast
+    ## Download HMMER
     cd /usr/local/bin
-    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.0+-x64-linux.tar.gz
-    tar -zxvf rmblast-2.14.0+-x64-linux.tar.gz
+    wget http://eddylab.org/software/hmmer/hmmer-3.2.1.tar.gz
+    tar -zxvf hmmer-3.2.1.tar.gz
 
 
     # Download TRF
@@ -115,7 +115,7 @@ From: ubuntu:22.04
     ln -s /usr/local/RepeatMasker/RepeatMasker /usr/local/bin/RepeatMasker
     chmod a+x /usr/local/bin/RepeatMasker
     cd /usr/local/RepeatMasker/
-    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64  --rmblast_dir=/usr/local/bin/rmblast-2.14.0/bin
+    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64  --rmblast_dir=/usr/local/bin/hmmer-3.2.1/bin
 
 %environment
     export LC_ALL=C
