@@ -66,6 +66,7 @@ From: ubuntu:22.04
     pip3 install \
         snakemake \
         pulp==2.3.1 \
+        h5py \
         six
 
     # Télécharger et installer fastp
