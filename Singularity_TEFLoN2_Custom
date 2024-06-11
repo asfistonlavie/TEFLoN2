@@ -98,12 +98,6 @@ From: ubuntu:22.04
     wget https://www.repeatmasker.org/RepeatMasker/RepeatMasker-4.1.6.tar.gz
     tar -zxvf RepeatMasker-4.1.6.tar.gz
 
-    # Installer BLAST
-    cd /usr/local/bin
-    wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.12.0+-x64-linux.tar.gz
-    tar -zxvf ncbi-blast-2.12.0+-x64-linux.tar.gz
-    mv ncbi-blast-2.12.0+ blast
-    rm ncbi-blast-2.12.0+-x64-linux.tar.gz
 
     # Installer HMMER
     cd /usr/local/bin
@@ -116,14 +110,13 @@ From: ubuntu:22.04
     cd ..
 
     # Télécharger et installer RMBlast
-    wget http://www.repeatmasker.org/rmblast-2.13.0+-x64-linux.tar.gz
-    tar -zxvf rmblast-2.13.0+-x64-linux.tar.gz
-    cp rmblast-2.13.0+/bin/* /usr/local/bin
-    rm rmblast-2.13.0+-x64-linux.tar.gz
+    cd /usr/local/bin
+    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
+    tar -zxvf rmblast-2.14.1-x64-linux.tar.gz
 
     # Configuration de RepeatMasker avec RMBlast, HMMER et BLAST
     cd /usr/local/RepeatMasker
-    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/bin/blast/bin --hmmer_dir=/usr/local/bin/hmmer-3.2.1/bin --blast_dir=/usr/local/bin/blast/bin
+    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/bin/rmblast-2.14.1/bin --hmmer_dir=/usr/local/bin/hmmer-3.2.1/bin
 
 %environment
     export LC_ALL=C
