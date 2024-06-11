@@ -23,6 +23,7 @@ From: ubuntu:22.04
 
     apt-get update
     apt-get install -y \
+        apt-utils \
         tzdata \
         autoconf \
         automake \
