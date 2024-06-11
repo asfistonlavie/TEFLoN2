@@ -22,8 +22,8 @@ From: ubuntu:22.04
     export LC_ALL=C
 
     apt-get update
+    apt-get install -y apt-utils 
     apt-get install -y \
-        apt-utils \
         tzdata \
         autoconf \
         automake \
