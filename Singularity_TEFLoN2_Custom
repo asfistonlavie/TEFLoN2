@@ -110,14 +110,9 @@ From: ubuntu:22.04
     make install
     cd ..
 
-    # Télécharger et installer RMBlast
-    cd /usr/local/bin
-    wget https://www.repeatmasker.org/rmblast/rmblast-2.14.1+-x64-linux.tar.gz
-    tar -zxvf rmblast-2.14.1-x64-linux.tar.gz
-
     # Configuration de RepeatMasker avec RMBlast, HMMER et BLAST
     cd /usr/local/RepeatMasker
-    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --rmblast_dir=/usr/local/bin/rmblast-2.14.1/bin --hmmer_dir=/usr/local/bin/hmmer-3.2.1/bin
+    perl ./configure --trf_prgm=/usr/local/bin/trf409.linux64 --hmmer_dir=/usr/local/bin/hmmer-3.2.1/bin
 
 %environment
     export LC_ALL=C
