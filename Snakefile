@@ -132,6 +132,14 @@ def samples_list() :
 	return samples
 
 
+def change_wildcard_for_input(input_files,samples_all,str_replace) :
+	input_files_all = []
+	for element in input_files:
+		for sample in samples_all:
+			tmp = element.replace(str_replace,sample)
+			input_files_all.append(tmp)
+	return input_files_all
+
 
 if config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"].strip() == "" :
 	config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"] = "data_output_"
@@ -152,10 +160,12 @@ include: "modules/formatting.smk"
 include: "modules/bamtofastq.smk"
 
 #Choice of the script to call according to the input data file
+use_custom = 0 # 0: use annotation, 1:use custom
 if check_value(config["DATA_INPUT"]["GENOME"]):
 	if check_value(config["DATA_INPUT"]["ANNOTATION"]):
 		include: "modules/teflon_prep_annotation.smk"
 	else :
+		use_custom = 1
 		include: "modules/teflon_prep_custom.smk"
 else : 
 	sys.exit("Invalid inputs")
@@ -173,37 +183,51 @@ include: "modules/preliminaryResults.smk"
 include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
 
+input_files = []
 
+if (use_custom == 0 and config["PARAMS"]["PREP_ANNOTATION"]["STOP"] == 1) :
+			input_files = [
+				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt"
+				]
 
+elif (use_custom == 1 and config["PARAMS"]["PREP_CUSTOM"]["STOP"] == 1) :
+		input_files = [
+			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/0-reference/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".prep_MP/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".mappingRef.fa.bwt"
+			]
 
-if (config["PARAMS"]["COLLAPSE"]["STOP"] == 0 or check_value(config["PARAMS"]["COLLAPSE"]["STOP"]) == False)  :
-	if check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
-		popFILE = config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]
-		group = []
-		with open(popFILE,"r") as fIN:
-			for line in fIN:
-				if line.endswith("\n") :
-					fields = line[:-1].split("\t")
-				else : 
-					fields = line.split("\t")
-				group.append(fields[1])
-		group = set(group)
-		include: "modules/teflon_genotype_pop.smk"
+elif (config["PARAMS"]["DISCOVER"]["STOP"] == 1) :
+	input_files_tmp = [
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.cov.txt",
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/1-mapping/{samples_all}.sorted.stats.txt",
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.all_positions_sorted.txt",
+		config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.all_positions.txt"
+		]
+	input_files = change_wildcard_for_input(input_files_tmp,samples_all,"{samples_all}")
 
+elif (config["PARAMS"]["COLLAPSE"]["STOP"] == 1) :	
+	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/2-preliminaryResults/TE_catalog.summary"]
 
-		rule all:
-			input:
-				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",
-				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"
+elif (config["PARAMS"]["COUNT"]["STOP"] == 1) :
+	input_files_tmp = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/3-countPos/{samples_all}.counts.txt"]
+	input_files = change_wildcard_for_input(input_files_tmp,samples_all,"{samples_all}")
 
-
-	else :
-		rule all:
-			input:
-				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",
-				config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"
+elif check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
+	popFILE = config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]
+	group = []
+	with open(popFILE,"r") as fIN:
+		for line in fIN:
+			if line.endswith("\n") :
+				fields = line[:-1].split("\t")
+			else : 
+				fields = line.split("\t")
+			group.append(fields[1])
+	group = set(group)
+	include: "modules/teflon_genotype_pop.smk"
+	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"]
 
 else :
-	rule all:
-		input: 
-			config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/2-preliminaryResults/TE_catalog.summary"
+	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"]
+	
+rule all:
+	input:
+		input_files
