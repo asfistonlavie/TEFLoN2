@@ -11,7 +11,7 @@ Required input data to TEFLoN2 are :
 
 * Reference genome (.fasta)
 * Short paired-end reads (.fastq(.gz)) or/and binary alignment map (.bam)
-* TEs annotation of reference (.bed6) or/and TEs library (.fasta)
+* Annotation of TE insertions in the reference (.bed6) or/and TE library (.fasta)
 
 .. code-block:: none
 
@@ -47,9 +47,9 @@ Depending on the input you have TEFLoN2 uses teflon_preparation_annotation or te
 Preparation annotation - With TEs annotation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you use TEs annotation of reference, TEFLoN2 will use teflon_prep_annoation.
+If you use annotation of the TE insertions known to be present in the reference, TEFLoN2 will use teflon_prep_annotation.
 
-You should place your files as follows:
+You should organize your files as follows:
 
 .. code-block:: none
 
@@ -70,7 +70,7 @@ You should place your files as follows:
 	    └── reads2
 	        └── SAMPLE_NAME[. _][2 r2 R2].[fastq fq](.gz)
 
-In this step, TEFLoN2 uses the TE annotations to extract them from the reference in order to use them as ET sequences. It removes them from the reference and keeps the information of their positions in the reference. 
+In this step, TEFLoN2 uses the TE annotations to extract the sequences from the reference and then generated a TE library with these TE sequences. It removes them from the reference and keeps the information of their positions in the reference. 
 
 Here is the structure of the output files obtained after the execution of Preparation annotation step.
 
@@ -99,9 +99,9 @@ The most useful output is PREFIX.mappingRef.fa composed of the reference sequenc
 Preparation custom - Without TEs annotation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you do not use TEs annotation of refrence, it is required that you use an TEs library.
+If you do not use TE annotation of the reference, you will have to use a TE library.
 
-You should place your files as follows:
+You should organize your files as follows:
 
 .. code-block:: none
 
@@ -121,7 +121,7 @@ You should place your files as follows:
 	        └── SAMPLE_NAME[. _][2 r2 R2].[fastq fq](.gz)
 
 
-In this step, TEFLoN2 uses RepeatMasker_  which, together with the TE consensus library, masks the TE sequences of the reference and then removes them.
+In this step, TEFLoN2 uses RepeatMasker which, together with the TE consensus library, masks the TE sequences of the reference and then removes them.
 
 Here is the structure of the output files obtained after the execution of Preparation custom step.
 
@@ -203,7 +203,7 @@ Here is the structure of the output files obtained after the execution of Discov
 		├── SAMPLE_NAME.all_positions_sorted.txt
 		└── SAMPLE_NAME.all_positions.txt
 
-We obtain all position of putative TE breakpoints (SAMPLE_NAME.all_positions_sorted.txt) in each sample.
+We obtain all positions of putative TE breakpoints (SAMPLE_NAME.all_positions_sorted.txt) in each sample.
 
 Collapse
 --------
@@ -237,13 +237,13 @@ Here is the structure of the output files obtained after the execution of Collap
 		└── union.txt
 
 
-The most useful output is union_sorted.collapsed.txt composed of all TE breakpoints of all sample also known as the catalog of putative TE breakpoints  
+The most useful output is union_sorted.collapsed.txt composed of all TE breakpoints of all sample also known as the catalog of putative TE breakpoints. 
 
 
 Count
 -----
 
-Count step examine reads flanking the TE breakpoint and genotype them according to their support of presence/absence of TE for each sample.
+Count step examine reads flanking the TE breakpoints and genotype them according to their support of presence/absence of TE for each sample.
 
 
 Here is the structure of the output files obtained after the execution of Count step.
@@ -283,7 +283,7 @@ Here is the structure of the output files obtained after the execution of Genoty
 Genotype (population)
 ---------------------
 
-If you use population file, Genotype (population) step gather all the information and estimate the population frequency of each TE breakpoints for each population.
+If you use population file, Genotype (population) step gather all the information and estimate the population frequency of each TE insertion for each population.
 
 
 .. code-block:: none
