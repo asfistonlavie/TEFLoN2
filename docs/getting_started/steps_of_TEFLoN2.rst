@@ -243,7 +243,7 @@ The most useful output is union_sorted.collapsed.txt composed of all TE breakpoi
 Count
 -----
 
-Count step examine reads flanking the TE breakpoints and genotype them according to their support of presence/absence of TE for each sample.
+Count step examines reads flanking the TE breakpoints and genotypes them according to their support of presence/absence of TE for each sample.
 
 
 Here is the structure of the output files obtained after the execution of Count step.
