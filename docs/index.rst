@@ -6,13 +6,26 @@
 Welcome to TEFLoN2's documentation!
 ============================================
 
-TEFLoN2 is an improvement of the original `TEFLoN <https://github.com/jradrion/TEFLoN>`_. Like TEFLoN, TEFLoN2 uses paired-end illumina sequence data to (1) discover transposable element (TE) insertions, (2) perform TE call (3) and estimate TE population frequency using pooled data. The original TEFLoN consisted of four python scripts that had to be run manually one by one. 
+TEFLoN2 is an enhanced and automated version of the original TEFLoN tool. Like its predecessor, TEFLoN2 uses paired-end Illumina sequencing data to:
 
-TEFLoN2 is a snakemake pipeline that can now also estimate the TE allele and population frequency for a large amount of data as single in an automatic way. This new version is therefore ideally suited to the analysis of large population datasets.
+    Discover transposable element (TE) insertions,
 
-TEFLoN2 requires to prepare a specific mapping dataset (cf. figure 1.A). Then, one launches four individually automated scripts : It (cf. figure 1.B) detects all TE insertions (de novo and references TEs) based on discordant paired-end reads, then filters out low quality data to create a catalog of TE insertions. For an accurate TE genotyping, the detected TE insertions are genotyped based on discordant paired-end and split reads. Finally, TEFLoN2 estimes their allele frequency in each single data and using a population file, returns the TE population frequency.
+    Genotype the TE insertions, and
 
-All improvements made allow to easily up to date and launch TEFLoN2 (in one command line). TEFLoN2 can run on high performance computers (bigmem), cluster or HPC cluster.
+    Estimate TE population frequencies using pooled data.
+
+The original TEFLoN consisted of four separate Python scripts that had to be run manually in sequence. In contrast, TEFLoN2 is implemented as a Snakemake pipeline that automates these steps and scales efficiently to large datasets. This makes it particularly well suited for population-scale analyses.
+
+To run TEFLoN2, a mapping dataset must first be prepared (see Figure 1.A). The pipeline then executes four automated modules:
+
+    The first module (see Figure 1.B) identifies both de novo and reference TE insertions using discordant paired-end reads, and filters out low-quality data to produce a high-confidence catalog of insertions.
+
+    The next module genotypes these TE insertions using both discordant paired-end and split reads for improved accuracy.
+
+    Finally, TEFLoN2 estimates the allele frequency of each TE insertion in individual samples and, using a population metadata file, calculates the TE frequency across the entire population.
+
+All improvements in TEFLoN2 make it easy to install, update, and run using a single command line. The pipeline is designed to run efficiently on high-performance workstations (bigmem), clusters, or HPC environments.
+
 
 .. image:: images/TEFLoN2_architecture.png
 
