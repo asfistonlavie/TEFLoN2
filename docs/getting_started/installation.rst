@@ -3,14 +3,12 @@ Installation
 ============
 
 
-Before you can use TEFLoN2, you'll need to install its dependencies.
-TEFLoN2 uses Python 3, BWA (Burrows-Wheeler Alignment Tool), Samtools, RepeatMasker and SnakeMake.
-It has been successfully launched on the LINUX/UBUNTU platform. 
+Before using TEFLoN2, you need to install its dependencies. TEFLoN2 uses Python 3, BWA (Burrows-Wheeler Alignment Tool), Samtools, RepeatMasker, and Snakemake. It has been successfully tested on Linux/Ubuntu platforms.
 
 TEFLoN2
 =======
 
-TEFLON2 is installed on `Github repository <https://github.com/asfistonlavie/TEFLoN2>`_ or your console:
+TEFLoN2 can be installed from the `Github repository <https://github.com/asfistonlavie/TEFLoN2>`_ or directly via the terminal:   
 
 .. code-block:: console
 
@@ -36,27 +34,26 @@ Dependencies
 * AWK_ ≥ 5.1.0
 * BWA_ ≥ 0.7.17
 * SAMtools_ ≥ 1.15
-* RepeatMasker_ ≥ 4.1.2 (optinal)
+* RepeatMasker_ ≥ 4.1.2 (optional)
 * Snakemake_ ≥ 7.7.0
 
 
-Using SingularityCE (optinal)
------------------------------
+Using SingularityCE (optional)
+------------------------------
 
+To install SingularityCE ≥ 3.11.0, follow the instructions on the official website `SingularityCE site <https://docs.sylabs.io/guides/main/admin-guide/installation.html>`_.
 
-For install SingularityCE_ ≥ 3.11.0, follow installation instructions on `SingularityCE site <https://docs.sylabs.io/guides/main/admin-guide/installation.html>`_.
-
-A Singularity container is available with all tools compiled in. The Singularity file provided in this repo and can be compiled as such:
-
-.. code-block:: console
-
-	$ sudo singularity build TEFLoN2.simg Singularity
-
-if you can't use sudo :
+A Singularity container is available with all the required tools precompiled. You can build the container using the provided Singularity file in the repository:
 
 .. code-block:: console
 
-	singularity build --fakeroot TEFLoN2.simg Singularity
+	$ sudo singularity build TEFLoN2.simg Singularity_TEFLoN2_[Custom,Annotation]
+
+If you do not have sudo privileges:
+
+.. code-block:: console
+
+	singularity build --fakeroot TEFLoN2.simg Singularity_TEFLoN2_[Custom,Annotation]
 
 After, to use the TEFLoN2.simg container, you have to use :
 
@@ -65,21 +62,22 @@ After, to use the TEFLoN2.simg container, you have to use :
 	singularity exec TEFLoN2.simg snakemake --configfile config.yaml -s Snakefile -p -j $MAX_JOBS
 
 
-Manually
---------
+Manual installation
+-------------------
 
-For manual installation, it is best to go directly to the tool documentation.
+For manual installation, we recommend following the installation guides provided by each tool.
 
 Python 3
 ^^^^^^^^
 
-To check the version of your python :
+Check your current Python version:
 
 .. code-block:: console
 
 	$ python --version
 
-If python < 3, install python 3 on `their site <https://www.python.org/doc/>`_ or your console:
+If your version is < 3, install Python 3 `<https://www.python.org/doc/>`_ from python.org or via terminal:
+
 
 .. code-block:: console
 
@@ -89,16 +87,16 @@ If python < 3, install python 3 on `their site <https://www.python.org/doc/>`_ o
 If all went well you now have python 3 on your computer.
 
 
-Burrows-Wheeler Alignment Tool (BWA)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BWA (Burrows-Wheeler Aligner) 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If your computer has bwa installed, check the version of your bwa :
+Check your BWA version:
 
 .. code-block:: console
 
 	$ bwa
 
-If bwa is not installed or version <  0.7.17 :
+If BWA is not installed or the version < 0.7.17:
 
 
 .. code-block:: console
@@ -106,33 +104,33 @@ If bwa is not installed or version <  0.7.17 :
 	$ sudo apt update
 	sudo apt -y install bwa
 
-Recheck bwa version and if there are any problems, go to the `bwa site <https://bio-bwa.sourceforge.net/>`_.
+Check the version again. If problems persist, refer to the `bwa site <https://bio-bwa.sourceforge.net/>`_.
 
 SAMtools
 ^^^^^^^^
 
-If your computer has SAMtools installed, check the version of your SAMtools :
+Check your SAMtools version:
 
 .. code-block:: console
 
 	$ samtools --version
 
-If samtools is not installed or SAMtools < 1.15, follow installation instructions on `samtools site <http://www.htslib.org/>`_.
+If SAMtools is not installed or is outdated (< 1.15), follow instructions on the `samtools site <http://www.htslib.org/>`_.
 
 
 RepeatMasker
 ^^^^^^^^^^^^
 
-For install RepeatMasker_, follow installation instructions on `RepeatMasker site <http://www.repeatmasker.org/RepeatMasker/>`_.
+To install RepeatMasker_, follow installation instructions on `RepeatMasker site <http://www.repeatmasker.org/RepeatMasker/>`_.
 
-SnakeMake
+
+Snakemake
 ^^^^^^^^^
 
-
-If your computer has SnakeMake installed, check the version of your SnakeMake :
+Check your Snakemake version:
 
 .. code-block:: console
 
 	$ snakemake --version
 
-If SnakeMake is not installed or version < 7.7.0, follow installation instruction on `SnakeMake site <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_.
+If SnakeMake is not installed or is older than version < 7.7.0, install it following the instructions on `SnakeMake site <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_.
