@@ -64,6 +64,7 @@ From: ubuntu:22.04
     pip3 install --upgrade pip
 
     # Install datrie
+    pip3 install Cython
     pip3 install --no-build-isolation datrie
 
     # Install Snakemake and dependencies
