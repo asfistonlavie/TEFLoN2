@@ -112,7 +112,7 @@ From: ubuntu:22.04
     # Download the Dfam database
     mkdir -p /usr/local/RepeatMasker/Libraries
     cd /usr/local/RepeatMasker/Libraries
-    wget https://www.dfam.org/releases/current/families/Dfam-RepeatMasker.lib.gz
+    wget https://www.dfam.org/releases/current/families/FamDB/dfam39_full.0.h5.gz
     cd /usr/local/RepeatMasker
     ln -s Libraries/Dfam.h5 .
 
