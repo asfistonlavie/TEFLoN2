@@ -113,8 +113,9 @@ From: ubuntu:22.04
     mkdir -p /usr/local/RepeatMasker/Libraries
     cd /usr/local/RepeatMasker/Libraries
     wget https://www.dfam.org/releases/current/families/FamDB/dfam39_full.0.h5.gz
+    gunzip dfam39_full.0.h5.gz
     cd /usr/local/RepeatMasker
-    ln -s Libraries/Dfam.h5 .
+    ln -s Libraries/dfam39_full.0.h5 .
 
     # Configure RepeatMasker
     cd /usr/local/RepeatMasker
