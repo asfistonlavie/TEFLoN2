@@ -110,18 +110,18 @@ From: ubuntu:22.04
     rm RepeatMasker-4.1.6.tar.gz
 
     # Download the Dfam database
-    mkdir -p /usr/local/RepeatMasker/Libraries
-    cd /usr/local/RepeatMasker/Libraries
+    cd /usr/local/RepeatMasker/Libraries/famdb/
     wget https://www.dfam.org/releases/current/families/FamDB/dfam39_full.0.h5.gz
-    gunzip dfam39_full.0.h5.gz
-    mv dfam39_full.0.h5 Dfam.h5
+    wget https://www.dfam.org/releases/current/families/FamDB/dfam39_full.0.h5.gz.md5
+    md5sum check dfam39_full.0.h5.gz.md5
+    gunzip -d dfam39_full.0.h5.gz > Dfam.h5
 
     # Configure RepeatMasker
     cd /usr/local/RepeatMasker
     perl ./configure \
         --trf_prgm=/usr/local/bin/trf \
         --hmmer_dir=/usr/local/bin \
-        --default_search_engine=rmblast
+        --libdir=/usr/local/RepeatMasker/Libraries/famdb/
 
 %environment
     export LC_ALL=C
