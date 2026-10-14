@@ -63,11 +63,11 @@ Outputs
 
 .. toctree::
    :caption: Outputs 
-   :name: output_files 
+   :name: outputs
    :hidden:
    :maxdepth: 1 
    
-   output_files/output_file_summary.rst
+   outputs/output_file_summary.rst
 
 ---------
 Executing
