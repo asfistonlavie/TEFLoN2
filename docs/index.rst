@@ -67,7 +67,7 @@ Outputs
    :hidden:
    :maxdepth: 1 
    
-   output_files/outputs/output_file_summary.rst
+   output_files/output_file_summary.rst
 
 ---------
 Executing
