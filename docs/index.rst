@@ -68,6 +68,7 @@ Outputs
    :maxdepth: 1 
    
    outputs/output_file_summary.rst
+   outputs/steps_of_TEFLoN2.rst
 
 ---------
 Executing
