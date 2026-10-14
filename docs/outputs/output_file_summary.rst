@@ -1,6 +1,6 @@
 ====================
 Output files summary
-====================
+==================== 
 
 Here is the structure of the output files obtained after running the pipeline.
 
