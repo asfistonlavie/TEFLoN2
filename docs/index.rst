@@ -44,14 +44,9 @@ Getting started
    getting_started/steps_of_TEFLoN2
    getting_started/teflon2_test
 
-
-.. toctree::
-   :caption: Outputs ### Basic concept
-   :name: output_files ### basic_concept
-   :hidden:
-   :maxdepth: 1 
-   output_files/output_file_summary
-
+---------
+Executing
+---------
 
 .. toctree::
    :caption: Executing
@@ -61,6 +56,22 @@ Getting started
 
    executing/configure_parameter_file.rst
    executing/command_line_interface.rst
+
+-------
+Outputs
+-------
+
+.. toctree::
+   :caption: Outputs 
+   :name: output_files 
+   :hidden:
+   :maxdepth: 1 
+   
+   output_files/outputs/output_file_summary.rst
+
+---------
+Executing
+---------
 
 .. toctree::
    :caption: Project Info
