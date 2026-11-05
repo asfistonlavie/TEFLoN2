@@ -102,7 +102,7 @@ If you use TEFLoN2, please cite the TEFLoN2 article and the original TEFLoN arti
 
 **TEFLoN2**
 
-> Fiston-Lavier A.-S., Marco C., Chenal C...., Fontaine M. Accurate genotyping and frequency estimation of transposable elements using short-reads in large population datasets: A case study of 200 Pan-Anopheles samples. 
+> Fiston-Lavier A.-S., Marco C., Chenal C, Fontaine M. Accurate genotyping and frequency estimation of transposable elements using short-reads in large population datasets: A case study of 200 Pan-Anopheles samples. 
 
 Source code: <https://github.com/asfistonlavie/TEFLoN2>
 
