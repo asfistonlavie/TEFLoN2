@@ -85,7 +85,7 @@ We want TEFLoN2 to be a welcoming project for everyone, whatever their experienc
 * not use harassing, discriminatory, insulting or sexualized language or behaviour;
 * not publish private information of others without their consent.
 
-Maintainers may edit or remove contributions that do not follow these rules and may restrict participation of people who repeatedly break them. To report a problem, contact the maintainer at **anna.fiston@gmail.com** (all reports are treated confidentially).
+Maintainers may edit or remove contributions that do not follow these rules and may restrict participation of people who repeatedly break them. To report a problem, contact the maintainer at **anna-sophie.fiston-lavier@umontpellier.fr** (all reports are treated confidentially).
 
 This code of conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
 
