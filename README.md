@@ -1,8 +1,8 @@
 # TEFLoN2
 
-**Detection, genotyping and frequency estimation of transposable element (TE) insertions and deletions from short-read data, in single samples or in large population datasets.**
+**Detection, genotyping and frequency estimation of transposable element (TE) variants from short paired-read data, in single samples or in large population datasets.**
 
-TEFLoN2 is a [Snakemake](https://snakemake.readthedocs.io) pipeline derived from [TEFLoN](https://doi.org/10.1093/gbe/evx073). It maps paired-end reads, finds the TE breakpoints of each sample, builds a catalog of TE polymorphisms, genotypes every site in every sample and, optionally, estimates the frequency of each TE in each population. Results are exported as a standard VCF, a GFA graph and a self-contained interactive HTML report.
+TEFLoN2 is a [Snakemake](https://snakemake.readthedocs.io) pipeline derived from [TEFLoN](https://doi.org/10.1093/gbe/evx073). It maps paired-end reads, finds the TE breakpoints of each sample, builds a catalog of TE polymorphisms, report the TE population diversity, genotypes every site in every sample and estimates the frequency of each TE variant in each population. Results are now exported as a standard VCF, a GFA graph and a self-contained interactive HTML report.
 
 Full documentation: <https://teflon2.readthedocs.io/en/latest/>
 
@@ -94,9 +94,6 @@ This code of conduct is adapted from the [Contributor Covenant](https://www.cont
 Bugs and questions: please open an [issue](https://github.com/asfistonlavie/TEFLoN2/issues) with your TEFLoN2 version, your command line and the relevant log files from `.logs/`. Pull requests are welcome.
 
 > TEFLoN2 is released under the GPL-3.0. See the [LICENSE](LICENSE) file.
-
----
-TEFLoN2 builds on TEFLoN (Adrion *et al.* 2017); check that the chosen licence is compatible with the terms of the original code. The Dfam library downloaded by `install/download_dfam.py` is distributed under its own terms (see <https://www.dfam.org>); Repbase is not distributed with TEFLoN2 because of its licence.
 
 --
 ## Citation
