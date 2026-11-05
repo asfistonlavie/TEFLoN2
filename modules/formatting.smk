@@ -52,9 +52,9 @@ rule deinterleave_fastq:
 
 	priority: 1
 
-        log:
-                error = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.err",
-                output = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.out"
+	log:
+		error = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.err",
+		output = ".logs/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.out"
 
 	benchmark:
 		".benchmarks/deinterleave_fastq/"+config["PARAMS"]["GENERAL"]["PREFIX"]+".{samples_interleaved}.benchmark.txt"

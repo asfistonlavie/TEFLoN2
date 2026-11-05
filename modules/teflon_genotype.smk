@@ -40,7 +40,7 @@ rule teflon_genotype_individual :
 		if (check_value(config["PARAMS"]["GENOTYPE"]["SAMPLE"]["THRESHOLD_ABSENCE"])) :
 			cmd = cmd + ("-flt {params.frequencyLoThresh} ")
 		if (check_value(config["PARAMS"]["GENOTYPE"]["SAMPLE"]["THRESHOLD_PRESENCE"])) :
-			cmd = cmd + ("-flt {params.frequencyHiThresh} ")
+			cmd = cmd + ("-flh {params.frequencyHiThresh} ")
 		cmd = cmd + ("-dt {params.datatype} 1> {log.output} 2> {log.error}")
 		shell(cmd)
 
@@ -79,6 +79,6 @@ rule teflon_genotype_all:
 		if (check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["THRESHOLD_ABSENCE"])) :
 			cmd = cmd + ("-plt {params.populationLoThresh} ")
 		if (check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["THRESHOLD_PRESENCE"])) :
-			cmd = cmd + ("-plt {params.populationHiThresh} ")
+			cmd = cmd + ("-plh {params.populationHiThresh} ")
 		cmd = cmd + ("1> {log.output} 2> {log.error}")
 		shell(cmd)

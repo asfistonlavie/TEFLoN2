@@ -82,3 +82,16 @@ PARAMS:
       FILE: ""                        # [optional] Path to population file
       THRESHOLD_ABSENCE: ""          # [optional] Default = 0.05
       THRESHOLD_PRESENCE: ""         # [optional] Default = 0.95
+       
+  EXPORT:
+    USE: 1                            # [optional] 1: also write a VCF and a GFA (5-export/); 0: skip (default = 1)
+    GFA_PATHS: "samples"              # [optional] "samples": one graph path per sample and sequence (large); "reference": reference path only
+    COMPRESS: 0                       # [optional] 1: also write PREFIX.TE_genotypes.vcf.gz + .tbi (requires bgzip and tabix in PATH)
+
+  REPORT:
+    USE: 1                            # [optional] 1: build the HTML quality/results report (6-report/); 0: skip (default = 1)
+    MIN_COVERAGE: 5                   # [optional] samples below this mean coverage are flagged in the report
+    MIN_MAPPED: 80                    # [optional] samples below this % of mapped reads are flagged
+    MIN_PROPERLY_PAIRED: 80           # [optional] samples below this % of properly paired reads are flagged
+    GENE_ANNOTATION: ""               # [optional] gene annotation (GFF3 or GTF, .gz allowed): adds genes and the impact of the TEs to the genome browser of the report
+    GENE_FLANK: 2000                  # [optional] a TE within this distance (bp) of a gene is called upstream / downstream

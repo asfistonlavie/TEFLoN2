@@ -3,6 +3,10 @@ import subprocess
 import os
 import sys
 
+# accept both spellings of the dependency section (the template used DEPENDENCIES, the modules DEPENDANCES)
+if "DEPENDENCIES" in config and "DEPENDANCES" not in config:
+	config["DEPENDANCES"] = config["DEPENDENCIES"]
+
 #function
 def get_mem_mb(wildcards, attempt):
 	return config["PARAMS"]["GENERAL"]["MEMORY"] +  (config["PARAMS"]["GENERAL"]["MEMORY_SUPP"] * (attempt - 1))
@@ -182,6 +186,8 @@ include: "modules/teflon_collapse.smk"
 include: "modules/preliminaryResults.smk"
 include: "modules/teflon_count.smk"
 include: "modules/teflon_genotype.smk"
+include: "modules/teflon_export.smk"
+include: "modules/teflon_report.smk"
 
 input_files = []
 
@@ -223,10 +229,10 @@ elif check_value(config["PARAMS"]["GENOTYPE"]["POPULATION"]["FILE"]) :
 			group.append(fields[1])
 	group = set(group)
 	include: "modules/teflon_genotype_pop.smk"
-	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"]
+	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/populations/all_frequency.population.genotypes2.txt"] + export_targets + report_targets
 
 else :
-	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"]
+	input_files = [config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes.txt",config["PARAMS"]["GENERAL"]["WORKING_DIRECTORY"]+config["PARAMS"]["GENERAL"]["PREFIX"]+"/4-genotypes/samples/"+"all_samples.genotypes2.txt"] + export_targets + report_targets
 	
 rule all:
 	input:
