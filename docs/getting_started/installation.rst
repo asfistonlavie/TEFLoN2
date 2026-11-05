@@ -36,6 +36,51 @@ Dependencies
 * SAMtools_ ≥ 1.15
 * RepeatMasker_ ≥ 4.1.2 (optional)
 * Snakemake_ ≥ 7.7.0
+* numpy (optional): population statistics and PCA of the :doc:`HTML report <../outputs/html_report>`
+* bgzip and tabix from HTSlib (optional): compressed and indexed VCF
+
+Installation helper
+-------------------
+
+The script ``install/install.sh`` checks the dependencies above (it tells which are missing and which optional ones are absent)
+and downloads the latest TE library from Dfam:
+
+.. code-block:: console
+
+	$ bash install/install.sh                    # check the tools and download the Dfam library
+	$ bash install/install.sh --skip-library     # only check the tools
+	$ bash install/install.sh --outdir my_library_folder
+
+The library is written in ``data_input/library`` by default (see below).
+
+TE library from Dfam
+--------------------
+
+.. _Dfam: https://www.dfam.org
+
+TEFLoN2 needs a library of TE consensus sequences to annotate the reference (``PREP_CUSTOM``, with RepeatMasker). The script
+``install/download_dfam.py`` downloads the latest release of Dfam_, the open TE database distributed with RepeatMasker, and converts
+it into a FASTA file that TEFLoN2 can use (``>name#Type/SubType``):
+
+.. code-block:: console
+
+	$ python3 install/download_dfam.py                           # latest release, curated families of all taxa
+	$ python3 install/download_dfam.py --filter "Anopheles"      # keep the entries whose name or class matches a regular expression
+	$ python3 install/download_dfam.py --release 3.9             # a given release instead of the latest
+	$ python3 install/download_dfam.py --dry-run                 # only list what would be downloaded
+
+By default it downloads the *curated-only* export of the release in EMBL format and checks its md5 checksum.
+The release number, the checksums and the date are saved in ``DFAM_VERSION.json`` next to the library, so that the library used
+for an analysis can be cited and reproduced.
+
+With ``--taxon "Anopheles"`` the script instead extracts the families of one taxon from the partitioned FamDB files of Dfam
+(this needs the Python package ``h5py``). This mode is **experimental** and has not been tested against every release of the server.
+
+.. note::
+
+	**Repbase** is a licensed resource (GIRI) and cannot be downloaded automatically. If you use it, get the library from
+	`girinst.org <https://www.girinst.org>`_ and give the FASTA file to TEFLoN2 with ``DATA_INPUT > LIBRARY``.
+	Check that the library you downloaded covers your organism (use ``--filter`` or ``--taxon`` to restrict it).
 
 
 Using SingularityCE (optional)

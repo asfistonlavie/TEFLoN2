@@ -89,6 +89,37 @@ TEFLoN2 uses Snakemake to perform its analyses. You have then first to provide y
 * THRESHOLD : Threshold for data analysis
 * DATA_TYPE: Type of data for different interpretations
 
+Optional outputs: VCF / GFA and HTML report
+-------------------------------------------
+
+Two blocks under ``PARAMS`` control the outputs that are added to the historical text files. Both are optional and enabled by default; if
+they are absent from an older ``config.yaml`` the defaults below are used.
+
+.. code-block:: yaml
+
+    PARAMS:
+      EXPORT:
+        USE: 1                      # 1: write the VCF and the GFA in 5-export/; 0: skip
+        GFA_PATHS: "samples"        # "samples": one path per sample and sequence (large file); "reference": reference path only
+        COMPRESS: 0                 # 1: also write .vcf.gz and .tbi (needs bgzip and tabix)
+      REPORT:
+        USE: 1                      # 1: build the HTML report in 6-report/; 0: skip
+        MIN_COVERAGE: 5             # samples below this mean coverage are flagged
+        MIN_MAPPED: 80              # samples below this % of mapped reads are flagged
+        MIN_PROPERLY_PAIRED: 80     # samples below this % of properly paired reads are flagged
+        GENE_ANNOTATION: ""         # GFF3 or GTF (.gz allowed): genes and impact of the TEs in the genome browser; "" = none
+        GENE_FLANK: 2000            # distance (bp) for an upstream / downstream TE
+
+* ``EXPORT``: see :doc:`../outputs/vcf_gfa_export`.
+* ``REPORT``: see :doc:`../outputs/html_report`.
+
+.. note::
+
+	The tools section of the configuration file is called ``DEPENDENCIES`` in the current ``config.yaml`` and ``DEPENDANCES`` in
+	older files and in the example above. Both spellings are accepted.
+
+You can also let a script write these files for you: :doc:`interactive_configuration`.
+
 Config Cluster
 --------------
 

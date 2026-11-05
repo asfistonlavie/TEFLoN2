@@ -19,6 +19,22 @@ If all went well, execute TEFLoN2 :
 
 To make TEFLoN2 work, you may need to configure your cluster.
 
+Re-running only some steps
+--------------------------
+
+The VCF / GFA export and the HTML report are separate rules. To regenerate them (for example after changing ``GENE_ANNOTATION``
+or the QC thresholds) without redoing the analysis, delete the output you want to rebuild and restrict Snakemake to the rules:
+
+.. code-block:: console
+
+	$ rm data_output_PREFIX/6-report/PREFIX.report.html
+	$ snakemake --configfile config.yaml -s Snakefile -p -j $MAX_JOBS --allowed-rules teflon_report
+
+	$ snakemake --configfile config.yaml -s Snakefile -p -j $MAX_JOBS --allowed-rules teflon_export
+
+See :doc:`../outputs/vcf_gfa_export` and :doc:`../outputs/html_report`. The configuration can be produced interactively with
+:doc:`interactive_configuration`.
+
 For more information on the launch, go to `SnakeMake documentation <https://snakemake.readthedocs.io/en/stable/>`_.
 
 

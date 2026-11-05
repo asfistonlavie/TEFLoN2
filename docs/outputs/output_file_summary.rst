@@ -63,9 +63,24 @@ Here is the structure of the output files obtained after running the pipeline.
 	|	    ├──	NAME_POP.population.genotypes.txt                 |--- If you use population file
 	│	    ├── all_frequency.population.genotypes2.txt           |
 	│	    └── all_frequency.population.genotypes.txt   ----------
+	├── 5-export                                         ----------
+	│	├── PREFIX.TE_genotypes.vcf                           |
+	│	├── PREFIX.TE_genotypes.vcf.gz (optional)             |--- VCF and GFA (see below)
+	│	├── PREFIX.TE_genotypes.vcf.gz.tbi (optional)         |
+	│	└── PREFIX.TE_genotypes.gfa                  ----------
+	├── 6-report
+	│	└── PREFIX.report.html                               HTML quality and results report
 	└── sample_names.txt
 
 
+
+VCF, GFA and HTML report
+------------------------
+
+Besides the text files described below, TEFLoN2 writes standard and interactive outputs:
+
+* ``5-export/PREFIX.TE_genotypes.vcf``: the TE insertions and their genotypes as a multi-sample VCF; ``5-export/PREFIX.TE_genotypes.gfa``: a genotyping graph (GFA). See :doc:`vcf_gfa_export`.
+* ``6-report/PREFIX.report.html``: one self-contained HTML file summarising the quality of the input data and the results, with a genome browser. See :doc:`html_report`.
 
 Most useful output
 ------------------

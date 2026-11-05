@@ -24,6 +24,8 @@ To run TEFLoN2, a mapping dataset must first be prepared (see Figure 1.A). The p
 
     Finally, TEFLoN2 estimates the allele frequency of each TE insertion in individual samples and, using a population metadata file, calculates the TE frequency across the entire population.
 
+Besides the historical text files, TEFLoN2 now also writes a standard **VCF** and a **GFA** genotyping graph of the TE insertions (see :doc:`outputs/vcf_gfa_export`), and a self-contained **HTML report** that summarises the quality of the input data and the results, taking the population information into account, with a genome browser (see :doc:`outputs/html_report`). The configuration can be written interactively (see :doc:`executing/interactive_configuration`) and the TE library can be downloaded from Dfam at installation (see :doc:`getting_started/installation`).
+
 All improvements in TEFLoN2 make it easy to install, update, and run using a single command line. The pipeline is designed to run efficiently on high-performance workstations (bigmem), clusters, or HPC environments.
 
 
@@ -54,6 +56,7 @@ Executing
    :hidden:
    :maxdepth: 1
 
+   executing/interactive_configuration.rst
    executing/configure_parameter_file.rst
    executing/command_line_interface.rst
 
@@ -68,11 +71,12 @@ Outputs
    :maxdepth: 1 
    
    outputs/output_file_summary.rst
-   outputs/steps_of_TEFLoN2.rst
+   outputs/vcf_gfa_export.rst
+   outputs/html_report.rst
 
----------
-Executing
----------
+------------
+Project info
+------------
 
 .. toctree::
    :caption: Project Info

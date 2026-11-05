@@ -82,7 +82,7 @@ PARAMS:
       FILE: ""                        # [optional] Path to population file
       THRESHOLD_ABSENCE: ""          # [optional] Default = 0.05
       THRESHOLD_PRESENCE: ""         # [optional] Default = 0.95
-       
+
   EXPORT:
     USE: 1                            # [optional] 1: also write a VCF and a GFA (5-export/); 0: skip (default = 1)
     GFA_PATHS: "samples"              # [optional] "samples": one graph path per sample and sequence (large); "reference": reference path only
