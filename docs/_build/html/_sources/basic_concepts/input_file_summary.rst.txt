@@ -1,0 +1,31 @@
+====================
+Input files summary
+====================
+
+Here is the structure of the input files to run TEFLoN2.
+
+.. code-block:: none
+
+	data_input/
+	├── library
+	│	├── sample_reference_hierarchy.txt #
+	│	├── sample_reference_te_annotation.bed
+	│	└── sample_te_library.fasta
+	├── reference
+	│	└── sample_reference_genome.fasta
+	└── samples
+	    ├── bam
+	    │	└── sample2.bam
+	    ├── read1
+	    │	└── sample_reads_r1.fastq
+	    └── read2
+	        └── sample_reads_r2.fastq
+
+
+Library directory is
+
+
+Data preparation
+----------------
+
+Depending on the input you have TEFLoN2 uses teflon_preparation_annotation or teflon_preparation_custom.
